@@ -18,10 +18,10 @@ Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs 
 
 Four tabs:
 
-- **Program** — the 7-day FSI schedule, plus AFM Extended and ACE Avionics topic blocks; every row has a Drill button that loads exactly those cards
+- **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards
 - **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
-- **Exam** — three checkpoints, a 30-question mock oral, and a full-deck final, each with a pass standard and attempt history
-- **Reference** — all 87 cards, searchable
+- **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus FSI-deck, AFM-only, ACE-only, mock oral and whole-deck scopes — each with a pass standard and attempt history
+- **Reference** — all 198 cards, searchable
 
 Progress is stored in your browser's `localStorage`, so it stays on the device and never leaves it. Each install keeps its own record — drill in one place so your due-card schedule doesn't fragment.
 

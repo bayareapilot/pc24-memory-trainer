@@ -3,7 +3,8 @@
 **Sources:** FlightSafety International PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026) · Pilatus PC-24 EASA AFM Report 02371, Issue 003 Rev 08 (01 May 2025) · Pilatus ACE™ (powered by Honeywell) PC-24 Avionics System Pilot's Guide, D201912000296-R002 Rev 2 (Sep 2022)
 **Aircraft:** MSN 631 — all serial-dependent values resolved to the **MSN 501-up** column
 **Scope:** 198 cards — 87 FSI (21 Emergency E-1–E-21, 57 Limitations L-1–L-57, 9 Aircraft General AGI-1–AGI-9), 65 AFM Extended (AFM-1–AFM-65), 46 ACE Avionics (ACE-1–ACE-46)
-**Program length:** 7-day compressed track (active) + AFM Extended and ACE Avionics topic blocks, drilled any time
+**Course:** FSI Pilot Initial (FAA) — 9 ground school days (SIT on Days 6 and 8) then 7 simulator sessions, SIM 7 being the LOS. Class started 30 Jul 2026.
+**Schedule basis:** keyed to **course day numbers**, not calendar dates
 
 ---
 
@@ -27,150 +28,56 @@ Three kinds of material live in this deck, and each needs a different standard o
 
 ---
 
-## Phase 1 — Limitations foundation: the hard numbers (Days 1–6)
+## The course, and where the deadlines actually fall
 
-The goal this week is the numeric backbone of the airplane. These respond best to *clustering* — learn the pattern, not 57 isolated facts.
+From the FSI Pilot Client Guide (Rev 1.0), Pilot Initial — FAA: **9 ground school days, then 7 simulator sessions.** SIT sessions fall on ground Days 6 and 8. The written test follows ground school (FSI standard 80% FAA, corrected to 100% — our card standard stays stricter: exact values).
 
-### Day 1 — Speeds (L-1, L-28, L-29, L-30)
-Build the speed ladder top-down:
-- **290 KIAS / 0.74 M** — VMO/MMO (crossover 28,230 ft)
-- **250 KIAS or 0.74 M (lower)** — VLE and VLO extend
-- **200 KIAS** — VLO retract, VFE 8° and 15°
-- **175 KIAS** — VFE 33°
-- **180 KIAS** — VLO extend with EGES (*QRH emergency extension procedure itself wants ≤160*)
-- **165 kt GS** — max tire speed
+That reshapes the plan. The schedule is now keyed to **course day numbers, not calendar dates**, because ground school may or may not run weekends — map GND 1–9 onto your own dates.
 
-### Day 2 — Weights, loading, load factors (L-2, L-3, L-4, L-5, L-6)
-Master pattern: **every MSN 501-up weight = the MSN 101–500 weight + 440 lb.**
-- MZFW 14,220 → 14,660 · Ramp 18,400 → 18,840 · MTOW 18,300 → 18,740 · MLW 16,900 → 17,340 · Max cargo 2,500 → 2,940
-- Baggage nets: small **400 lb** / large **530 lb**. Floor: **100 lb/ft²** panels, **670 lb/ft** seat rails.
-- Load factors: **+3.0/−1.2 g** flaps up; **+2.0/0.0 g** flaps down.
+### Ground school — drill each evening what class covered that day
 
-### Day 3 — Envelope & airport (L-7, L-8, L-9, L-10, L-11) · review Days 1–2
-- **45,000 ft** max operating altitude · OAT at sea level **−54 °C to +50 °C**
-- **8 passengers** max (Executive interior, incl. two optional infant fits)
-- Runway slope **±2%** · dry/wet paved (contaminated & unpaved per AFM supplements) · tailwind **10 kt** · pressure altitude **−1,000 ft** to **10,000 ft** landing field elevation
+| Day | Syllabus topics | Your drill block |
+|---|---|---|
+| **GND 1** | Aircraft General · AFM/AOM | AGI-1–9, documents, kinds of operation, doors & exits, pax seating |
+| **GND 2** | Avionics · **Master Warning** · Electrical | CAS levels + full aural priority order, display reversion, electrical limits |
+| **GND 3** | Lighting · Flight Controls · Fuel | AFCS/FMA logic, SWPS/TFS/rudder bias, flap & airbrake limits, fuel system |
+| **GND 4** | Gear & Brakes · Powerplant · Fire · Pneumatics · A/C · Pressurization | Biggest day — engine limit tables, QPM gates, fire drills, pressurization |
+| **GND 5** | Oxygen · Ice & Rain · Waste · Pitot-Static | Oxygen limits, the 10 °C ice line, miscompare thresholds |
+| **GND 6** | **SIT** — cockpit prep → shutdown | Start flows, ground idle gates, climb flow, QPM |
+| **GND 7** | Performance · Avionics | Speed ladder, VO/VMCG/VMC/VMCL, TOLD advisory status, EGPWS modes |
+| **GND 8** | **SIT** — normal / abnormal / **emergency** | All 21 emergency cards + emergency knowledge |
+| **GND 9** | CRM/SRM · W&B · Flight planning · Windshear · Stalls (incl. UPRT) | Weights & CG for MSN 631, avionics limitations, TCAS, stall/SWPS |
 
-### Day 4 — Engine & starter (L-12 through L-22) · review Day 3
-Biggest single block — 11 cards. Sub-clusters:
-- **Identity:** 2 × Williams FJ44-4A QPM · takeoff thrust **3,420 lb**, ATR **3,600 lb** · oil not below **ADD** mark
-- **Starter duty cycle:** 50 s ON / 1 min OFF (attempt 1 and dry motor) → attempt 2: 50 s ON / **30 min OFF**. Abort if N1 hasn't risen by **25% N2**.
-- **Start limits:** tailwind **20 kt** / crosswind **25 kt** · **60 s** between starts · light-off within **12 s** · Ni-Cad **22.0 V** (BAT 1) / **23.5 V** (BAT 2), Li-Ion both SOC green · min oil temp **−40 °C**
-- **The two-minute engine:** post-start oil temp **+10 °C** before N2 > 80% or QPM · QPM only after **2 min** stabilized ground idle, and **2 min** ground idle after QPM before shutdown/thrust · cooldown **2 min** idle before shutdown
-- **QPM box:** stationary + park brake ON, thrust lever IDLE, gen load ≤ **250 A**
+### Simulator prep — drill the night before each session
 
-### Day 5 — Fuel & oxygen (L-23–L-27, L-49) · review Day 4
-- Total **895 gal / 5,999.8 lb** · usable **890 gal / 5,964 lb** · max imbalance **49 gal / 330 lb**
-- Fuel temp **−40 °C to +80 °C** · pressure refuel max **60 PSI** · booster pumps + crossfeed must be **operative** · grades: **Jet A, Jet A-1, JP-8, TS-1**
-- Oxygen: **680 L** min dispatch · **10 min** per occupant above FL250
+| Session | What it introduces | Drill focus |
+|---|---|---|
+| **SIM 1** | Normal ops, steep turns, stalls, precision approach | Normal flows, speed limits, AP/FD basics |
+| **SIM 2** | Engine failure incl. shutdown/restart, OEI, holding | Engine fail/start, fuel, electrical, AFCS abnormals, VMC/VMCL |
+| **SIM 3** | **Fire drills, smoke, evacuation**, airframe icing, RTO | Fire and smoke memory items, icing limits, pitot-static |
+| **SIM 4** | **Decompression, emergency descent max rate**, windshear, high-altitude stalls, GPWS | Cabin/pressurization, EDM, flight controls, gear, GPWS/TCAS |
+| **SIM 5** | Fire and smoke to standard, powerplant failure on takeoff, OEI precision | Repeat fire/smoke/evac, full powerplant limits |
+| **SIM 6** | Circling, no-flap landing, backup instrumentation | Flap limits, AFCS modes, FMS approach conditions |
+| **SIM 7** | **LOS** — one simple correctable problem + one complex problem for the whole flight | Everything |
 
-### Day 6 — **Checkpoint 1.** Full pass of Days 1–5 (31 cards). Standard: **≥ 90%**, misses re-drilled to 100% before stopping.
+### The six gates
 
----
+Each is an exam in the app, tied to the event that tests it:
 
-## Phase 2 — Systems & operational limitations (Days 7–12)
+| Gate | Standard | Why here |
+|---|---|---|
+| Before **GND 6 SIT** | 90% | Normal flows fluent before you fly the procedures walkthrough |
+| Before **GND 8 SIT** | **100% verbatim** | First full emergency workout — this is the real memory-item deadline |
+| Before the **written test** | 100% exact | Every limitation, FSI's own gate at end of ground school |
+| Before **SIM 3** | 100% | Fire, smoke, evacuation, icing all get exercised |
+| Before **SIM 4** | 100% | Decompression, emergency descent, flight controls |
+| Before **SIM 7 LOS** | 95% | Whole deck, integrated |
 
-### Day 7 — Electrical (L-34, L-35, L-36, L-37, L-38)
-Cluster by ceiling: **29.5 VDC is the max everywhere** (GPU supply, battery charge, generator).
-- GPU: > battery voltage to connect · 25.0–29.5 VDC · **1,200 A** surge / **450 A** continuous · min 24.0 V for start · 28.0–29.5 V to charge batteries · min OAT −54 °C
-- Generator: **400 A** (ground idle & flight), **250 A** in QPM
-- Battery: min temp for flight **0 °C** · Ni-Cd min **−20 °C**, Li-Ion min **−5 °C** · start volts same as Day 4 · charge rate before takeoff: BAT 1+2 **< 50 A and decreasing**
+### A correction to the earlier plan
 
-### Day 8 — Cabin & AFCS (L-31, L-32, L-33, L-39, L-40, L-41, L-42)
-- Pressurization: **9.27 psid** max / **−0.3 psid** negative / **0.7 psid** takeoff & landing
-- **1 person** on the airstair · emergency-exit security pins **removed and stowed**
-- AP: pilot **seated, belt fastened** · AP & YD **OFF for takeoff and landing** · **no YD-off flight above 30,000 ft**
-- Minimum AP altitudes: **1,000 ft AGL** general · **400 ft AGL** non-precision/circling/visual (<150 KIAS, VS <1,500 fpm) · **200 ft AGL** VGP and coupled ILS (GS < 4.5°)
+The retired 7-day sprint front-loaded emergency memory items on my assumption that instructors quiz them from day one. The syllabus shows the real gate is **GND 8 SIT** — the first session that works normal, abnormal and emergency procedures together. Emergency items still matter early (each AST systems day covers that system's emergency procedures), but the hard 100%-verbatim deadline is Day 8, not Day 3.
 
-### Day 9 — Icing (L-43, L-44, L-45, L-46, L-47, L-48)
-- Severe icing: freezing rain/drizzle/mixed can exceed the **ice protection system** — recognize and exit
-- AP in icing: **periodically disengage** to feel for abnormal forces
-- **NAI ON — ground/takeoff/landing:** visible moisture + SAT/OAT < 10 °C, or ice adhering to engine inlet
-- **NAI ON — climb/cruise/descent:** visible moisture TAT < 10 °C, ice crystals, or any airframe accretion
-- NAI never when TAT > 10 °C or in QPM; ON **before setting takeoff power**
-- HSDI: not recommended TAT < −40 °C unless needed; if used ≤ −40 °C → **boot inspection + functional test** before takeoff
-
-### Day 10 — Avionics & displays (L-50 through L-57)
-One idea covers five cards: **nothing on the MFD replaces primary navigation** (ACE charts, INAV map, Smart View, VSD — all "not primary"). Plus:
-- Weather radar prohibited: in hangar, during fueling, personnel within safe distance ±60° of the nose
-- FMS: **ILS, LOC, LOC-BC, LDA, SDF, MLS approaches prohibited** via FMS
-
-### Day 11 — Aircraft General (AGI-1 through AGI-9)
-- **DU colors** (these are the CAS logic you'll live with): Red = warning/limits · Amber = caution/invalid/miscompare · Magenta = FD-coupled/active plan · Cyan = advisory/crew-selected · Green = engaged/on · White = armed/standby/status · Gray = legends/structure
-- Dimensions: length **55 ft 2 in** · height **17 ft 4 in** · wingspan **55 ft 9 in** (span > length!)
-- Danger areas: **20 ft** forward radius · start **60 × 36.7 ft** aft · max thrust **286 × 125.7 ft** aft
-
-### Day 12 — **Checkpoint 2.** All Limitations + AGI (66 cards). Standard: **≥ 90%**, then re-drill misses to 100%.
-
----
-
-## Phase 3 — Emergency memory items (Days 13–18)
-
-**Standard is different here: 100%, verbatim, out loud, in order.** Method for every card: read once → write the flow by hand → say it standing up (simulated cockpit scan helps anchor it) → drill until three clean consecutive recitations.
-
-### Day 13 — Fire & rejected takeoff (E-5, E-9, E-10, E-11)
-- **Engine Fire in flight (E-5):** Confirm → Thrust lever IDLE → Engine switch OFF/STOP → ISOL push (check ENGINE ISOLATED CAS after 5 s, green "1") → if fire persists, EXTINGUISHER push. Pitch/bank ±10° for extinguisher effectiveness.
-- **Engine fire on ground / tailpipe (E-9):** Identify/IDLE → ENG switch OFF → ISOL push → FIRE XTING push
-- **Fire/failure during takeoff (E-10):** below V1 → reject. At/above V1 → thrust fully forward (ATR), rotate 9° ANU, ≥ V2, gear up with positive rate
-- **Rejected takeoff (E-11):** thrust IDLE → max braking. Caution: kill the autothrottle (AT DISC or hold idle 2–3 s).
-
-### Day 14 — Pressurization & smoke: the "masks first" family (E-2, E-3, E-12, E-13)
-Pattern: **crew masks are step 1** in Cabin Altitude, Emergency Descent, and Smoke/Fumes.
-- **Cabin Altitude (E-2):** crew masks don/100%/comm → pax oxygen ON, don masks → if rapid/explosive decompression, Emergency Descent
-- **Cabin Pressure (E-3):** excessive negative differential in flight → reduce descent rate
-- **Emergency Descent (E-12):** masks → pax O₂ ON → belts ON → thrust IDLE → airbrakes OUT
-- **Smoke/fire/fumes (E-13):** crew mask don / **EMGCY** / vent open → goggles → pax O₂ ON → **land ASAP / divert**
-
-### Day 15 — Ground malfunctions (E-1, E-6, E-7, E-14)
-- **Hung start (E-6):** fails to accelerate > 30 s → engine switch OFF
-- **Hot start (E-7):** ITT racing toward 1,000 °C, or hanging 900–1,000 °C for 15 s → engine switch OFF
-- **All brakes fail, taxi (E-1):** use wheel brakes and EMER brake if anything is left
-- **Evacuation (E-14):** park brake set → notify ATC → both engines OFF
-
-### Day 16 — Automation & flight controls (E-4, E-8, E-15, E-20)
-- **Engine fail indication (E-4):** N1 drop 15% in 0.5 s (activates ATR on takeoff) → monitor/confirm engine instruments
-- **SWPS inadvertent pusher (E-8):** hold against pusher → **press and hold AP disconnect continuously**. Warning: no natural stall protection with pusher inop — avoid stalls.
-- **TCAS RA (E-15):** yoke quick-disconnect if AP on → comply immediately with RA on PFD → tell ATC → return to assigned altitude when clear
-- **AFCS abnormal disconnect (E-20):** grasp wheel, regain control → press AP disengage to cancel cavalry charge → retrim → re-engage **once** if no AFCS CAS messages
-
-### Day 17 — Flows (E-16, E-17, E-18, E-19, E-21)
-- **RH engine start** (rotate RUN → booster pump, no FUEL PRESSURE CAS → START) and monitoring sequence (START on PFD → ~10% N2 START+IGN inverse video, N1 rising → light-up → IDL → START/IGN out ~45–50% N2)
-- **LH start:** RH engine must exit QPM to ground idle first
-- **Ground idle gates (E-19):** N1 ~25% · ITT ~400 °C · N2 min 53.4% · FF 160–180 lb · GEN 2 takes over. TAT/OAT < 10 °C + moisture → IPS to AUTO/NAI.
-- **Climb flow (E-21):** gear up (lights out) → YD on (FMA) → flaps 0 (summary page) → MCT within 5 min of setting T/O
-- PM: re-run Days 13–14 emergency cards.
-
-### Day 18 — **Checkpoint 3.** All 21 Emergency cards, **100% verbatim**. Anything short of word-perfect gets re-written by hand and re-drilled same day.
-
----
-
-## Phase 4 — Integration & overlearning (Days 19–21)
-
-- **Day 19:** Full-deck shuffle drill, all 87 cards mixed. Flag every hesitation, not just every miss.
-- **Day 20:** Weak-card intensive (flagged cards ×3 spaced through the day) + **mock oral**: have someone read card fronts cold — or use the trainer's Exam mode — covering ~30 cards across all sections.
-- **Day 21:** Final check: Limitations **100%**, Emergency **100% verbatim**, AGI fluent. Then drop to maintenance.
-
-**Maintenance until class:** 10 min/day on due cards; one full-deck pass the day before training starts. The last pre-class pass matters more than any single day in the program.
-
----
-
-## Compressed 7-day schedule — **ACTIVE PLAN** (class starts Thu Jul 30, 2026)
-
-With class starting tomorrow, the order flips: **emergency memory items come first** — instructors quiz memory items and limitations from day one, and the sim sessions arrive before the oral does. Limitations blitz lands on the weekend when there's more time.
-
-| Day | Date | Material | Time |
-|---|---|---|---|
-| 1 | **Wed 7/29 — tonight** | Emergency core: fire & RTO (E-5, E-9, E-10, E-11) + masks-first family (E-2, E-3, E-12, E-13) + speed ladder (L-1, L-28, L-29, L-30). Write each emergency flow by hand once. | ~90 min |
-| 2 | Thu 7/30 · class day 1 | Emergency remainder: ground malfunctions (E-1, E-6, E-7, E-14) + automation (E-4, E-8, E-15, E-20). Re-drill Day 1 misses first. | 45–60 min |
-| 3 | Fri 7/31 | Start & climb flows (E-16–E-19, E-21) + weights (L-2–L-6, the +440 rule). Finish with **Checkpoint 3** (all 21 Emergency) — goal ≥90% tonight. | ~60 min |
-| 4 | Sat 8/1 | **AM:** engine & starter (L-12–L-22) + envelope & airport (L-7–L-11). **PM:** fuel & oxygen (L-23–L-27, L-49) + electrical (L-34–L-38). Re-run Checkpoint 3 → **100% verbatim**. | 2 × 60–75 min |
-| 5 | Sun 8/2 | **AM:** cabin & AFCS (L-31–L-33, L-39–L-42) + icing (L-43–L-48). **PM:** avionics (L-50–L-57) + AGI (AGI-1–9). Finish with **Checkpoint 1** (36 limitations). | 2 × 60–75 min |
-| 6 | Mon 8/3 | No new cards. **Checkpoint 2** (all Limitations + AGI, 66 cards) ≥90%; drill every miss to clean; one emergency verbatim re-pass. | 45–60 min |
-| 7 | Tue 8/4 | **Final check** (full 87) + mock oral. Limitations exact, emergency 100% verbatim. Then drill "Due today" to zero. | 45–60 min |
-
-From Aug 5 on: 10 minutes of due-card review every evening for the rest of class. If class runs the weekend, split each Sat/Sun block into that evening + the next morning. Where possible, drill each system's limitation cards the same evening class covers that system — the numbers stick faster with the system fresh.
-
----
+That works in your favour: you already drilled the emergency core and remainder under the old plan, so you are ahead of the Day 8 gate rather than behind it.
 
 ## Memory anchors worth keeping
 
