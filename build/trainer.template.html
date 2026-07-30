@@ -1,0 +1,814 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PC-24">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f2f4f8" media="(prefers-color-scheme: light)">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>PC-24 Memory Trainer</title>
+<style>
+  :root {
+    --ground: #f2f4f8;
+    --panel: #ffffff;
+    --panel-2: #e9edf3;
+    --ink: #17202e;
+    --muted: #5c6b80;
+    --line: #d4dbe5;
+    --accent: #0b7f9e;
+    --accent-ink: #ffffff;
+    --emer: #c62828;
+    --limit: #a3660a;
+    --agi: #1e7d46;
+    --afm: #6b4ea8;
+    --ace: #0f6f6c;
+    --emer-bg: #fbeaea;
+    --afm-bg: #efeaf8;
+    --ace-bg: #e2f1f0;
+    --limit-bg: #f9efdd;
+    --agi-bg: #e4f3ea;
+    --good: #1e7d46;
+    --again: #c62828;
+    --shadow: 0 1px 3px rgba(23,32,46,.08), 0 4px 16px rgba(23,32,46,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0b1220;
+      --panel: #131c2e;
+      --panel-2: #0f1727;
+      --ink: #e6edf7;
+      --muted: #8da0ba;
+      --line: #24324a;
+      --accent: #3ec7e8;
+      --accent-ink: #06202b;
+      --emer: #ff5f5f;
+      --limit: #ffb648;
+      --agi: #4cd77e;
+      --afm: #b79be8;
+      --ace: #57ccc6;
+      --emer-bg: #2a1519;
+      --afm-bg: #221a33;
+      --ace-bg: #0d2726;
+      --limit-bg: #291f10;
+      --agi-bg: #10251a;
+      --good: #4cd77e;
+      --again: #ff5f5f;
+      --shadow: 0 1px 3px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f2f4f8; --panel: #ffffff; --panel-2: #e9edf3; --ink: #17202e;
+    --muted: #5c6b80; --line: #d4dbe5; --accent: #0b7f9e; --accent-ink: #ffffff;
+    --emer: #c62828; --limit: #a3660a; --agi: #1e7d46; --afm: #6b4ea8; --ace: #0f6f6c;
+    --emer-bg: #fbeaea; --limit-bg: #f9efdd; --agi-bg: #e4f3ea; --afm-bg: #efeaf8; --ace-bg: #e2f1f0;
+    --good: #1e7d46; --again: #c62828;
+    --shadow: 0 1px 3px rgba(23,32,46,.08), 0 4px 16px rgba(23,32,46,.06);
+  }
+  :root[data-theme="dark"] {
+    --ground: #0b1220; --panel: #131c2e; --panel-2: #0f1727; --ink: #e6edf7;
+    --muted: #8da0ba; --line: #24324a; --accent: #3ec7e8; --accent-ink: #06202b;
+    --emer: #ff5f5f; --limit: #ffb648; --agi: #4cd77e; --afm: #b79be8; --ace: #57ccc6;
+    --emer-bg: #2a1519; --limit-bg: #291f10; --agi-bg: #10251a; --afm-bg: #221a33; --ace-bg: #0d2726;
+    --good: #4cd77e; --again: #ff5f5f;
+    --shadow: 0 1px 3px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    /* viewport-fit=cover is set for standalone mode, so pad past the notch and
+       home indicator; the env() fallbacks are 0 in a normal browser tab. */
+    padding: 0 calc(16px + env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom))
+             calc(16px + env(safe-area-inset-left));
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  header.app { padding: calc(28px + env(safe-area-inset-top)) 0 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+  header.app h1 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", sans-serif;
+    font-weight: 700; font-size: 1.65rem; letter-spacing: .02em; margin: 0;
+    text-transform: uppercase;
+  }
+  header.app .sub { color: var(--muted); font-size: .85rem; }
+
+  nav.tabs { display: flex; gap: 6px; border-bottom: 2px solid var(--line); margin-bottom: 22px; overflow-x: auto; }
+  nav.tabs button {
+    appearance: none; background: none; border: none; cursor: pointer;
+    font: 600 .92rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--muted); padding: 11px 16px 12px; margin-bottom: -2px;
+    border-bottom: 2px solid transparent; letter-spacing: .03em; white-space: nowrap;
+  }
+  nav.tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  nav.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 4px; }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ---- shared bits ---- */
+  .chip {
+    display: inline-block; font: 700 .68rem/1 ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: .08em; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;
+  }
+  .chip.E   { color: var(--emer);  background: var(--emer-bg); }
+  .chip.L   { color: var(--limit); background: var(--limit-bg); }
+  .chip.AGI { color: var(--agi);   background: var(--agi-bg); }
+  .chip.AFM { color: var(--afm);   background: var(--afm-bg); }
+  .chip.ACE { color: var(--ace);   background: var(--ace-bg); }
+
+  .btn {
+    appearance: none; border: 1px solid var(--line); background: var(--panel);
+    color: var(--ink); border-radius: 8px; padding: 9px 16px; cursor: pointer;
+    font: 600 .9rem/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.good  { border-color: var(--good);  color: var(--good); }
+  .btn.again { border-color: var(--again); color: var(--again); }
+  .btn.good:hover  { background: var(--good);  color: var(--ground); }
+  .btn.again:hover { background: var(--again); color: var(--ground); }
+  .btn:disabled { opacity: .45; cursor: default; }
+
+  .statrow { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 16px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 16px; min-width: 96px;
+  }
+  .stat b { display: block; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; }
+
+  /* ---- drill ---- */
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+  .controls label { font-size: .88rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .controls select {
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 10px; font-size: .9rem; max-width: 100%;
+  }
+
+  .card-stage { perspective: 1400px; }
+  .fcard {
+    position: relative; min-height: 340px; border-radius: 14px;
+    transform-style: preserve-3d; transition: transform .45s cubic-bezier(.4,.1,.2,1);
+    cursor: pointer;
+  }
+  /* Card height is set in JS to fit the taller face, so nothing scrolls inside a
+     tap-to-flip target — critical on touch, where an inner scroll reads as a tap. */
+  @media (prefers-reduced-motion: reduce) { .fcard { transition: none; } }
+  .fcard.flipped { transform: rotateX(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 22px 26px 26px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .face.back { transform: rotateX(180deg); }
+  .face .topline { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex: none; }
+  .face .cid { font: 700 .8rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); letter-spacing: .05em; }
+  .face h2 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", sans-serif;
+    font-size: 1.45rem; font-weight: 700; margin: 0 0 12px; letter-spacing: .015em; text-wrap: balance;
+  }
+  .face .body { font-size: 1.02rem; white-space: pre-wrap; }
+  .face.back .body { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .92rem; line-height: 1.65; font-variant-numeric: tabular-nums; }
+  .face .ref { margin-top: auto; padding-top: 16px; color: var(--muted); font-size: .78rem; flex: none; }
+  .face .hint { margin-top: auto; padding-top: 16px; color: var(--muted); font-size: .82rem; flex: none; }
+  .stripe { position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 3px 3px 0; }
+  .stripe.E { background: var(--emer); } .stripe.L { background: var(--limit); } .stripe.AGI { background: var(--agi); }
+  .stripe.AFM { background: var(--afm); }
+  .stripe.ACE { background: var(--ace); }
+
+  .grade { display: flex; gap: 10px; justify-content: center; margin-top: 18px; min-height: 44px; }
+  .deckpos { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 12px; font-variant-numeric: tabular-nums; }
+
+  .done-note {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 40px 28px; text-align: center; box-shadow: var(--shadow);
+  }
+  .done-note b { font-size: 1.2rem; }
+
+  /* ---- program ---- */
+  .phase { margin-bottom: 26px; }
+  .phase > h3 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", sans-serif;
+    font-size: 1.15rem; text-transform: uppercase; letter-spacing: .05em; margin: 0 0 10px;
+  }
+  .dayrow {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 13px 16px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
+  }
+  .dayrow.checkpoint { border-left: 4px solid var(--accent); }
+  .dayrow .d { font: 700 .78rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); min-width: 56px; letter-spacing: .05em; }
+  .dayrow .t { flex: 1 1 260px; font-size: .93rem; }
+  .dayrow .t small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+  .dayrow button { flex: none; }
+
+  /* ---- exam ---- */
+  .exam-setup { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+  .exam-q {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 22px 26px; position: relative; overflow: hidden;
+  }
+  .exam-q .answer { border-top: 1px dashed var(--line); margin-top: 16px; padding-top: 16px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .92rem; line-height: 1.65; white-space: pre-wrap; }
+  .exam-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .exam-score { font-size: 1.05rem; margin: 14px 0; }
+  .misslist { margin: 10px 0 0; padding-left: 20px; font-size: .9rem; }
+  .misslist li { margin-bottom: 4px; }
+  .history { margin-top: 26px; }
+  .history table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+  .history th, .history td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .history th { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; }
+  .pass { color: var(--good); font-weight: 700; }
+  .fail { color: var(--again); font-weight: 700; }
+
+  /* ---- reference ---- */
+  .search {
+    width: 100%; background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 10px; padding: 11px 14px; font-size: .95rem; margin-bottom: 18px;
+  }
+  .refgroup > h3 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", sans-serif;
+    font-size: 1.1rem; text-transform: uppercase; letter-spacing: .05em; margin: 22px 0 8px;
+  }
+  details.refcard {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 7px; overflow: hidden;
+  }
+  details.refcard summary {
+    cursor: pointer; padding: 11px 14px; display: flex; align-items: center; gap: 10px;
+    list-style: none; font-size: .92rem;
+  }
+  details.refcard summary::-webkit-details-marker { display: none; }
+  details.refcard summary .cid { font: 700 .75rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); min-width: 46px; }
+  details.refcard summary .mastery { margin-left: auto; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; flex: none; }
+  details.refcard .inner { padding: 4px 16px 16px; border-top: 1px solid var(--line); }
+  details.refcard .front { color: var(--muted); font-size: .88rem; white-space: pre-wrap; margin: 10px 0; }
+  details.refcard .back {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .88rem; line-height: 1.65;
+    white-space: pre-wrap; background: var(--panel-2); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+  }
+  details.refcard .ref { color: var(--muted); font-size: .76rem; margin-top: 8px; }
+
+  #update-bar {
+    display: none; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: var(--accent); color: var(--accent-ink);
+    border-radius: 10px; padding: 11px 16px; margin: 0 0 18px;
+    font-size: .9rem; font-weight: 600;
+  }
+  #update-bar.show { display: flex; }
+  #update-bar button {
+    appearance: none; border: 1px solid currentColor; background: transparent;
+    color: inherit; border-radius: 7px; padding: 6px 13px; cursor: pointer;
+    font: 700 .84rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  #update-bar button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .offline-dot {
+    display: none; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--limit); flex: none;
+  }
+  body.is-offline .offline-dot { display: inline-block; }
+  footer { margin-top: 44px; color: var(--muted); font-size: .76rem; text-align: center; }
+</style>
+
+<div class="wrap">
+  <header class="app">
+    <h1>PC-24 Memory Trainer</h1>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.0.0 (2026-07-30)</span></span>
+  </header>
+
+  <div id="update-bar" role="status">
+    <span>A newer card set is available.</span>
+    <button type="button" id="update-now">Update now</button>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-view="program">Program</button>
+    <button role="tab" aria-selected="false" data-view="drill">Drill</button>
+    <button role="tab" aria-selected="false" data-view="exam">Exam</button>
+    <button role="tab" aria-selected="false" data-view="reference">Reference</button>
+  </nav>
+
+  <!-- PROGRAM -->
+  <section class="view active" id="view-program"></section>
+
+  <!-- DRILL -->
+  <section class="view" id="view-drill">
+    <div class="statrow" id="drill-stats"></div>
+    <div class="controls">
+      <select id="drill-scope"></select>
+      <label><input type="checkbox" id="drill-due-first" checked> Due first</label>
+      <label><input type="checkbox" id="drill-shuffle" checked> Shuffle</label>
+      <button class="btn primary" id="drill-start">Start session</button>
+    </div>
+    <div id="drill-area"></div>
+  </section>
+
+  <!-- EXAM -->
+  <section class="view" id="view-exam">
+    <div class="exam-setup">
+      <select id="exam-scope">
+        <option value="gate-normal">Gate — before GND 6 SIT: normal flows</option>
+        <option value="gate-emer">Gate — before GND 8 SIT: emergency verbatim</option>
+        <option value="gate-written">Gate — before the written test: limitations</option>
+        <option value="gate-sim3">Gate — before SIM 3: fire, smoke, evac, icing</option>
+        <option value="gate-sim4">Gate — before SIM 4: decompression, controls</option>
+        <option value="gate-los">Gate — before SIM 7 LOS: whole deck</option>
+        <option value="fsi">FSI deck only (87 cards)</option>
+        <option value="mock">Mock oral — 30 random from the FSI deck</option>
+        <option value="afm">AFM Extended only (65 cards)</option>
+        <option value="ace">ACE Avionics only (46 cards)</option>
+        <option value="everything">Everything — FSI + AFM + ACE (198 cards)</option>
+      </select>
+      <button class="btn primary" id="exam-start">Begin</button>
+    </div>
+    <div id="exam-area"></div>
+    <div class="history" id="exam-history"></div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section class="view" id="view-reference">
+    <input class="search" id="ref-search" type="search" placeholder="Search cards — try &quot;VMO&quot;, &quot;battery&quot;, &quot;fire&quot;…" aria-label="Search cards">
+    <div id="ref-list"></div>
+  </section>
+
+  <footer>For training purposes only. The AFM, current revisions, and applicable supplements are authoritative.</footer>
+</div>
+
+<script>
+const CARDS = __CARDS_DATA__;
+
+/* ---------- static structure ---------- */
+const SECTIONS = { E: 'Emergency', L: 'Limitations', AGI: 'Aircraft General',
+                   AFM: 'AFM Extended', ACE: 'ACE Avionics' };
+const sec = id => id.startsWith('AFM') ? 'AFM' : id.startsWith('AGI') ? 'AGI'
+  : id.startsWith('ACE') ? 'ACE' : id[0];
+
+// Distinct topics per supplementary section, in first-appearance order.
+const topicsOf = s => [...new Set(CARDS.filter(c => c.topic && sec(c.id) === s).map(c => c.topic))];
+const AFM_TOPICS = topicsOf('AFM');
+const ACE_TOPICS = topicsOf('ACE');
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const range = (p, a, b) => Array.from({length: b - a + 1}, (_, i) => `${p}-${a + i}`);
+const uniq = a => [...new Set(a)];
+
+/* Schedule is keyed to FSI COURSE DAYS, not calendar dates — FlightSafety
+   Pilatus PC-24 Pilot Client Guide Rev 1.0, Pilot Initial (FAA): 9 ground
+   school days (SIT on Days 6 and 8) followed by 7 simulator sessions with
+   SIM 7 as the LOS. Each ground-day block holds the cards for the systems
+   taught that day, so the evening drill lands while the lesson is fresh. */
+const DAYS = [
+  // ---------------- Phase 1: ground school, day-matched ----------------
+  { d: 'GND 1', phase: 1, title: 'Aircraft General · AFM / AOM',
+    ids: uniq([...range('AGI',1,9), 'AFM-53','AFM-54','AFM-55','AFM-56','AFM-57','AFM-63','AFM-46','L-9','L-10','L-11','L-32','L-33']),
+    note: 'AST + GOS · dimensions, danger areas, DU colours, documents, kinds of operation' },
+  { d: 'GND 2', phase: 1, title: 'Avionics · Master Warning · Electrical',
+    ids: uniq([...range('ACE',1,8), ...range('ACE',27,33), ...range('L',34,38), 'AFM-47','AFM-48']),
+    note: 'AST · CAS levels and the full aural priority order, display reversion, electrical limits' },
+  { d: 'GND 3', phase: 1, title: 'Flight Controls · Fuel · Lighting',
+    ids: uniq([...range('ACE',9,15), ...range('ACE',19,24), 'AFM-33','AFM-34','AFM-35','L-6',
+               ...range('L',39,42), 'AFM-9','AFM-10','AFM-11',
+               ...range('L',23,27), 'AFM-38','AFM-39','AFM-40', 'AFM-32']),
+    note: 'AST + GOS · AFCS and FMA logic, SWPS/TFS/rudder bias, flap and airbrake limits, fuel system' },
+  { d: 'GND 4', phase: 1, title: 'Gear & Brakes · Powerplant · Fire · Pneumatics · Pressurization',
+    ids: uniq(['L-28','L-29','AFM-36','AFM-37', ...range('L',12,22), ...range('AFM',13,23),
+               'E-5','E-9','AFM-51','E-2','E-3','L-31','AFM-43','AFM-49','AFM-50']),
+    note: 'AST · the biggest systems day — engine limits, QPM gates, fire drills, pressurization' },
+  { d: 'GND 5', phase: 1, title: 'Oxygen · Ice & Rain · Pitot-Static · Waste',
+    ids: uniq(['L-49','AFM-41','AFM-42', ...range('L',43,48), ...range('AFM',24,32),
+               ...range('ACE',34,36), 'AFM-62']),
+    note: 'AST · oxygen limits, the 10 °C ice line, miscompare thresholds' },
+  { d: 'GND 6', phase: 1, title: 'SIT — normal procedures, cockpit prep to shutdown',
+    ids: uniq([...range('E',16,19), 'E-21','AFM-22','AFM-20','AFM-18','ACE-25','ACE-26','ACE-15']),
+    note: 'SIT · walkthrough in the device — start flows, ground idle gates, climb flow' },
+  { d: 'GND 7', phase: 1, title: 'Performance · Avionics',
+    ids: uniq([...range('L',1,8), 'L-30', ...range('AFM',3,8), 'AFM-58','AFM-65','AFM-64',
+               ...range('ACE',42,46)]),
+    note: 'AST + GOS · the speed ladder, VO/VMCG/VMC/VMCL, TOLD advisory status, EGPWS modes' },
+  { d: 'GND 8', phase: 1, title: 'SIT — normal, abnormal and emergency procedures',
+    ids: uniq([...range('E',1,21), ...range('AFM',49,52), ...range('ACE',16,18)]),
+    note: 'SIT · first full emergency workout — memory items must already be verbatim' },
+  { d: 'GND 9', phase: 1, title: 'CRM/SRM · Weight & Balance · Flight Planning · Windshear · Stalls',
+    ids: uniq([...range('L',2,6), 'AFM-1','AFM-2','AFM-44','AFM-45',
+               ...range('L',50,57), 'AFM-59','AFM-60','AFM-61', 'ACE-19','ACE-20',
+               ...range('ACE',37,41), 'AFM-12']),
+    note: 'AST + GOS · includes UPRT review. Written test follows ground school' },
+
+  // ---------------- Phase 2: simulator prep ----------------
+  { d: 'SIM 1', phase: 2, title: 'Normal ops · steep turns · stalls · precision approach',
+    ids: uniq([...range('E',16,19), 'E-21', ...range('L',1,8), 'L-30', 'AFM-3','AFM-8',
+               'ACE-9','ACE-10','ACE-11','AFM-64','ACE-19']),
+    note: 'Preflight, normal takeoff, stall prevention, precision approach + backup instrumentation' },
+  { d: 'SIM 2', phase: 2, title: 'Engine failure · fuel · electrical · autopilot abnormals',
+    ids: uniq(['E-4','E-6','E-7','AFM-50','AFM-19','E-20','ACE-10','ACE-11','ACE-12',
+               ...range('L',23,27), ...range('L',34,38), 'AFM-47','AFM-48','AFM-38','AFM-40',
+               'AFM-5','AFM-6','AFM-7']),
+    note: 'Powerplant failure incl. shutdown/restart, OEI, holding, nonprecision, crosswind' },
+  { d: 'SIM 3', phase: 2, title: 'Fire drills · smoke · evacuation · icing · RTO',
+    ids: uniq(['E-5','E-9','E-10','E-11','E-13','E-14','AFM-51','AFM-23',
+               ...range('L',43,48), ...range('AFM',24,32), ...range('ACE',34,36),
+               'AFM-49','E-12']),
+    note: 'In-flight fire drills, smoke control/removal, emergency evacuation, airframe icing, pitot-static' },
+  { d: 'SIM 4', phase: 2, title: 'Decompression · emergency descent · flight controls · gear · GPWS',
+    ids: uniq(['E-2','E-3','E-12', ...range('ACE',16,18), 'L-31','AFM-43',
+               'AFM-33','AFM-34','AFM-35','L-6', ...range('L',39,42),
+               'L-28','L-29','AFM-36','AFM-37', ...range('ACE',42,46), ...range('ACE',37,41),
+               'ACE-21','ACE-22','AFM-24']),
+    note: 'Decompression, emergency descent max rate, windshear, high-altitude stalls, GPWS/WX/transponder' },
+  { d: 'SIM 5', phase: 2, title: 'Fire · smoke · evacuation · flight controls · powerplant',
+    ids: uniq(['E-5','E-9','E-13','E-14','AFM-51', ...range('L',12,22), ...range('AFM',13,23),
+               'E-10','E-11','E-4','AFM-50','ACE-23','AFM-9']),
+    note: 'Repeat fire and smoke drills to standard, powerplant failure on takeoff, OEI precision approach' },
+  { d: 'SIM 6', phase: 2, title: 'Powerplant · flaps · autopilot · radios / FMS · evacuation',
+    ids: uniq(['E-4','E-6','E-7','E-14','AFM-34','AFM-33', ...range('ACE',9,15),
+               'AFM-60','AFM-61','L-57','AFM-10','AFM-11','ACE-25','ACE-26']),
+    note: 'Circling approach, no-flap/nonstandard flap landing, backup instrumentation' },
+  { d: 'SIM 7', phase: 2, title: 'LOS — line-oriented simulation, everything integrated',
+    ids: CARDS.map(c => c.id),
+    note: 'One simple correctable problem plus one complex problem that runs the whole flight' },
+];
+
+const PHASES = {
+  1: 'Ground school · Days 1–9, matched to the FSI syllabus (SIT on Days 6 and 8)',
+  2: 'Simulator prep · SIM 1–7, drill the night before each session',
+  3: 'Gates · hit the standard before the event, not after',
+  4: 'Reference · AFM Extended by topic',
+  5: 'Reference · ACE Avionics by topic',
+};
+
+/* Gates are tied to the actual course events that test each body of knowledge. */
+const GATES = [
+  { key: 'gate-normal', label: 'Before GND 6 SIT — normal flows fluent', pass: 90,
+    ids: () => uniq([...range('E',16,19), 'E-21','AFM-22','AFM-20']) },
+  { key: 'gate-emer', label: 'Before GND 8 SIT — all emergency memory items VERBATIM', pass: 100,
+    ids: () => range('E',1,21) },
+  { key: 'gate-written', label: 'Before the written test — every limitation exact', pass: 100,
+    ids: () => CARDS.filter(c => sec(c.id) === 'L' || (sec(c.id) === 'AFM' && c.topic !== 'Emergency knowledge')).map(c => c.id) },
+  { key: 'gate-sim3', label: 'Before SIM 3 — fire, smoke, evacuation, icing', pass: 100,
+    ids: () => uniq(['E-5','E-9','E-10','E-11','E-13','E-14','AFM-51','AFM-23', ...range('L',43,48), ...range('AFM',24,32)]) },
+  { key: 'gate-sim4', label: 'Before SIM 4 — decompression, emergency descent, flight controls', pass: 100,
+    ids: () => uniq(['E-2','E-3','E-12', ...range('ACE',16,18), 'L-31','AFM-43','AFM-33','AFM-34','AFM-35', ...range('L',39,42)]) },
+  { key: 'gate-los', label: 'Before SIM 7 LOS — the whole deck', pass: 95,
+    ids: () => CARDS.map(c => c.id) },
+];
+
+const EXAM_SCOPES = {
+  ...Object.fromEntries(GATES.map(g => [g.key, { ids: g.ids, pass: g.pass }])),
+  fsi: { ids: () => CARDS.filter(c => ['E','L','AGI'].includes(sec(c.id))).map(c => c.id), pass: 100 },
+  mock: { ids: () => shuffle(CARDS.filter(c => ['E','L','AGI'].includes(sec(c.id)))
+                             .map(c => c.id)).slice(0, 30), pass: 90 },
+  afm: { ids: () => CARDS.filter(c => sec(c.id) === 'AFM').map(c => c.id), pass: 90 },
+  ace: { ids: () => CARDS.filter(c => sec(c.id) === 'ACE').map(c => c.id), pass: 90 },
+  everything: { ids: () => CARDS.map(c => c.id), pass: 95 },
+};
+
+// Gate rows render in phase 3 so they sit together as a checklist of standards.
+DAYS.push(...GATES.map(g => ({ d: 'GATE', phase: 3, title: g.label, ids: null,
+                               exam: g.key, note: `Standard: ${g.pass}%` })));
+// Topic reference blocks.
+DAYS.push(...AFM_TOPICS.map(t => ({ d: 'AFM', phase: 4, title: t,
+  ids: CARDS.filter(c => c.topic === t && sec(c.id) === 'AFM').map(c => c.id),
+  note: 'AFM Rev 08 · MSN 631' })));
+DAYS.push(...ACE_TOPICS.map(t => ({ d: 'ACE', phase: 5, title: t,
+  ids: CARDS.filter(c => c.topic === t && sec(c.id) === 'ACE').map(c => c.id),
+  note: 'ACE Pilot\'s Guide Rev 2' })));
+const REF_GROUPS = [
+  ['Emergency — memory items & flows', CARDS.filter(c => sec(c.id) === 'E')],
+  ['Limitations', CARDS.filter(c => sec(c.id) === 'L')],
+  ['Aircraft General', CARDS.filter(c => sec(c.id) === 'AGI')],
+  ...AFM_TOPICS.map(t => [`AFM Extended — ${t}`,
+     CARDS.filter(c => c.topic === t && sec(c.id) === 'AFM')]),
+  ...ACE_TOPICS.map(t => [`ACE Avionics — ${t}`,
+     CARDS.filter(c => c.topic === t && sec(c.id) === 'ACE')]),
+];
+const byId = Object.fromEntries(CARDS.map(c => [c.id, c]));
+
+/* ---------- state ---------- */
+const LS_KEY = 'pc24-trainer-v1';
+let state = { srs: {}, exams: [] };
+try { state = Object.assign(state, JSON.parse(localStorage.getItem(LS_KEY) || '{}')); } catch (e) {}
+const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
+
+const DAY_MS = 86400e3;
+const INTERVALS = [0, 1, 3, 7, 7]; // box -> days until due
+function grade(id, ok) {
+  const rec = state.srs[id] || { box: 0 };
+  rec.box = ok ? Math.min(rec.box + 1, 4) : 1;
+  rec.due = Date.now() + INTERVALS[rec.box] * DAY_MS;
+  rec.seen = (rec.seen || 0) + 1;
+  state.srs[id] = rec; save();
+}
+const isNew = id => !state.srs[id];
+const isDue = id => state.srs[id] && state.srs[id].due <= Date.now();
+const isLearned = id => state.srs[id] && state.srs[id].box >= 3;
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ---------- tabs ---------- */
+const tabs = document.querySelectorAll('nav.tabs button');
+function show(view) {
+  tabs.forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === view)));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
+  if (view === 'drill') renderDrillStats();
+}
+tabs.forEach(b => b.addEventListener('click', () => show(b.dataset.view)));
+
+/* ---------- program view ---------- */
+// Day blocks can hold 30+ cards; listing every id buries the topic note.
+function idLabel(ids) {
+  if (!ids) return '';
+  if (ids.length <= 6) return ids.join(', ');
+  return ids.slice(0, 5).join(', ') + ` +${ids.length - 5} more`;
+}
+function renderProgram() {
+  const el = document.getElementById('view-program');
+  let html = '';
+  let phase = 0;
+  for (const day of DAYS) {
+    if (day.phase !== phase) {
+      if (phase) html += '</div>';
+      phase = day.phase;
+      html += `<div class="phase"><h3>${PHASES[phase]}</h3>`;
+    }
+    const ids = day.ids;
+    const stats = ids ? `${ids.length} cards · ${ids.filter(isLearned).length} learned` : (day.note || '');
+    html += `<div class="dayrow${day.exam ? ' checkpoint' : ''}">
+      <span class="d">${day.d}</span>
+      <span class="t">${esc(day.title)}<small>${esc(idLabel(ids))}${ids && day.note ? ' · ' : ''}${esc(day.note || '')}</small></span>
+      ${ids ? `<button class="btn" data-drill='${JSON.stringify(ids)}'>Drill</button>` : ''}
+      ${day.exam ? `<button class="btn primary" data-exam="${day.exam}">Run exam</button>` : ''}
+      ${ids ? `<span class="chip ${sec(ids[0])}">${stats}</span>` : ''}
+    </div>`;
+  }
+  html += '</div>';
+  html += `<div class="phase"><h3>Every evening</h3>
+    <div class="dayrow"><span class="d">Daily</span>
+    <span class="t">Drill today's ground-school block, then clear anything due<small>Cards drilled the same evening class covers that system stick far better than cards drilled cold</small></span>
+    <button class="btn" data-drill="due">Drill due cards</button></div></div>`;
+  el.innerHTML = html;
+  el.querySelectorAll('[data-drill]').forEach(b => b.addEventListener('click', () => {
+    const v = b.dataset.drill;
+    startDrill(v === 'due' ? CARDS.map(c => c.id).filter(isDue) : JSON.parse(v), true);
+    show('drill');
+  }));
+  el.querySelectorAll('[data-exam]').forEach(b => b.addEventListener('click', () => {
+    document.getElementById('exam-scope').value = b.dataset.exam;
+    startExam(b.dataset.exam);
+    show('exam');
+  }));
+}
+
+/* ---------- drill view ---------- */
+const scopeSel = document.getElementById('drill-scope');
+function renderScopeOptions() {
+  let html = '<option value="all">Full deck (87)</option><option value="due">Due today</option>';
+  for (const s of ['E','L','AGI','AFM','ACE']) html += `<option value="sec:${s}">${SECTIONS[s]}</option>`;
+  // Skip the one whole-deck block; every other day/topic block gets its own option.
+  DAYS.forEach((day, i) => { if (day.ids && day.ids.length < CARDS.length) html += `<option value="day:${i}">${day.d} — ${day.title}</option>`; });
+  scopeSel.innerHTML = html;
+}
+function scopeIds(v) {
+  if (v === 'all') return CARDS.map(c => c.id);
+  if (v === 'due') return CARDS.map(c => c.id).filter(isDue);
+  if (v.startsWith('sec:')) return CARDS.filter(c => sec(c.id) === v.slice(4)).map(c => c.id);
+  if (v.startsWith('day:')) return DAYS[+v.slice(4)].ids;
+  return [];
+}
+function renderDrillStats() {
+  const ids = CARDS.map(c => c.id);
+  const stats = [
+    ['New', ids.filter(isNew).length],
+    ['Due', ids.filter(isDue).length],
+    ['Learning', ids.filter(id => !isNew(id) && !isLearned(id)).length],
+    ['Learned', ids.filter(isLearned).length],
+  ];
+  document.getElementById('drill-stats').innerHTML =
+    stats.map(([k, v]) => `<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
+}
+
+/* Grow the card to fit whichever face is taller. Both faces are absolutely
+   positioned for the 3D flip, so the container needs an explicit height —
+   without it, long emergency flows scroll inside a tap-to-flip surface. */
+function sizeCard(fc) {
+  if (!fc) return;
+  fc.style.height = 'auto';
+  const faces = [...fc.querySelectorAll('.face')];
+  // scrollHeight is content + padding but excludes the border that clientHeight
+  // also excludes, so add the border delta or every grown card ends up 2px short.
+  const needed = Math.max(340, ...faces.map(f => f.scrollHeight + (f.offsetHeight - f.clientHeight)));
+  fc.style.height = needed + 'px';
+}
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => sizeCard(document.getElementById('fcard')), 120);
+});
+
+let deck = [], pos = 0;
+function startDrill(ids, forceOrder) {
+  const dueFirst = document.getElementById('drill-due-first').checked;
+  const doShuffle = document.getElementById('drill-shuffle').checked;
+  let list = ids.slice();
+  if (doShuffle && !forceOrder) list = shuffle(list);
+  if (dueFirst) {
+    const rank = id => isDue(id) ? 0 : isNew(id) ? 1 : 2;
+    list.sort((a, b) => rank(a) - rank(b));
+  }
+  deck = list; pos = 0;
+  renderCard();
+}
+document.getElementById('drill-start').addEventListener('click', () => startDrill(scopeIds(scopeSel.value)));
+
+function renderCard() {
+  const area = document.getElementById('drill-area');
+  if (!deck.length) { area.innerHTML = '<div class="done-note"><b>Nothing to drill.</b><br>No cards match this scope — nice.</div>'; return; }
+  if (pos >= deck.length) {
+    area.innerHTML = `<div class="done-note"><b>Session complete — ${deck.length} cards.</b><br>
+      Misses come back tomorrow; clean cards move out on the 1–3–7 schedule.<br><br>
+      <button class="btn primary" id="drill-again">Run this deck again</button></div>`;
+    document.getElementById('drill-again').addEventListener('click', () => { pos = 0; renderCard(); });
+    renderDrillStats(); renderProgram();
+    return;
+  }
+  const c = byId[deck[pos]];
+  const s = sec(c.id);
+  area.innerHTML = `
+    <div class="card-stage">
+      <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Flash card — activate to flip">
+        <div class="face front">
+          <div class="stripe ${s}"></div>
+          <div class="topline"><span class="chip ${s}">${SECTIONS[s]}</span><span class="cid">${c.id}</span></div>
+          <h2>${esc(c.title)}</h2>
+          <div class="body">${esc(c.front)}</div>
+          <div class="hint">Recall out loud, then click or press Space to flip</div>
+        </div>
+        <div class="face back">
+          <div class="stripe ${s}"></div>
+          <div class="topline"><span class="chip ${s}">${SECTIONS[s]}</span><span class="cid">${c.id}A</span></div>
+          <h2>${esc(c.title)}</h2>
+          <div class="body">${esc(c.back)}</div>
+          <div class="ref">${esc(c.reference)}</div>
+        </div>
+      </div>
+    </div>
+    <div class="grade" id="grade"></div>
+    <div class="deckpos">${pos + 1} / ${deck.length}</div>`;
+  const fc = document.getElementById('fcard');
+  sizeCard(fc);
+  const flip = () => {
+    fc.classList.toggle('flipped');
+    document.getElementById('grade').innerHTML = fc.classList.contains('flipped')
+      ? `<button class="btn again" id="g-again">✗ Again</button><button class="btn good" id="g-good">✓ Got it</button>`
+      : '';
+    if (fc.classList.contains('flipped')) {
+      document.getElementById('g-again').addEventListener('click', e => { e.stopPropagation(); grade(c.id, false); deck.push(c.id); pos++; renderCard(); });
+      document.getElementById('g-good').addEventListener('click', e => { e.stopPropagation(); grade(c.id, true); pos++; renderCard(); });
+    }
+  };
+  fc.addEventListener('click', e => { if (e.target.closest('.grade')) return; flip(); });
+  fc.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); } });
+  fc.focus({ preventScroll: true });
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('view-drill').classList.contains('active')) return;
+  if (e.target.matches('input,select,textarea')) return;
+  const fc = document.getElementById('fcard');
+  if (!fc || !fc.classList.contains('flipped')) return;
+  if (e.key === '1') document.getElementById('g-again')?.click();
+  if (e.key === '2') document.getElementById('g-good')?.click();
+});
+
+/* ---------- exam view ---------- */
+let exam = null;
+function startExam(scopeKey) {
+  const scope = EXAM_SCOPES[scopeKey];
+  exam = { key: scopeKey, ids: shuffle(scope.ids()), pass: scope.pass, i: 0, correct: [], missed: [], revealed: false };
+  renderExam();
+}
+document.getElementById('exam-start').addEventListener('click', () => startExam(document.getElementById('exam-scope').value));
+
+function renderExam() {
+  const area = document.getElementById('exam-area');
+  if (!exam) { area.innerHTML = ''; renderExamHistory(); return; }
+  if (exam.i >= exam.ids.length) {
+    const pct = Math.round(100 * exam.correct.length / exam.ids.length);
+    const passed = pct >= exam.pass;
+    state.exams.push({ when: new Date().toISOString().slice(0, 10), key: exam.key, pct, n: exam.ids.length, passed });
+    save();
+    area.innerHTML = `<div class="done-note">
+      <b class="${passed ? 'pass' : 'fail'}">${pct}% — ${passed ? 'PASS' : 'below standard'} (need ${exam.pass}%)</b>
+      <div class="exam-score">${exam.correct.length} of ${exam.ids.length} correct</div>
+      ${exam.missed.length ? `<div style="text-align:left"><b>Re-drill these:</b><ul class="misslist">${exam.missed.map(id => `<li><b>${id}</b> — ${esc(byId[id].title)}</li>`).join('')}</ul></div>
+      <br><button class="btn primary" id="exam-redrill">Drill the misses now</button>` : 'Clean sweep.'}
+    </div>`;
+    document.getElementById('exam-redrill')?.addEventListener('click', () => { startDrill(exam.missed.slice(), true); exam = null; renderExamHistory(); show('drill'); });
+    exam = exam && null;
+    renderExamHistory();
+    return;
+  }
+  const c = byId[exam.ids[exam.i]];
+  const s = sec(c.id);
+  area.innerHTML = `<div class="exam-q">
+      <div class="topline" style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+        <span class="chip ${s}">${SECTIONS[s]}</span>
+        <span class="cid" style="font:700 .8rem/1 ui-monospace,'SF Mono',Menlo,monospace;color:var(--muted)">${c.id}</span>
+        <span style="margin-left:auto;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums">${exam.i + 1} / ${exam.ids.length}</span>
+      </div>
+      <h2 style="font-family:'Avenir Next Condensed','Helvetica Neue','Arial Narrow',sans-serif;font-size:1.3rem;margin:0 0 10px">${esc(c.title)}</h2>
+      <div style="white-space:pre-wrap">${esc(c.front)}</div>
+      ${exam.revealed ? `<div class="answer">${esc(c.back)}</div>` : ''}
+    </div>
+    <div class="exam-actions">
+      ${exam.revealed
+        ? `<button class="btn again" id="ex-miss">✗ Missed it</button><button class="btn good" id="ex-hit">✓ Had it</button>`
+        : `<button class="btn primary" id="ex-reveal">Answer out loud, then reveal</button>`}
+    </div>`;
+  document.getElementById('ex-reveal')?.addEventListener('click', () => { exam.revealed = true; renderExam(); });
+  document.getElementById('ex-hit')?.addEventListener('click', () => { exam.correct.push(c.id); grade(c.id, true); exam.i++; exam.revealed = false; renderExam(); });
+  document.getElementById('ex-miss')?.addEventListener('click', () => { exam.missed.push(c.id); grade(c.id, false); exam.i++; exam.revealed = false; renderExam(); });
+}
+function renderExamHistory() {
+  const el = document.getElementById('exam-history');
+  if (!state.exams.length) { el.innerHTML = ''; return; }
+  const names = { 'gate-normal': 'Gate · GND 6 normal flows', 'gate-emer': 'Gate · GND 8 emergency',
+    'gate-written': 'Gate · written test', 'gate-sim3': 'Gate · SIM 3', 'gate-sim4': 'Gate · SIM 4',
+    'gate-los': 'Gate · SIM 7 LOS', fsi: 'FSI deck', mock: 'Mock oral',
+    afm: 'AFM Extended', ace: 'ACE Avionics', everything: 'Everything' };
+  el.innerHTML = `<h3 style="font-family:'Avenir Next Condensed','Helvetica Neue','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem">Attempt history</h3>
+    <table><thead><tr><th>Date</th><th>Exam</th><th>Cards</th><th>Score</th><th>Result</th></tr></thead><tbody>
+    ${state.exams.slice().reverse().map(e => `<tr><td>${e.when}</td><td>${names[e.key] || e.key}</td><td>${e.n}</td><td>${e.pct}%</td><td class="${e.passed ? 'pass' : 'fail'}">${e.passed ? 'PASS' : '—'}</td></tr>`).join('')}
+    </tbody></table>`;
+}
+
+/* ---------- reference view ---------- */
+function renderReference(filter) {
+  const q = (filter || '').trim().toLowerCase();
+  const el = document.getElementById('ref-list');
+  let html = '';
+  for (const [name, cards] of REF_GROUPS) {
+    const hits = cards.filter(c => !q || (c.id + ' ' + c.title + ' ' + c.front + ' ' + c.back).toLowerCase().includes(q));
+    if (!hits.length) continue;
+    html += `<div class="refgroup"><h3>${name} (${hits.length})</h3>` + hits.map(c => {
+      const m = isLearned(c.id) ? 'learned' : isNew(c.id) ? 'new' : 'learning';
+      return `<details class="refcard" ${q ? 'open' : ''}>
+        <summary><span class="cid">${c.id}</span> ${esc(c.title)} <span class="mastery">${m}</span></summary>
+        <div class="inner"><div class="front">${esc(c.front)}</div><div class="back">${esc(c.back)}</div><div class="ref">${esc(c.reference)}</div></div>
+      </details>`;
+    }).join('') + '</div>';
+  }
+  el.innerHTML = html || '<p style="color:var(--muted)">No cards match.</p>';
+}
+document.getElementById('ref-search').addEventListener('input', e => renderReference(e.target.value));
+
+/* ---------- boot ---------- */
+renderProgram();
+renderScopeOptions();
+renderDrillStats();
+renderReference('');
+renderExamHistory();
+document.getElementById('ccount').textContent = CARDS.length;
+
+/* ---------- offline support (PWA) ----------
+   Registration is guarded: on file:// or a host without the worker this simply
+   does nothing and the app still runs — it just won't cache for offline use. */
+(function () {
+  const bar = document.getElementById('update-bar');
+  const showUpdate = reg => {
+    bar.classList.add('show');
+    document.getElementById('update-now').onclick = () => {
+      if (reg.waiting) reg.waiting.postMessage('SKIP_WAITING');
+      // controllerchange fires once the new worker takes over; reload then so the
+      // fresh card set is what actually loads.
+      navigator.serviceWorker.addEventListener('controllerchange', () => location.reload());
+      setTimeout(() => location.reload(), 1200); // fallback if the event never lands
+    };
+  };
+
+  const markOnline = () => document.body.classList.toggle('is-offline', !navigator.onLine);
+  window.addEventListener('online', markOnline);
+  window.addEventListener('offline', markOnline);
+  markOnline();
+
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then(reg => {
+      if (reg.waiting && navigator.serviceWorker.controller) showUpdate(reg);
+      reg.addEventListener('updatefound', () => {
+        const sw = reg.installing;
+        if (!sw) return;
+        sw.addEventListener('statechange', () => {
+          // Only prompt when replacing an existing worker — not on first install.
+          if (sw.state === 'installed' && navigator.serviceWorker.controller) showUpdate(reg);
+        });
+      });
+      // Check for a new version on launch and hourly while the app stays open.
+      reg.update().catch(() => {});
+      setInterval(() => reg.update().catch(() => {}), 3600e3);
+    }).catch(() => {});
+  });
+})();
+</script>

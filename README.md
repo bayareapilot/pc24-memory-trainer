@@ -50,6 +50,16 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 | `sw.js` | Service worker: offline caching and update prompts |
 | `manifest.webmanifest` | Web app manifest for installation |
 
+## Rebuilding
+
+Card sources live in `build/cards/`. Edit those, never `index.html` (it is generated).
+
+```bash
+python3 build/build.py --bump
+```
+
+`--bump` increments `CACHE_VERSION` in `sw.js`, which is required for any card change — without it, installed devices keep serving the old cache. See `HANDOFF.md` for the full pipeline and gotchas.
+
 ## Publishing an update
 
 1. Edit the cards (`flashcards_data.json` and the `CARDS` array in `index.html`) or the schedule.
