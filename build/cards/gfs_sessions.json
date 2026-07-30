@@ -1,0 +1,1236 @@
+[
+  {
+    "key": "gnd1",
+    "day": "GND 1",
+    "phase": 1,
+    "title": "Cockpit geography · displays · first look at the start flow",
+    "focus": "Nobody hunts for a switch twice. Tonight is geography and screens, not handling.",
+    "blocks": [
+      {
+        "title": "Pre-brief with your partner",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Agree roles — one flying, one reading the checklist. Not both poking.",
+          "Agree the swap point: halfway, then the other seat for the second pass.",
+          "Challenge-and-response out loud, every time. Silent button-pushing is a habit you'll unlearn at the GND 6 SIT.",
+          "When one of you catches the other's error, say what the trap was — that's the part that sticks."
+        ]
+      },
+      {
+        "title": "Cockpit geography — quiz, not a tour",
+        "min": 25,
+        "cards": ["AGI-1", "AGI-2", "AGI-3", "AGI-4", "AGI-5", "AGI-6", "AGI-7", "AGI-8", "AGI-9"],
+        "items": [
+          "Partner reads a switch name at random; you put a finger on it without narrating the search.",
+          "Engine start switches · START buttons · booster pumps · IPS rotary",
+          "Fuel crossfeed · GEN 1 / GEN 2 · battery master · GPU",
+          "Flight Controller buttons — you'll need these cold for EDM later",
+          "AP / YD engage, TCS, and the AP Disengage switch on BOTH wheels",
+          "Flap lever and detents · airbrake · gear lever",
+          "Guarded handles: emergency brake, engine fire, evacuation",
+          "Transponder panel",
+          "Verify the DU colour conventions against the real screens — red, amber, magenta, cyan, green, white, grey",
+          "Second pass through the whole list. The savings come from the second pass."
+        ]
+      },
+      {
+        "title": "Displays and CAS — the best use of a GFS",
+        "min": 25,
+        "cards": ["ACE-1", "ACE-2", "ACE-3", "ACE-4", "ACE-5", "ACE-6", "ACE-7", "ACE-8", "ACE-27", "ACE-28", "ACE-29", "ACE-30", "ACE-31", "ACE-32", "ACE-33"],
+        "items": [
+          "Which AGM drives which DUs, and how many unique images one AGM can produce",
+          "Tell a DU failure from an AGM failure — the guide calls this essential",
+          "Single DU failed → corrective action. Perform it, don't just read it.",
+          "DU 1 and DU 2 both showing a large X → actions in order",
+          "Two DUs failed and off → what appears where, for each pair",
+          "CAS levels: colour, master light, aural for each",
+          "Walk the aural priority ladder out loud; name what is always first",
+          "Mute an uncommanded AP disconnect — and name what will NOT mute it"
+        ]
+      },
+      {
+        "title": "Power-up and ground power",
+        "min": 15,
+        "cards": ["L-34", "L-35", "L-36", "L-37", "L-38", "AFM-47", "AFM-48"],
+        "items": [
+          "GPU voltage check BEFORE connecting — say the number first, then verify",
+          "GPU load limits, initial surge vs continuous",
+          "Battery minimums for start; minimum volts to charge, maximum volts to charge",
+          "Battery temperature limits for flight",
+          "Run the cockpit prep flow with the checklist, challenge-and-response"
+        ]
+      },
+      {
+        "title": "First look at the start flow",
+        "min": 20,
+        "cards": ["E-16", "E-17", "E-18", "E-19"],
+        "items": [
+          "RH start: engine switch to RUN, confirm booster pump, confirm NO fuel pressure CAS, START press",
+          "Watch the sequence: START ON at press, inverse video at ~10% N2, N1 increasing, parameters to IDL",
+          "Say the ground idle targets from memory BEFORE looking at the gauges, then compare",
+          "Confirm GEN 2 takes over and is supplying the aircraft",
+          "The moisture note: TAT or reported OAT below the ice line with visible moisture → IPS rotary to AUTO/NAI",
+          "LH start — and the trap: the right engine must exit QPM and be at Ground Idle first",
+          "Have your partner try to walk you into starting the left engine with the right still in QPM. Catch it."
+        ]
+      },
+      {
+        "title": "Emergency controls — locate only",
+        "min": 10,
+        "cards": ["E-1", "E-2", "E-5", "E-12", "E-13", "E-14"],
+        "items": [
+          "Touch, name, move on. Do NOT run these to standard tonight — the gate is GND 8.",
+          "Engine fire handles",
+          "Emergency brake",
+          "Crew oxygen masks — Cabin Altitude, Emergency Descent and Smoke all start here",
+          "Evacuation controls",
+          "Goal: at the GND 8 SIT your hands already know the geography, so you can spend that session on the words."
+        ]
+      },
+      {
+        "title": "Swap seats — repeat the start flow",
+        "min": 15,
+        "cards": ["E-16", "E-17", "E-18", "E-19"],
+        "items": [
+          "Other pilot flies: power-up → both starts → ground idle",
+          "Skip the geography quiz if the first pass ran clean"
+        ]
+      },
+      {
+        "title": "Debrief — write three lists",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Switches either of you hunted for → straight into tomorrow's review",
+          "Flow steps that came out wrong or out of order → drill those cards tonight",
+          "Questions for the instructor tomorrow — GFS behaviour that didn't match the cards is worth asking about"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd2",
+    "day": "GND 2",
+    "phase": 1,
+    "title": "Avionics · Master Warning · Electrical",
+    "focus": "Trigger the failures rather than reading about them. Reversion is muscle memory, not trivia.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Tonight's standard: every CAS answer stated before the screen is consulted"
+        ]
+      },
+      {
+        "title": "The CAS ladder, out loud",
+        "min": 20,
+        "cards": ["ACE-1", "ACE-2", "ACE-3", "ACE-4", "ACE-5", "ACE-6"],
+        "items": [
+          "Warning / Caution / Advisory / Status — colour, master light, aural for each",
+          "Sort order between colour groups, and ordering within a group",
+          "How many messages display at once, and what happens past that",
+          "Recite the aural priority ladder top to bottom without prompting",
+          "Partner names an aural; you give its relative priority. Then reverse."
+        ]
+      },
+      {
+        "title": "Aural priority under a pile-up",
+        "min": 15,
+        "cards": ["ACE-3", "ACE-7", "ACE-8"],
+        "items": [
+          "Two aurals active at once — how the system decides, and what is always first",
+          "Mute an uncommanded AP disconnect; name what will NOT mute it",
+          "How EGPWS and TCAS aurals reach you relative to CAS aurals",
+          "TAWS alert and TCAS alert together — what happens"
+        ]
+      },
+      {
+        "title": "Display failures and reversion — performed",
+        "min": 30,
+        "cards": ["ACE-27", "ACE-28", "ACE-29", "ACE-30", "ACE-31", "ACE-32", "ACE-33"],
+        "items": [
+          "Sketch the AGM → DU architecture on paper from memory, then verify",
+          "Inject a single DU failure and perform the corrective action",
+          "Inject the DU 1 + DU 2 double failure; perform the actions in order",
+          "Two DUs off — confirm what appears where for each pair",
+          "Name both display monitors and what each one checks",
+          "Required action for Check Pilot PFD / Check Copilot PFD / Check Engine Display",
+          "Distinguish a DU failure from an AGM failure out loud, using only what's on the screens"
+        ]
+      },
+      {
+        "title": "Electrical — ground power, batteries, generators",
+        "min": 20,
+        "cards": ["L-34", "L-35", "L-36", "L-37", "L-38", "AFM-47", "AFM-48"],
+        "items": [
+          "GPU voltage before connecting; GPU load limits",
+          "Battery minimum volts for start, to charge, and the maximum charging voltage",
+          "Generator load limits: QPM, ground idle and above, flight, maximum voltage",
+          "Battery temperature minimums",
+          "The 29.5 VDC anchor — same ceiling for GPU, generator, and battery charging",
+          "Run an electrical abnormal if the GFS supports it and watch which CAS messages appear"
+        ]
+      },
+      {
+        "title": "Swap seats — reversion again",
+        "min": 15,
+        "cards": ["ACE-29", "ACE-30", "ACE-31"],
+        "items": [
+          "Other pilot performs all three reversion cases",
+          "Partner calls the CAS aural priorities while the other reverts"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Any reversion step performed out of order → drill tonight",
+          "Any aural you couldn't place in the ladder → drill tonight"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd3",
+    "day": "GND 3",
+    "phase": 1,
+    "title": "Flight Controls · Fuel · Lighting",
+    "focus": "FMA literacy. If you can't read the FMA at a glance you'll fly the automation blind in the sim.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Standard tonight: every mode change gets called from the FMA, not from the button you pushed"
+        ]
+      },
+      {
+        "title": "AFCS and the FMA mode ladder",
+        "min": 25,
+        "cards": ["ACE-9", "ACE-10", "ACE-11", "ACE-12", "ACE-13", "ACE-14", "ACE-15"],
+        "items": [
+          "Where lateral vs vertical FD modes are displayed; ACTIVE vs ARMED colours",
+          "AP annunciator meanings — green AP, amber TCS, red flashing AP",
+          "The three normal ways to manually disengage the AP, and what engaging AP also engages",
+          "Press and release TCS with the AP engaged — do it, watch what happens",
+          "Disengaging the YD and its effect on the AP; the high-altitude YD rule",
+          "AP roll and pitch control limits; momentary overpower force at the column",
+          "Cycle every FMA mode you can reach and call each one aloud before looking"
+        ]
+      },
+      {
+        "title": "Protections — SWPS, TFS, rudder bias, Mach trim",
+        "min": 20,
+        "cards": ["ACE-19", "ACE-20", "ACE-21", "ACE-22", "ACE-23", "ACE-24"],
+        "items": [
+          "How the stall warning presents, and what it does to the autopilot",
+          "Alert level for Pusher Fail, Shaker Fail, L/R LSA Fail",
+          "When TFS is active, the bank angle that engages it, and how the numbers change",
+          "Override vs disconnect the TFS — and the difference between the two methods",
+          "Rudder bias: when active, the two conditions that engage it, which way it pushes",
+          "Mach trim and automatic pitch trim — what each does and when",
+          "Find the inadvertent-pusher response by hand (E-8) but do not drill it for score tonight"
+        ]
+      },
+      {
+        "title": "Flaps, airbrake, control limits",
+        "min": 15,
+        "cards": ["L-6", "AFM-33", "AFM-34", "AFM-35", "AFM-32"],
+        "items": [
+          "Flap speed limits, up and down — exact numbers",
+          "Airbrake limits",
+          "Work every flap detent and read the System Summary Page indication each time",
+          "Say the limit before selecting the detent"
+        ]
+      },
+      {
+        "title": "Fuel system and crossfeed",
+        "min": 20,
+        "cards": ["L-23", "L-24", "L-25", "L-26", "L-27", "AFM-38", "AFM-39", "AFM-40", "AFM-9", "AFM-10", "AFM-11"],
+        "items": [
+          "Total, usable, and maximum permissible imbalance — exact",
+          "Fuel temperature limits, max and min",
+          "Normal position of the booster pumps and the crossfeed valve",
+          "Approved fuel grades",
+          "Operate crossfeed in the GFS and watch the synoptic and the CAS response",
+          "Correct a simulated imbalance and state the limit you're correcting to"
+        ]
+      },
+      {
+        "title": "Autopilot limitations, in the seat",
+        "min": 10,
+        "cards": ["L-39", "L-40", "L-41", "L-42"],
+        "items": [
+          "Crew seated and belted requirement during AP operation",
+          "AP and YD state required for takeoff and landing",
+          "Minimum AP disengage altitudes by approach type — all operations, then non-precision / circling / visual",
+          "The YD prohibition altitude"
+        ]
+      },
+      {
+        "title": "Swap seats",
+        "min": 15,
+        "cards": ["ACE-9", "ACE-10", "ACE-11"],
+        "items": [
+          "Other pilot works the FMA ladder and the flap detents",
+          "Partner calls random FMA states to identify"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Any FMA state you misread → drill tonight",
+          "Any flap or fuel number you approximated → drill to exact"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd4",
+    "day": "GND 4",
+    "phase": 1,
+    "title": "Gear & Brakes · Powerplant · Fire · Pneumatics · Pressurization",
+    "focus": "The biggest systems day. Engine numbers and QPM gates get recited before any gauge is consulted.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Warning: this is the heaviest GFS night of the course. Keep moving; don't perfect block one."
+        ]
+      },
+      {
+        "title": "Engine limits and start gates — recited",
+        "min": 25,
+        "cards": ["L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18", "L-19", "L-20", "L-21", "L-22", "AFM-13", "AFM-14", "AFM-15", "AFM-16", "AFM-17"],
+        "items": [
+          "Engine manufacturer and model; number of engines",
+          "Oil level requirement before flight",
+          "Normal takeoff thrust vs Automatic Thrust Reserve",
+          "Start attempt 1 / dry motor run / start attempt 2",
+          "Tailwind and crosswind limits for engine start",
+          "Minimum time between starts; maximum time to light-off",
+          "Battery voltage minimums for start, Ni-Cad and Li-Ion",
+          "Minimum oil temperature for high N2 or QPM operation",
+          "The 2-minute engine anchor: QPM entry, QPM exit, shutdown cooldown — all 2 minutes at ground idle",
+          "Every number stated from memory first, then verified"
+        ]
+      },
+      {
+        "title": "Start to QPM and back — twice each",
+        "min": 25,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "L-19", "L-20", "L-21", "L-22"],
+        "items": [
+          "Full RH start with challenge-and-response",
+          "Ground idle values called from memory before reading the gauges",
+          "Confirm GEN 2 takes over",
+          "Enter QPM only after the required stabilized time — say the gate aloud",
+          "QPM conditions: aircraft stationary, brake on, thrust lever position",
+          "Exit QPM, set Ground Idle, THEN start the left engine",
+          "Shutdown only after the required idle time",
+          "Run the whole sequence a second time with your partner injecting one error to catch"
+        ]
+      },
+      {
+        "title": "Fire drills — hands and handles",
+        "min": 20,
+        "cards": ["E-5", "E-9", "AFM-51", "AFM-49", "AFM-50"],
+        "items": [
+          "Engine fire detector threshold temperature, and the other indications that accompany it",
+          "Locate and physically work the fire handles",
+          "On-ground / tail pipe fire during start — walk it slowly with the checklist open",
+          "Do NOT drill for score tonight — this is a geography and sequence familiarisation pass",
+          "Note which switches are guarded and which hand reaches each one"
+        ]
+      },
+      {
+        "title": "Pressurization and cabin abnormals",
+        "min": 20,
+        "cards": ["E-2", "E-3", "L-31", "AFM-43"],
+        "items": [
+          "Maximum positive and negative cabin pressure differential",
+          "Cabin Altitude — locate masks, then the rest of the flow with the checklist",
+          "Cabin Pressure — excessive positive or negative differential",
+          "Masks first anchor: Cabin Altitude, Emergency Descent, and Smoke all begin with crew oxygen masks",
+          "Time yourselves donning masks. Then do it again faster."
+        ]
+      },
+      {
+        "title": "Gear, brakes, tires",
+        "min": 10,
+        "cards": ["L-28", "L-29", "AFM-36", "AFM-37", "E-1"],
+        "items": [
+          "VLO extend, VLO retract, VLO extend EGES, VLE — four separate numbers",
+          "Maximum tire speed",
+          "Locate the emergency brake and the EGES controls",
+          "All Brakes Fail — locate only, do not drill for score"
+        ]
+      },
+      {
+        "title": "Swap seats — start sequence and QPM",
+        "min": 15,
+        "cards": ["E-16", "E-17", "E-18", "E-19"],
+        "items": [
+          "Other pilot runs both starts and the QPM sequence",
+          "Partner injects the QPM-before-left-start trap again"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Any engine number approximated → drill to exact tonight",
+          "gate-normal is before the GND 6 SIT. Two days out — check where you stand."
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd5",
+    "day": "GND 5",
+    "phase": 1,
+    "title": "Oxygen · Ice & Rain · Pitot-Static · Waste",
+    "focus": "The 10 °C ice line and the miscompare thresholds. Trigger the miscompares in the device.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Standard tonight: every temperature threshold stated with its sign and unit"
+        ]
+      },
+      {
+        "title": "Oxygen system and mask donning, timed",
+        "min": 15,
+        "cards": ["L-49", "AFM-41", "AFM-42"],
+        "items": [
+          "Minimum oxygen quantity for dispatch",
+          "Minimum supply per occupant for pressurized flight",
+          "Don masks and establish crew communication — time it",
+          "Do it twice more. This is the single most repeated action in the emergency deck.",
+          "Locate passenger oxygen controls"
+        ]
+      },
+      {
+        "title": "Ice protection — the 10 °C line",
+        "min": 25,
+        "cards": ["L-43", "L-44", "L-45", "L-46", "L-47", "L-48", "AFM-24", "AFM-25", "AFM-26", "AFM-27", "AFM-28", "AFM-29", "AFM-30", "AFM-31", "AFM-32"],
+        "items": [
+          "NAI required for ground ops, takeoff and landing — state the exact condition",
+          "NAI required for climb, cruise and descent — state the exact condition",
+          "When NOT to operate NAI: the TAT limit, and the operating mode it's prohibited in",
+          "HSDI recommendation threshold, and the exception",
+          "Freezing rain, freezing drizzle, mixed icing — the prohibition",
+          "Autopilot in icing: the tactile-cue caution",
+          "Work the IPS rotary through every position and read the resulting synoptic",
+          "The 10 °C anchor: NAI required below it with moisture, prohibited above it"
+        ]
+      },
+      {
+        "title": "Pitot-static and miscompares — triggered",
+        "min": 25,
+        "cards": ["ACE-34", "ACE-35", "ACE-36", "AFM-62"],
+        "items": [
+          "IAS? / ROLL? / PITCH? — the left-vs-right difference that triggers each",
+          "How the RAD? threshold is computed, and how long it must persist",
+          "What triggers a VDEV? miscompare",
+          "How the PFD presents INVALID airspeed, altitude or attitude data",
+          "State the difference between an invalid-data indication and a miscompare, out loud",
+          "Trigger each miscompare in the GFS if it supports it, and identify it before reading the label"
+        ]
+      },
+      {
+        "title": "Integrate — icing on the start and climb flows",
+        "min": 15,
+        "cards": ["E-19", "E-21"],
+        "items": [
+          "Run the start flow with cold-and-moist conditions set; catch the IPS/NAI requirement",
+          "Run the climb flow and confirm each item on its display page",
+          "Partner sets conditions without telling you; you decide the IPS selection and justify it"
+        ]
+      },
+      {
+        "title": "Swap seats",
+        "min": 15,
+        "cards": ["ACE-34", "ACE-35", "L-45", "L-46", "L-47"],
+        "items": [
+          "Other pilot identifies triggered miscompares and states the NAI rules"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Tomorrow is the GND 6 SIT. gate-normal is at 90% — run it in the app tonight.",
+          "Any miscompare you misidentified → drill tonight"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd6",
+    "day": "GND 6",
+    "phase": 1,
+    "title": "SIT day — normal procedures, cockpit prep to shutdown",
+    "focus": "Rehearsal for the gate-normal standard. Full profile, no pauses, checklist discipline throughout.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Tonight the flows run start to finish without stopping to look things up. Note the misses and continue."
+        ]
+      },
+      {
+        "title": "Full normal profile, no pauses",
+        "min": 35,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "E-21", "AFM-18", "AFM-20", "AFM-22"],
+        "items": [
+          "Cockpit prep and power-up",
+          "RH start, then LH start — with the QPM gate observed",
+          "Ground idle values confirmed, GEN 2 confirmed",
+          "Taxi — and remember you taxi by outside reference, not by chart symbol",
+          "Before-takeoff checks and thrust set",
+          "CLIMB flow: Gear UP (lever and lights on the System Summary Page), Yaw Damper ON (confirm FMA), Flaps UP (lever at 0, System Summary Page), Thrust MCT",
+          "Thrust levers back to the MCT gate within five minutes of setting takeoff; verify on BOTH engine indications",
+          "Cruise, descent, approach, landing, shutdown"
+        ]
+      },
+      {
+        "title": "Thrust ratings and autothrottle",
+        "min": 15,
+        "cards": ["ACE-15", "ACE-25", "ACE-26"],
+        "items": [
+          "Auto-rating mode: the rating types, and how many can be active at once",
+          "AT takeoff monitor — the band it protects against inadvertent thrust reduction",
+          "Primary AT modes",
+          "Whether the AT protects against engine overspeed or over-temperature",
+          "Set and change ratings in the device; read the resulting engine indications"
+        ]
+      },
+      {
+        "title": "Shutdown and securing",
+        "min": 10,
+        "cards": ["L-22", "L-26"],
+        "items": [
+          "Idle time required before shutdown",
+          "Booster pumps and crossfeed valve returned to their required position",
+          "Full securing flow with the checklist"
+        ]
+      },
+      {
+        "title": "Run the whole profile again, for time",
+        "min": 25,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "E-21"],
+        "items": [
+          "Second run, same seat, no checklist prompting on the flows",
+          "Partner logs every hesitation rather than correcting mid-flow",
+          "Debrief the log at the end, not during"
+        ]
+      },
+      {
+        "title": "Swap seats — abbreviated profile",
+        "min": 15,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "E-21"],
+        "items": [
+          "Other pilot: starts → taxi → climb flow → shutdown"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Every hesitation on the log becomes a card drill tonight",
+          "gate-emer is before the GND 8 SIT at 100% verbatim. Two days. Start tonight."
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd7",
+    "day": "GND 7",
+    "phase": 1,
+    "title": "Performance · Avionics",
+    "focus": "The speed ladder exact, and every EGPWS mode triggered rather than recited.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "The written test follows ground school. Tonight's numbers are test numbers."
+        ]
+      },
+      {
+        "title": "The speed ladder, in the seat",
+        "min": 20,
+        "cards": ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-30"],
+        "items": [
+          "VMO and MMO, with the crossover altitude",
+          "Maximum operating altitude",
+          "MSN 501-up weights — remember the +440 lb anchor over the early serials",
+          "Flap speed limits",
+          "Minimum and maximum OAT at sea level",
+          "Bank angle limits — 8°, 15°, 33°",
+          "Read each limit off the PFD speed tape where the device shows it"
+        ]
+      },
+      {
+        "title": "V-speeds and TOLD status",
+        "min": 20,
+        "cards": ["AFM-3", "AFM-4", "AFM-5", "AFM-6", "AFM-7", "AFM-8", "AFM-58", "AFM-64", "AFM-65"],
+        "items": [
+          "VO, VMCG, VMC, VMCL — definition and value for each",
+          "Whether the TOLD computation is advisory or approved — state it precisely",
+          "Work a takeoff performance case in the device and sanity-check it against the AFM values",
+          "Backup instrumentation — locate it and read a full set of parameters off it"
+        ]
+      },
+      {
+        "title": "EGPWS modes — triggered, not recited",
+        "min": 30,
+        "cards": ["ACE-42", "ACE-43", "ACE-44", "ACE-45", "ACE-46"],
+        "items": [
+          "Mode 1: when active, outer boundary alert, inner boundary alert",
+          "Mode 3: when enabled, the alert, how the aural repeats",
+          "Mode 6 callouts and the altitude each occurs at",
+          "Terrain / obstacle CAUTION vs WARNING — aural, colour, repeat behaviour",
+          "Which EGPWS modes are unavailable with Class B TAWS selected, and what each one does",
+          "Fly into each alert in the device and identify it by aural alone, before looking"
+        ]
+      },
+      {
+        "title": "Swap seats",
+        "min": 15,
+        "cards": ["ACE-42", "ACE-43", "ACE-44", "ACE-45"],
+        "items": [
+          "Other pilot identifies EGPWS alerts by aural and states the speed ladder"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Tomorrow is the GND 8 SIT — the emergency workout. gate-emer at 100% verbatim, tonight.",
+          "Any speed or weight approximated → drill to exact"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd8",
+    "day": "GND 8",
+    "phase": 1,
+    "title": "SIT day — normal, abnormal and emergency procedures",
+    "focus": "The real memory-item deadline. Verbatim, in order, out loud, with your hands on the switches.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles: one pilot runs the drill, the other is the examiner and holds the checklist",
+          "Examiner does not help. Log the miss, let the flow finish, debrief after.",
+          "Standard tonight is verbatim and in order — not 'close enough'"
+        ]
+      },
+      {
+        "title": "Memory items verbatim — partner as examiner",
+        "min": 35,
+        "cards": ["E-1", "E-2", "E-3", "E-4", "E-5", "E-6", "E-7", "E-8", "E-9", "E-10", "E-11", "E-12", "E-13", "E-14", "E-15", "E-20"],
+        "items": [
+          "All Brakes Fail",
+          "Cabin Altitude",
+          "Cabin Pressure",
+          "L/R Engine Fail",
+          "L/R Engine Fire",
+          "Engine Hung Start",
+          "Engine Hot Start",
+          "SWPS Inadvertent Pusher",
+          "Engine Fire On-ground / Tail Pipe",
+          "Engine Fire or Failure During Takeoff",
+          "Rejected Takeoff",
+          "Emergency Descent",
+          "Smoke, Fire or Fumes",
+          "Emergency Evacuation",
+          "TCAS Resolution Advisory",
+          "AFCS Abnormal Disconnect"
+        ]
+      },
+      {
+        "title": "Run each drill in the seat, with hands",
+        "min": 35,
+        "cards": ["E-1", "E-2", "E-5", "E-9", "E-10", "E-11", "E-12", "E-13", "E-14", "E-20"],
+        "items": [
+          "Words alone are not the standard — the hands have to find the switch while the mouth is talking",
+          "Fire drills with the actual handles",
+          "Masks-first drills: Cabin Altitude, Emergency Descent, Smoke",
+          "Rejected takeoff and engine failure on takeoff, at speed",
+          "Evacuation, to a stop and out",
+          "AFCS Abnormal Disconnect — partner fires it while you're mid-sentence on something else",
+          "Any drill where the hands lagged the words goes on the log"
+        ]
+      },
+      {
+        "title": "Emergency descent mode",
+        "min": 15,
+        "cards": ["ACE-16", "ACE-17", "ACE-18"],
+        "items": [
+          "The three conditions that must all be present for EDM to activate",
+          "The full sequence the aircraft flies once EDM activates",
+          "The four actions that cancel EDM",
+          "What the other Flight Controller buttons do, and whether the AP QD button cancels EDM",
+          "Activate and cancel EDM in the device, both ways"
+        ]
+      },
+      {
+        "title": "Swap seats — full emergency set",
+        "min": 20,
+        "cards": ["E-1", "E-2", "E-3", "E-4", "E-5", "E-9", "E-10", "E-11", "E-12", "E-13", "E-14", "E-20"],
+        "items": [
+          "Other pilot runs the full set with hands, first pilot examines",
+          "Same standard: verbatim, in order, no prompting"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Run gate-emer in the app tonight. 100% or you drill again.",
+          "Anything on the log that was a hands problem rather than a words problem — note it separately, the fix is different"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "gnd9",
+    "day": "GND 9",
+    "phase": 1,
+    "title": "CRM/SRM · Weight & Balance · Flight Planning · Windshear · Stalls",
+    "focus": "Two-crew discipline, and the 'not primary' family of limitations. Written test is next.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Roles and swap point",
+          "Tonight is the last GFS before the written. Treat every limitation as a test question."
+        ]
+      },
+      {
+        "title": "Two-crew discipline",
+        "min": 20,
+        "cards": ["AFM-59", "AFM-60", "AFM-61"],
+        "items": [
+          "Agree standard callouts and stick to them for the whole session",
+          "Transfer of control, both directions, verbalised",
+          "Task-shedding under load: partner stacks two problems and you decide what waits",
+          "One of you deliberately makes an error; the other has to catch and call it without taking over"
+        ]
+      },
+      {
+        "title": "Avionics limitations — the 'not primary' family",
+        "min": 20,
+        "cards": ["L-50", "L-51", "L-52", "L-53", "L-54", "L-55", "L-56", "L-57"],
+        "items": [
+          "Taxi by outside reference; fly by airborne navigation — state the rule exactly",
+          "Chart aircraft symbol accuracy: the two conditions that degrade it",
+          "ACE Electronic Charts do not replace which two things",
+          "Weather radar operating prohibitions",
+          "INAV topographical map and airspace display — what they may not be used for",
+          "Smart View permitted use, and the two things it may not be",
+          "Vertical situation display permitted use",
+          "The FMS approach type that is prohibited",
+          "The anchor: charts, INAV, Smart View and VSD are all situational-awareness-only",
+          "Display each one in the device while you say what it is not approved for"
+        ]
+      },
+      {
+        "title": "Stalls, SWPS, UPRT",
+        "min": 20,
+        "cards": ["ACE-19", "ACE-20", "AFM-12", "E-8"],
+        "items": [
+          "How the stall warning presents, and its effect on the autopilot",
+          "Alert level for Pusher Fail, Shaker Fail, L/R LSA Fail",
+          "Approach to stall and recovery, clean and configured",
+          "Inadvertent pusher — the memory response, with hands",
+          "High-altitude handling characteristics if the device models them"
+        ]
+      },
+      {
+        "title": "TCAS and traffic",
+        "min": 20,
+        "cards": ["ACE-37", "ACE-38", "ACE-39", "ACE-40", "ACE-41", "E-15"],
+        "items": [
+          "Aural for a new TA, a further TA while one is active, and an RA that has cleared",
+          "CORRECTIVE vs PREVENTIVE RA — the aural difference",
+          "Why the transponder must not be STBY on the ground, and what to select instead",
+          "TCAS test and arm before flight, and what it does while still on the ground",
+          "Situations where an aircraft you can see is NOT shown by TCAS",
+          "Fly an RA and follow it, including the return to clearance"
+        ]
+      },
+      {
+        "title": "Weight and balance sweep",
+        "min": 15,
+        "cards": ["L-2", "L-3", "L-4", "L-5", "AFM-1", "AFM-2", "AFM-44", "AFM-45", "L-9"],
+        "items": [
+          "MSN 501-up zero fuel, ramp, takeoff and landing weights — the +440 lb anchor",
+          "Baggage limits by restraint net",
+          "Floor loading, over panels vs on seat rails",
+          "Maximum passengers in the executive interior",
+          "Work one loading case end to end"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Run gate-written in the app tonight at 100%",
+          "Ground school is done. Next GFS session is SIM 1 prep."
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim1",
+    "day": "SIM 1",
+    "phase": 2,
+    "title": "Prep — normal ops · steep turns · stalls · precision approach",
+    "focus": "Flows fluent and automation legible before you use sim time on them.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's sim profile aloud together before touching anything",
+          "Agree callouts and transfer-of-control phrasing"
+        ]
+      },
+      {
+        "title": "Normal flows, clean and unprompted",
+        "min": 20,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "E-21"],
+        "items": [
+          "Cockpit prep → both starts → ground idle → taxi",
+          "Takeoff and the CLIMB flow with every display-page confirmation",
+          "Approach, landing, shutdown",
+          "No checklist prompting on the flows themselves"
+        ]
+      },
+      {
+        "title": "Automation for the precision approach",
+        "min": 20,
+        "cards": ["ACE-9", "ACE-10", "ACE-11", "AFM-64"],
+        "items": [
+          "Set up and fly a precision approach on automation; call every FMA change",
+          "AP disengage at the correct minimum altitude for the approach type",
+          "Fly one approach on backup instrumentation only",
+          "Practise the transition from automation to hand-flying at minimums"
+        ]
+      },
+      {
+        "title": "Speeds, steep turns, stall prevention",
+        "min": 10,
+        "cards": ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-30", "AFM-3", "AFM-8", "ACE-19"],
+        "items": [
+          "Bank limits for steep turns — 8°, 15°, 33°",
+          "Speed ladder called from memory",
+          "Approach to stall, recognition and prevention",
+          "Stall warning presentation and its effect on the AP"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Anything unprompted-flow shaky → drill tonight, not tomorrow in the sim"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim2",
+    "day": "SIM 2",
+    "phase": 2,
+    "title": "Prep — engine failure · OEI · fuel · electrical · autopilot abnormals",
+    "focus": "Engine failure recognition and the shutdown/restart sequence, hands on the right switches.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's profile aloud",
+          "Agree who does what during an engine failure before you see one"
+        ]
+      },
+      {
+        "title": "Engine failure, shutdown and restart",
+        "min": 25,
+        "cards": ["E-4", "E-6", "E-7", "AFM-50", "AFM-19"],
+        "items": [
+          "L/R Engine Fail — the N1 drop that triggers it, and ATR during takeoff",
+          "Memory response with hands, verbatim",
+          "Hung start indications and response",
+          "Hot start indications — the ITT numbers — and response",
+          "In-flight shutdown and restart, full sequence with the checklist",
+          "Partner fails an engine at a moment of their choosing, without warning"
+        ]
+      },
+      {
+        "title": "OEI handling and the autopilot abnormals",
+        "min": 15,
+        "cards": ["E-20", "ACE-10", "ACE-11", "ACE-12", "ACE-23"],
+        "items": [
+          "Rudder bias: when active, what engages it, which way it pushes",
+          "AFCS Abnormal Disconnect, run live",
+          "AP and YD behaviour single-engine",
+          "Fly an OEI approach on automation, then hand-flown"
+        ]
+      },
+      {
+        "title": "Fuel and electrical under failure",
+        "min": 10,
+        "cards": ["L-23", "L-24", "L-25", "L-26", "L-27", "L-34", "L-35", "L-36", "L-37", "L-38", "AFM-38", "AFM-40", "AFM-47", "AFM-48"],
+        "items": [
+          "Crossfeed to correct an imbalance; state the limit",
+          "Generator load limits single-engine",
+          "Watch which CAS messages appear and in what order"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Engine-failure hands lagging the words → drill tonight",
+          "SIM 3 is fire, smoke and evacuation — gate-sim3 at 100%. Look ahead."
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim3",
+    "day": "SIM 3",
+    "phase": 2,
+    "title": "Prep — fire drills · smoke · evacuation · icing · RTO",
+    "focus": "gate-sim3 is 100%. Fire, smoke and evacuation get run with hands until they're boring.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's profile aloud",
+          "Agree evacuation roles and who commands it"
+        ]
+      },
+      {
+        "title": "Fire drills to standard",
+        "min": 20,
+        "cards": ["E-5", "E-9", "E-10", "AFM-51", "AFM-49"],
+        "items": [
+          "L/R Engine Fire — verbatim, with the handles",
+          "On-ground / tail pipe fire during start",
+          "Engine fire or failure during takeoff",
+          "Each one three times. Third time should feel mechanical."
+        ]
+      },
+      {
+        "title": "Smoke and evacuation",
+        "min": 20,
+        "cards": ["E-13", "E-14", "E-12"],
+        "items": [
+          "Smoke, fire or fumes — masks first, then the flow, verbatim",
+          "Smoke control and removal with the checklist",
+          "Emergency evacuation to a stop and out",
+          "Combine: smoke leading to an emergency descent leading to an evacuation"
+        ]
+      },
+      {
+        "title": "Rejected takeoff",
+        "min": 10,
+        "cards": ["E-11"],
+        "items": [
+          "RTO memory items with hands, at speed",
+          "Partner calls the reject; you execute without discussion",
+          "Then one where the correct answer is to continue"
+        ]
+      },
+      {
+        "title": "Icing and pitot-static",
+        "min": 15,
+        "cards": ["L-43", "L-44", "L-45", "L-46", "L-47", "L-48", "AFM-23", "AFM-24", "AFM-25", "AFM-26", "AFM-27", "AFM-28", "AFM-29", "AFM-30", "AFM-31", "AFM-32", "ACE-34", "ACE-35", "ACE-36"],
+        "items": [
+          "NAI and HSDI rules stated exactly",
+          "Airframe icing encounter — configuration and speeds",
+          "Miscompares triggered and identified",
+          "The autopilot tactile-cue caution in icing"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Run gate-sim3 in the app tonight at 100%"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim4",
+    "day": "SIM 4",
+    "phase": 2,
+    "title": "Prep — decompression · emergency descent · windshear · GPWS",
+    "focus": "gate-sim4 at 100%. Masks, EDM, and every GPWS alert identified by aural alone.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's profile aloud",
+          "Agree the decompression division of labour before you see one"
+        ]
+      },
+      {
+        "title": "Decompression and emergency descent",
+        "min": 25,
+        "cards": ["E-2", "E-3", "E-12", "L-31", "AFM-43", "ACE-16", "ACE-17", "ACE-18"],
+        "items": [
+          "Cabin Altitude — masks, then verbatim flow",
+          "Cabin Pressure — positive and negative differential limits",
+          "Emergency Descent — verbatim, at maximum rate",
+          "EDM: the three activation conditions, the full sequence flown, the four cancellations",
+          "Run a decompression into an emergency descent into a diversion, unbroken",
+          "Time mask donning again. It should be faster than GND 5."
+        ]
+      },
+      {
+        "title": "Flight controls, gear, high-altitude handling",
+        "min": 15,
+        "cards": ["AFM-33", "AFM-34", "AFM-35", "L-6", "L-28", "L-29", "AFM-36", "AFM-37", "L-39", "L-40", "L-41", "L-42", "ACE-21", "ACE-22", "AFM-24"],
+        "items": [
+          "Flap and gear speed limits called before selection",
+          "TFS engagement and both override methods",
+          "YD prohibition altitude, and the high-altitude YD disengage rule",
+          "High-altitude stall recognition and recovery"
+        ]
+      },
+      {
+        "title": "Windshear and GPWS",
+        "min": 15,
+        "cards": ["ACE-42", "ACE-43", "ACE-44", "ACE-45", "ACE-46", "ACE-37", "ACE-38", "ACE-39", "ACE-40", "ACE-41"],
+        "items": [
+          "Windshear encounter on takeoff and on approach",
+          "Every EGPWS mode triggered and identified by aural before looking",
+          "Terrain / obstacle CAUTION vs WARNING",
+          "TCAS RA flown to completion"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Run gate-sim4 in the app tonight at 100%"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim5",
+    "day": "SIM 5",
+    "phase": 2,
+    "title": "Prep — fire and smoke to standard · powerplant failure on takeoff · OEI precision",
+    "focus": "Repeat night. The drills you already know, run until they're automatic under distraction.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's profile aloud",
+          "Tonight's theme: distraction. Every drill gets run with something else going on."
+        ]
+      },
+      {
+        "title": "Fire, smoke, evacuation — under distraction",
+        "min": 20,
+        "cards": ["E-5", "E-9", "E-13", "E-14", "AFM-51"],
+        "items": [
+          "Each drill run while the partner talks to ATC, or asks an unrelated question",
+          "No degradation allowed in the verbatim standard",
+          "Evacuation with one exit blocked"
+        ]
+      },
+      {
+        "title": "Powerplant failure on takeoff",
+        "min": 20,
+        "cards": ["E-4", "E-10", "E-11", "AFM-50", "AFM-19"],
+        "items": [
+          "Engine failure before V1 — reject",
+          "Engine failure after V1 — continue",
+          "Engine fire during takeoff",
+          "Partner varies the failure point without telling you",
+          "Full engine limit set recited cold: L-12 through L-22"
+        ]
+      },
+      {
+        "title": "OEI precision approach",
+        "min": 15,
+        "cards": ["ACE-23", "AFM-9", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18", "L-19", "L-20", "L-21", "L-22"],
+        "items": [
+          "OEI precision approach on automation, then hand-flown",
+          "Rudder bias behaviour throughout",
+          "Go-around single-engine",
+          "Landing single-engine with the correct configuration and speeds"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Any drill that degraded under distraction → that's the one to drill tonight"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim6",
+    "day": "SIM 6",
+    "phase": 2,
+    "title": "Prep — circling · no-flap landing · backup instrumentation · FMS",
+    "focus": "The non-standard configurations and the FMS work that eats sim time if you arrive cold.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Read tomorrow's profile aloud",
+          "FMS programming is the block most worth doing here rather than in the sim"
+        ]
+      },
+      {
+        "title": "FMS and radios",
+        "min": 20,
+        "cards": ["AFM-60", "AFM-61", "L-57", "ACE-9", "ACE-10", "ACE-11", "ACE-12", "ACE-13", "ACE-14", "ACE-15"],
+        "items": [
+          "Build a full flight plan from scratch, including a hold and a runway change",
+          "Load and activate an approach; then change it late",
+          "The FMS approach type that is prohibited — say it while you're in the approach page",
+          "Radio and transponder setup, cold",
+          "Do it a second time against the clock"
+        ]
+      },
+      {
+        "title": "Circling and non-standard configuration landings",
+        "min": 20,
+        "cards": ["AFM-33", "AFM-34", "L-6", "AFM-10", "AFM-11"],
+        "items": [
+          "Circling approach, both directions",
+          "No-flap and non-standard-flap landing — speeds and distances",
+          "Flap limits stated before each selection",
+          "Go-around from a circling approach"
+        ]
+      },
+      {
+        "title": "Backup instrumentation and powerplant abnormals",
+        "min": 10,
+        "cards": ["E-4", "E-6", "E-7", "E-14", "ACE-25", "ACE-26"],
+        "items": [
+          "Fly an approach on backup instrumentation only",
+          "Hung and hot start responses, one more time",
+          "AT modes and what the AT does not protect against"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "SIM 7 is the LOS. gate-los is the whole deck at 95% — start it tonight."
+        ]
+      }
+    ]
+  },
+  {
+    "key": "sim7",
+    "day": "SIM 7",
+    "phase": 2,
+    "title": "Prep — LOS, everything integrated",
+    "focus": "One simple correctable problem plus one complex problem for the whole flight. Rehearse the process, not a specific failure.",
+    "blocks": [
+      {
+        "title": "Pre-brief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "The LOS is a line flight, not a drill parade. Brief it like a trip.",
+          "Agree how you'll run a problem that persists for the whole flight — division of labour, workload, diversion decision-making"
+        ]
+      },
+      {
+        "title": "Fly a complete line trip, uninterrupted",
+        "min": 25,
+        "cards": ["E-16", "E-17", "E-18", "E-19", "E-21"],
+        "items": [
+          "Dispatch, loading, performance, flight plan",
+          "Full normal profile gate to gate, no pauses, real checklist discipline",
+          "Standard callouts throughout",
+          "No injected failures on this run"
+        ]
+      },
+      {
+        "title": "Now the same trip with a persistent problem",
+        "min": 25,
+        "cards": ["E-2", "E-3", "E-4", "E-5", "E-12", "E-13", "E-20", "ACE-16", "ACE-17", "ACE-18"],
+        "items": [
+          "Partner picks one complex problem and one simple correctable one, and does not tell you what they are",
+          "Handle the immediate memory items, then manage the rest of the flight around the degradation",
+          "Make and justify a diversion decision out loud",
+          "Land, and debrief the decision-making rather than the switch positions",
+          "Swap and run it again with the roles reversed"
+        ]
+      },
+      {
+        "title": "Debrief",
+        "min": 5,
+        "cards": [],
+        "items": [
+          "Run gate-los in the app at 95%",
+          "If the practical test is scheduled as its own session, build a prep block for it"
+        ]
+      }
+    ]
+  }
+]

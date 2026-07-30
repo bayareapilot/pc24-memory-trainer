@@ -16,9 +16,10 @@ Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
 Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs as a standalone app, works with no signal, and updates itself when a new card set is published.
 
-Four tabs:
+Five tabs:
 
-- **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards
+- **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards, and a GFS button that jumps to that day's simulator session
+- **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Checks persist, so you can work a session across an evening
 - **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus FSI-deck, AFM-only, ACE-only, mock oral and whole-deck scopes — each with a pass standard and attempt history
 - **Reference** — all 198 cards, searchable
@@ -43,8 +44,9 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 
 | Path | What it is |
 |---|---|
-| `index.html` | The trainer — one self-contained file, all 198 cards inline |
+| `index.html` | The trainer — one self-contained file, all 198 cards and 16 GFS sessions inline |
 | `PC-24 Memory Items Study Program.md` | Written study program: schedule, standards, memory anchors |
+| `GFS Session Plan.md` | Standalone prose version of the GND 1 simulator session |
 | `PC24_FSI_Flashcards_Anki.txt` | Anki import (tab-separated, tagged `PC24::Section`) |
 | `flashcards_data.json` | Structured card data — the source for rebuilding `index.html` |
 | `sw.js` | Service worker: offline caching and update prompts |
@@ -52,7 +54,7 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 
 ## Rebuilding
 
-Card sources live in `build/cards/`. Edit those, never `index.html` (it is generated).
+Card sources and the GFS session plans live in `build/cards/`. Edit those, never `index.html` (it is generated). The build fails if a GFS block references a card id that doesn't exist.
 
 ```bash
 python3 build/build.py --bump

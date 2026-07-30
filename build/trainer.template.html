@@ -106,6 +106,12 @@
   }
   nav.tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
   nav.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 4px; }
+  /* Five tabs do not fit a 375 px phone at the full padding, and a tab you have to
+     scroll sideways to discover is a tab you forget exists. Tighten to fit. */
+  @media (max-width: 430px) {
+    nav.tabs { gap: 3px; }
+    nav.tabs button { padding: 11px 8px 12px; font-size: .86rem; letter-spacing: .01em; }
+  }
 
   .view { display: none; }
   .view.active { display: block; }
@@ -208,6 +214,52 @@
   .dayrow .t small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
   .dayrow button { flex: none; }
 
+  /* ---- gfs sessions ---- */
+  .gfs-head {
+    background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 15px 17px; margin-bottom: 14px;
+  }
+  .gfs-head h3 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", sans-serif;
+    font-size: 1.2rem; margin: 0 0 6px; letter-spacing: .015em; text-wrap: balance;
+  }
+  .gfs-head .day { font: 700 .78rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); letter-spacing: .05em; }
+  .gfs-head .focus { font-size: .88rem; color: var(--muted); margin: 8px 0 0; }
+  .gfs-bar { height: 6px; border-radius: 4px; background: var(--panel-2); overflow: hidden; margin: 12px 0 8px; }
+  .gfs-bar i { display: block; height: 100%; background: var(--accent); border-radius: 4px; transition: width .25s ease; }
+  .gfs-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .gfs-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+
+  .gfs-block {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 13px 16px; margin-bottom: 9px;
+  }
+  .gfs-block.done { border-color: var(--good); }
+  .gfs-block > .bh { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  .gfs-block > .bh .bt { flex: 1 1 200px; font-size: .96rem; font-weight: 600; }
+  .gfs-block > .bh .win {
+    font: 700 .72rem/1.4 ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--accent); letter-spacing: .04em; flex: none; font-variant-numeric: tabular-nums;
+  }
+  .gfs-block.done > .bh .win { color: var(--good); }
+  .gfs-items { list-style: none; margin: 11px 0 0; padding: 0; }
+  .gfs-items li { margin: 0 0 2px; }
+  .gfs-items label {
+    display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+    font-size: .89rem; line-height: 1.5; padding: 6px 0; border-radius: 6px;
+  }
+  /* 20px hit target plus the label padding keeps this thumb-friendly at 375px. */
+  .gfs-items input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--accent); }
+  .gfs-items input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .gfs-cards { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 11px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .gfs-cards .cardchip {
+    font: 700 .68rem/1 ui-monospace, "SF Mono", Menlo, monospace;
+    background: var(--panel-2); color: var(--muted); border: 1px solid var(--line);
+    border-radius: 5px; padding: 4px 6px; letter-spacing: .03em;
+  }
+  .gfs-cards .cardchip.learned { color: var(--good); border-color: var(--good); }
+  .gfs-cards button { margin-left: auto; }
+
   /* ---- exam ---- */
   .exam-setup { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
   .exam-q {
@@ -279,7 +331,7 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.0.0 (2026-07-30)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.1.0 (2026-07-30)</span></span>
   </header>
 
   <div id="update-bar" role="status">
@@ -288,6 +340,7 @@
   </div>
   <nav class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-view="program">Program</button>
+    <button role="tab" aria-selected="false" data-view="gfs">GFS</button>
     <button role="tab" aria-selected="false" data-view="drill">Drill</button>
     <button role="tab" aria-selected="false" data-view="exam">Exam</button>
     <button role="tab" aria-selected="false" data-view="reference">Reference</button>
@@ -295,6 +348,14 @@
 
   <!-- PROGRAM -->
   <section class="view active" id="view-program"></section>
+
+  <!-- GFS -->
+  <section class="view" id="view-gfs">
+    <div class="controls">
+      <select id="gfs-pick" aria-label="GFS session"></select>
+    </div>
+    <div id="gfs-area"></div>
+  </section>
 
   <!-- DRILL -->
   <section class="view" id="view-drill">
@@ -489,7 +550,7 @@ const byId = Object.fromEntries(CARDS.map(c => [c.id, c]));
 
 /* ---------- state ---------- */
 const LS_KEY = 'pc24-trainer-v1';
-let state = { srs: {}, exams: [] };
+let state = { srs: {}, exams: [], gfs: {}, gfsPick: null };
 try { state = Object.assign(state, JSON.parse(localStorage.getItem(LS_KEY) || '{}')); } catch (e) {}
 const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
 
@@ -514,6 +575,7 @@ function show(view) {
   tabs.forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === view)));
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
   if (view === 'drill') renderDrillStats();
+  if (view === 'gfs') renderGfs(); // refresh the learned-card chips after any drill
 }
 tabs.forEach(b => b.addEventListener('click', () => show(b.dataset.view)));
 
@@ -540,6 +602,7 @@ function renderProgram() {
       <span class="d">${day.d}</span>
       <span class="t">${esc(day.title)}<small>${esc(idLabel(ids))}${ids && day.note ? ' · ' : ''}${esc(day.note || '')}</small></span>
       ${ids ? `<button class="btn" data-drill='${JSON.stringify(ids)}'>Drill</button>` : ''}
+      ${gfsIndexFor(day.d) >= 0 ? `<button class="btn" data-gfs="${gfsIndexFor(day.d)}">GFS</button>` : ''}
       ${day.exam ? `<button class="btn primary" data-exam="${day.exam}">Run exam</button>` : ''}
       ${ids ? `<span class="chip ${sec(ids[0])}">${stats}</span>` : ''}
     </div>`;
@@ -560,7 +623,138 @@ function renderProgram() {
     startExam(b.dataset.exam);
     show('exam');
   }));
+  el.querySelectorAll('[data-gfs]').forEach(b => b.addEventListener('click', () => {
+    gfsPick.value = b.dataset.gfs;
+    state.gfsPick = +b.dataset.gfs; save();
+    renderGfs();
+    show('gfs');
+  }));
 }
+
+/* ---------- GFS session view ----------
+   One session per course day: time-boxed blocks, the cards that back each block,
+   and a checkbox per item. Check state is keyed to a hash of the item TEXT rather
+   than its index, so reordering a session keeps your progress and editing an
+   item's wording correctly resets it. */
+const GFS = __GFS_DATA__;
+const GFS_PHASES = { 1: 'Ground school evening', 2: 'Simulator prep' };
+
+function hash32(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return (h >>> 0).toString(36);
+}
+const itemKey = (sKey, text) => `${sKey}:${hash32(text)}`;
+// 'GND 1' -> 'gnd1', so a Program day row can jump straight to its GFS session.
+function gfsIndexFor(dayLabel) {
+  return GFS.findIndex(s => s.key === dayLabel.toLowerCase().replace(/\s+/g, ''));
+}
+const isChecked = k => !!state.gfs[k];
+const hhmm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+
+const sessionItemKeys = s => s.blocks.flatMap(b => b.items.map(t => itemKey(s.key, t)));
+const sessionCards = s => uniq(s.blocks.flatMap(b => b.cards || []));
+const sessionMinutes = s => s.blocks.reduce((n, b) => n + b.min, 0);
+
+const gfsPick = document.getElementById('gfs-pick');
+function renderGfsOptions() {
+  let html = '';
+  let phase = 0;
+  GFS.forEach((s, i) => {
+    if (s.phase !== phase) {
+      if (phase) html += '</optgroup>';
+      phase = s.phase;
+      html += `<optgroup label="${GFS_PHASES[phase]}">`;
+    }
+    const keys = sessionItemKeys(s);
+    const done = keys.filter(isChecked).length;
+    const mark = done === keys.length ? ' ✓' : done ? ` (${done}/${keys.length})` : '';
+    html += `<option value="${i}">${s.day} — ${esc(s.title)}${mark}</option>`;
+  });
+  gfsPick.innerHTML = html + '</optgroup>';
+  gfsPick.value = String(state.gfsPick ?? GFS.findIndex(s => {
+    const k = sessionItemKeys(s); return k.filter(isChecked).length < k.length;
+  }));
+  if (gfsPick.value === '-1') gfsPick.value = '0';
+}
+
+function renderGfs() {
+  const s = GFS[+gfsPick.value] || GFS[0];
+  const keys = sessionItemKeys(s);
+  const done = keys.filter(isChecked).length;
+  const cards = sessionCards(s);
+  const total = sessionMinutes(s);
+
+  let html = `<div class="gfs-head">
+    <span class="day">${s.day}</span>
+    <h3>${esc(s.title)}</h3>
+    <div class="gfs-bar"><i style="width:${keys.length ? (done / keys.length) * 100 : 0}%"></i></div>
+    <div class="gfs-meta">
+      <span id="gfs-count">${done} of ${keys.length} items</span>
+      <span>${s.blocks.length} blocks · ${total} min</span>
+      <span>${cards.length} cards · ${cards.filter(isLearned).length} learned</span>
+    </div>
+    <p class="focus">${esc(s.focus)}</p>
+    <div class="gfs-actions">
+      <button class="btn primary" id="gfs-drill-all">Drill all ${cards.length} cards</button>
+      <button class="btn" id="gfs-reset">Reset checks</button>
+    </div>
+  </div>`;
+
+  let at = 0;
+  s.blocks.forEach((b, bi) => {
+    const bKeys = b.items.map(t => itemKey(s.key, t));
+    const bDone = bKeys.every(isChecked);
+    const win = `${hhmm(at)}–${hhmm(at + b.min)}`;
+    at += b.min;
+    html += `<div class="gfs-block${bDone ? ' done' : ''}" data-block="${bi}">
+      <div class="bh"><span class="bt">${esc(b.title)}</span>
+        <span class="win">${win} · ${b.min} min</span></div>
+      <ul class="gfs-items">${b.items.map((t, ii) => {
+        const k = bKeys[ii];
+        return `<li><label><input type="checkbox" data-k="${k}"${isChecked(k) ? ' checked' : ''}>
+          <span>${esc(t)}</span></label></li>`;
+      }).join('')}</ul>`;
+    if (b.cards && b.cards.length) {
+      html += `<div class="gfs-cards">
+        ${b.cards.map(id => `<span class="cardchip${isLearned(id) ? ' learned' : ''}">${id}</span>`).join('')}
+        <button class="btn" data-bdrill='${JSON.stringify(b.cards)}'>Drill</button></div>`;
+    }
+    html += '</div>';
+  });
+
+  const el = document.getElementById('gfs-area');
+  el.innerHTML = html;
+
+  // Update in place rather than re-rendering, so checking an item near the bottom
+  // of a 40-item session does not throw you back to the top of the page.
+  el.querySelectorAll('.gfs-items input').forEach(cb => cb.addEventListener('change', () => {
+    if (cb.checked) state.gfs[cb.dataset.k] = 1; else delete state.gfs[cb.dataset.k];
+    save();
+    const n = keys.filter(isChecked).length;
+    el.querySelector('.gfs-bar i').style.width = `${keys.length ? (n / keys.length) * 100 : 0}%`;
+    document.getElementById('gfs-count').textContent = `${n} of ${keys.length} items`;
+    const blk = cb.closest('.gfs-block');
+    const bi = +blk.dataset.block;
+    blk.classList.toggle('done',
+      s.blocks[bi].items.every(t => isChecked(itemKey(s.key, t))));
+    renderGfsOptions();
+  }));
+  el.querySelectorAll('[data-bdrill]').forEach(b => b.addEventListener('click', () => {
+    startDrill(JSON.parse(b.dataset.bdrill), true); show('drill');
+  }));
+  document.getElementById('gfs-drill-all').addEventListener('click', () => {
+    startDrill(cards, true); show('drill');
+  });
+  document.getElementById('gfs-reset').addEventListener('click', () => {
+    if (!confirm(`Clear all ${keys.length} checks for ${s.day}?`)) return;
+    keys.forEach(k => delete state.gfs[k]);
+    save(); renderGfsOptions(); renderGfs();
+  });
+}
+gfsPick.addEventListener('change', () => {
+  state.gfsPick = +gfsPick.value; save(); renderGfs();
+});
 
 /* ---------- drill view ---------- */
 const scopeSel = document.getElementById('drill-scope');
@@ -766,6 +960,8 @@ document.getElementById('ref-search').addEventListener('input', e => renderRefer
 
 /* ---------- boot ---------- */
 renderProgram();
+renderGfsOptions();
+renderGfs();
 renderScopeOptions();
 renderDrillStats();
 renderReference('');

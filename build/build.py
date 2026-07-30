@@ -6,8 +6,9 @@
 Standard library only — no venv needed.
 
 Pipeline:
-    build/cards/{fsi,afm,ace}_cards.json  +  build/trainer.template.html
-        -> index.html            (cards inlined at the __CARDS_DATA__ placeholder)
+    build/cards/{fsi,afm,ace}_cards.json  +  build/cards/gfs_sessions.json
+    +  build/trainer.template.html
+        -> index.html            (cards at __CARDS_DATA__, GFS at __GFS_DATA__)
         -> flashcards_data.json  (all cards merged, for reference/rebuild)
         -> PC24_FSI_Flashcards_Anki.txt
 
@@ -59,12 +60,50 @@ def load_cards():
     return cards
 
 
-def build_index(cards):
+def load_gfs(cards):
+    """Load the GFS session plans, and prove every card reference resolves.
+
+    A typo'd card id would render as a chip that drills nothing, so it is worth
+    failing the build over rather than discovering it in the device.
+    """
+    path = BUILD / 'cards' / 'gfs_sessions.json'
+    sessions = json.loads(path.read_text())
+    known = {c['id'] for c in cards}
+    keys = [s['key'] for s in sessions]
+    dupes = {k for k in keys if keys.count(k) > 1}
+    if dupes:
+        raise SystemExit(f'duplicate GFS session keys: {sorted(dupes)}')
+
+    blocks = items = minutes = 0
+    for s in sessions:
+        for field in ('key', 'day', 'phase', 'title', 'focus', 'blocks'):
+            if not s.get(field):
+                raise SystemExit(f'GFS {s.get("key")} missing field: {field}')
+        for b in s['blocks']:
+            for field in ('title', 'min', 'items'):
+                if not b.get(field):
+                    raise SystemExit(f'GFS {s["key"]} block missing field: {field}')
+            missing = sorted(set(b.get('cards') or []) - known)
+            if missing:
+                raise SystemExit(
+                    f'GFS {s["key"]} / "{b["title"]}" references unknown cards: {missing}')
+            blocks += 1
+            items += len(b['items'])
+            minutes += b['min']
+    print(f'  {"gfs_sessions.json":20} {len(sessions):>4} sessions, '
+          f'{blocks} blocks, {items} items, {minutes} min')
+    return sessions
+
+
+def build_index(cards, gfs):
     template = (BUILD / 'trainer.template.html').read_text()
-    if '__CARDS_DATA__' not in template:
-        raise SystemExit('template is missing the __CARDS_DATA__ placeholder')
-    payload = json.dumps(cards, ensure_ascii=False).replace('</', '<\\/')
-    out = template.replace('__CARDS_DATA__', payload)
+    for placeholder in ('__CARDS_DATA__', '__GFS_DATA__'):
+        if placeholder not in template:
+            raise SystemExit(f'template is missing the {placeholder} placeholder')
+    out = template
+    for placeholder, data in (('__CARDS_DATA__', cards), ('__GFS_DATA__', gfs)):
+        payload = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+        out = out.replace(placeholder, payload)
     (ROOT / 'index.html').write_text(out)
     return len(out)
 
@@ -106,11 +145,12 @@ def main():
     print('loading card sources:')
     cards = load_cards()
     print(f'  {"TOTAL":20} {len(cards):>4} cards')
+    gfs = load_gfs(cards)
 
     (ROOT / 'flashcards_data.json').write_text(
         json.dumps(cards, ensure_ascii=False, indent=1))
 
-    size = build_index(cards)
+    size = build_index(cards, gfs)
     rows = build_anki(cards)
     print(f'\nindex.html               {size:>7} bytes')
     print(f'PC24_FSI_Flashcards_Anki {rows:>7} rows')

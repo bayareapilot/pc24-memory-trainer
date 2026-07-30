@@ -11,7 +11,8 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 ## Current state
 
 - **198 cards** — 87 FSI + 65 AFM Extended + 46 ACE Avionics
-- App version **v2.0.0**, service worker **CACHE_VERSION v4**
+- **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
+- App version **v2.1.0**, service worker **CACHE_VERSION v5**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -45,6 +46,37 @@ Two findings worth not re-deriving:
 1. **The AFM contains exactly 16 red-boxed memory items and all 16 were already covered by FSI cards E-1..E-15 and E-20.** No memory items were missing. `3-ENG-01` (dual engine failure) genuinely has no memory box.
 2. **AGI-1..AGI-7 (display unit colours) are ACE-derived** but were deliberately left in the FSI section so the checkride deck numbering matches what FSI issued. Do not "tidy" them into the ACE section.
 
+## GFS sessions
+
+Added 2026-07-30. The **GFS tab** holds one Graphical Flight Simulator session per course
+day — 9 ground-school evenings and 7 simulator pre-briefs — because the device is where
+switch geography, flows and avionics button-pushing get learned, not the full-motion sim.
+
+Each session is time-boxed blocks. A block carries its duration, a cumulative clock window,
+a checkbox per item, and the card ids that back it with a Drill button. Session progress
+and per-item checks persist in the same `localStorage` record as the SRS state
+(`state.gfs`, `state.gfsPick`). Program-view day rows gained a **GFS** button that jumps to
+the matching session.
+
+Three things worth not re-deriving:
+
+1. **Check state is keyed to a 32-bit hash of the item TEXT**, not its index
+   (`itemKey()` / `hash32()`). Reordering a session preserves progress; editing an item's
+   wording resets that one item, which is the correct behaviour. Do not "simplify" this to
+   an array index — that silently mismatches every check below an inserted item.
+2. **`build.py` fails the build if any GFS block references a card id that doesn't exist.**
+   A typo would otherwise render as a chip that drills nothing. Keep that check.
+3. **The tab bar needed a `max-width: 430px` rule to fit five tabs.** It already overflowed
+   at 375 px with four; a fifth pushed Reference off-screen. Adding a sixth tab means
+   revisiting that media query.
+
+Content standard: items are actions and checks, and values live in the cards rather than
+being restated in the item text. That keeps the deck the single source of truth for every
+safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
+
+`GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
+written before the in-app feature. Keep or drop it; the app is the live artifact.
+
 ## Schedule model
 
 Keyed to **course day numbers, not calendar dates** — ground school may or may not run weekends, and this is deliberate. Do not reintroduce dated rows.
@@ -70,7 +102,8 @@ python3 build/build.py --bump
 | Path | Role |
 |---|---|
 | `build/cards/{fsi,afm,ace}_cards.json` | **Card sources — edit these, not index.html** |
-| `build/trainer.template.html` | App template; cards are injected at the `__CARDS_DATA__` placeholder |
+| `build/cards/gfs_sessions.json` | **GFS session sources** — same rule; card refs are validated at build time |
+| `build/trainer.template.html` | App template; injected at the `__CARDS_DATA__` and `__GFS_DATA__` placeholders |
 | `build/build.py` | Merges sources → `index.html`, `flashcards_data.json`, Anki deck. `--bump` increments `CACHE_VERSION` |
 | `build/generate_{afm,ace}_cards.py` | The scripts that authored those card sets; keep for provenance and value citations |
 | `index.html` | **Generated. Never hand-edit** — the next build overwrites it |
@@ -102,7 +135,24 @@ Pages takes 30–60 s. Poll the live URL for the new version string rather than 
 
 3. **Prefix collision: `AFM`, `AGI`, `ACE` all begin with "A".** `sec()` in the template tests AFM, then AGI, then ACE, then falls back to `id[0]`. Order matters; adding another `A*` section means updating it.
 
-4. **The browser pane blocks bare localhost.** Serving a local copy requires a `.claude/launch.json` entry in the *working* directory plus `preview_start`. Clean up that file afterwards — it is scratch, not project config.
+4. **Serving a local copy for browser testing needs a `.claude/launch.json` entry in the
+   *working* directory plus `preview_start`.** Clean up that file afterwards — it is
+   scratch, not project config. Three sandbox traps bite in sequence (all diagnosed
+   2026-07-30, cost ~5 attempts):
+   - `python3 -m http.server` dies at import: its argparse default calls `os.getcwd()`,
+     which is **denied** in the preview subprocess. `sh -c 'cd … && …'` fails the same way.
+   - `SimpleHTTPRequestHandler` then calls `os.getcwd()` **per request**, so it dies on
+     every connection instead. Pass `directory=` explicitly via `functools.partial`.
+   - The preview subprocess **cannot read the `Pilatus PC24` tree at all**, and a denied
+     read surfaces as a plain **404**, not a permission error. Copy `index.html` into the
+     scratchpad and serve *that*.
+
+   Working recipe: a small server script in the scratchpad with
+   `functools.partial(SimpleHTTPRequestHandler, directory=SCRATCH_SITE)`, `index.html`
+   copied in beside it, and `launch.json` pointing `python3` at that script. Bonus: the
+   copy has no `sw.js`, so the service-worker staleness in gotcha 1 cannot bite either.
+   Note `navigator.serviceWorker` is `undefined` in that pane context, so the unregister
+   snippet above throws there — it is only needed against a real deployed origin.
 
 ## Verification discipline used here
 
