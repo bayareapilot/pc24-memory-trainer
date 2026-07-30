@@ -12,7 +12,8 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 
 - **198 cards** — 87 FSI + 65 AFM Extended + 46 ACE Avionics
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
-- App version **v2.1.0**, service worker **CACHE_VERSION v5**
+- **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
+- App version **v2.2.0**, service worker **CACHE_VERSION v6**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -28,6 +29,7 @@ All in `/Users/derekevans/Documents/AI Code/Pilatus PC24/` and **git-ignored** (
 | `PC-24 AFM.pdf` | Pilatus EASA AFM Report 02371, Issue 003 Rev 08, 01 May 2025 — 1,074 pp Vol 1 |
 | `Pc24 ACE.pdf` | Honeywell ACE Pilot's Guide D201912000296-R002 Rev 2, Sep 2022 — 2,131 pp |
 | `PC24 Client Schedule.pdf` | FSI Pilot Client Guide Rev 1.0 — the course syllabus |
+| `Pilot Training Manual.pdf` | FSI PILATUS PC-24 Pilot Training Manual Rev 0.7, Apr 2026 — 781 pp, source of the 63 panel plates |
 
 Derek confirmed with his FSI instructor on 2026-07-30 that posting this content publicly is permitted. That is why the repo is public. Attribution and "for training purposes only" notices are in the README, the app footer, and the study program.
 
@@ -77,6 +79,48 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
 
+## Panel plates
+
+Added 2026-07-30. Each GFS block shows thumbnails of the annotated flight-deck plates
+from the FSI Pilot Training Manual that cover the switches in that block — tap for a
+full-resolution view with a fit/natural zoom toggle.
+
+**Licensing.** Derek's FSI instructor cleared this on 2026-07-30: reproduction is
+permitted **for personal training purposes and not for sale**. That is a narrower grant
+than the flashcard text, which is why the condition is stated in the app footer, the
+lightbox caption, and the README. Keep those notices on any new image work. The manual's
+own front matter (p2–3) carries an FSI copyright notice and a US export-control notice;
+the plates also contain the FlightSafety logo and third-party photo credits. Do not
+extend this to a commercial or unattributed use without a fresh, wider permission.
+
+How it fits together:
+
+- `build/cards/panel_refs.json` — page, printed folio, chapter, title, and the card ids
+  each plate serves. **This is the only hand-maintained mapping.**
+- `build/render_panels.py` — renders `images/panels/ptm-<page>.webp` from the PDF at
+  scale 2.0 / quality 80 (~91 KB each, 1584×1224). Needs the source PDF and a
+  `pypdfium2` venv, so it is **not** part of a normal build. Output is committed, so
+  `build.py` needs neither.
+- `build.py` fails if a plate names an unknown card **or** its rendered image is missing,
+  and writes `images/panels/index.json` for the service worker.
+
+Three decisions worth not re-deriving:
+
+1. **Plates attach to blocks through cards, not a second mapping.** `platesFor()` scores
+   plates by how many of the block's cards they cover, takes the top 4. Add a plate with
+   good card ids and it appears in every relevant block automatically.
+2. **The service worker warms the images after `activate`, not in `install`.** Precaching
+   5.6 MB would stall the update the user just tapped; leaving it to the runtime cache
+   means an unopened plate is missing with no signal. `warmPanels()` walks
+   `index.json` sequentially and swallows failures.
+3. **Resolution beats file size here.** These are line-art plates whose callout labels are
+   small; at scale 1.5 the switch legends stop being readable. 2.0 was the floor.
+
+The PTM has ~140 further diagram pages that were not mined — mostly per-control close-ups
+and synoptic-page state variations. `plate_index.json`-style detection lives in
+`render_panels.py`'s sibling scratch work; the detector that found these looked for pages
+whose non-boilerplate text is short with 2+ short title-case label lines.
+
 ## Schedule model
 
 Keyed to **course day numbers, not calendar dates** — ground school may or may not run weekends, and this is deliberate. Do not reintroduce dated rows.
@@ -103,7 +147,10 @@ python3 build/build.py --bump
 |---|---|
 | `build/cards/{fsi,afm,ace}_cards.json` | **Card sources — edit these, not index.html** |
 | `build/cards/gfs_sessions.json` | **GFS session sources** — same rule; card refs are validated at build time |
-| `build/trainer.template.html` | App template; injected at the `__CARDS_DATA__` and `__GFS_DATA__` placeholders |
+| `build/cards/panel_refs.json` | **Panel plate mapping** — page → cards; refs and image presence validated at build time |
+| `build/render_panels.py` | Renders `images/panels/*.webp` from the PDF. Separate step — needs the PDF + a venv |
+| `images/panels/` | 63 rendered plates + `index.json` for the service worker. Generated, but **committed** |
+| `build/trainer.template.html` | App template; injected at the `__CARDS_DATA__`, `__GFS_DATA__` and `__PANELS_DATA__` placeholders |
 | `build/build.py` | Merges sources → `index.html`, `flashcards_data.json`, Anki deck. `--bump` increments `CACHE_VERSION` |
 | `build/generate_{afm,ace}_cards.py` | The scripts that authored those card sets; keep for provenance and value citations |
 | `index.html` | **Generated. Never hand-edit** — the next build overwrites it |

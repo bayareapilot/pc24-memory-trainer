@@ -95,13 +95,62 @@ def load_gfs(cards):
     return sessions
 
 
-def build_index(cards, gfs):
+def load_panels(cards):
+    """Load the panel-plate references and prove each one resolves.
+
+    Two failure modes worth failing the build over: a card id that does not
+    exist (the plate would never surface), and a missing rendered image (the app
+    would show a broken thumbnail offline, with no way to tell why). Rendering is
+    a separate step — build/render_panels.py — because it needs the source PDF,
+    which is not in this repo.
+    """
+    path = BUILD / 'cards' / 'panel_refs.json'
+    refs = json.loads(path.read_text())
+    known = {c['id'] for c in cards}
+    pages = [r['page'] for r in refs]
+    dupes = {p for p in pages if pages.count(p) > 1}
+    if dupes:
+        raise SystemExit(f'duplicate panel pages: {sorted(dupes)}')
+
+    missing_img, total = [], 0
+    for r in refs:
+        for field in ('page', 'folio', 'chapter', 'title', 'cards'):
+            if not r.get(field):
+                raise SystemExit(f'panel p{r.get("page")} missing field: {field}')
+        bad = sorted(set(r['cards']) - known)
+        if bad:
+            raise SystemExit(f'panel p{r["page"]} references unknown cards: {bad}')
+        img = ROOT / 'images' / 'panels' / f'ptm-{r["page"]}.webp'
+        if not img.exists():
+            missing_img.append(img.name)
+        else:
+            total += img.stat().st_size
+        r['img'] = f'images/panels/ptm-{r["page"]}.webp'
+    if missing_img:
+        raise SystemExit(
+            f'missing rendered panels: {missing_img}\n'
+            'run build/render_panels.py (needs the source PDF + a pypdfium2 venv)')
+
+    # The service worker warms this list in the background so the plates are
+    # available with no signal, not just after you have viewed each one.
+    names = sorted(f'ptm-{r["page"]}.webp' for r in refs)
+    (ROOT / 'images' / 'panels' / 'index.json').write_text(
+        json.dumps(names, indent=0))
+
+    covered = {c for r in refs for c in r['cards']}
+    print(f'  {"panel_refs.json":20} {len(refs):>4} plates, {len(covered)} cards covered, '
+          f'{total / 1024 / 1024:.1f} MB')
+    return refs
+
+
+def build_index(cards, gfs, panels):
     template = (BUILD / 'trainer.template.html').read_text()
-    for placeholder in ('__CARDS_DATA__', '__GFS_DATA__'):
+    for placeholder in ('__CARDS_DATA__', '__GFS_DATA__', '__PANELS_DATA__'):
         if placeholder not in template:
             raise SystemExit(f'template is missing the {placeholder} placeholder')
     out = template
-    for placeholder, data in (('__CARDS_DATA__', cards), ('__GFS_DATA__', gfs)):
+    for placeholder, data in (('__CARDS_DATA__', cards), ('__GFS_DATA__', gfs),
+                              ('__PANELS_DATA__', panels)):
         payload = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
         out = out.replace(placeholder, payload)
     (ROOT / 'index.html').write_text(out)
@@ -146,11 +195,12 @@ def main():
     cards = load_cards()
     print(f'  {"TOTAL":20} {len(cards):>4} cards')
     gfs = load_gfs(cards)
+    panels = load_panels(cards)
 
     (ROOT / 'flashcards_data.json').write_text(
         json.dumps(cards, ensure_ascii=False, indent=1))
 
-    size = build_index(cards, gfs)
+    size = build_index(cards, gfs, panels)
     rows = build_anki(cards)
     print(f'\nindex.html               {size:>7} bytes')
     print(f'PC24_FSI_Flashcards_Anki {rows:>7} rows')

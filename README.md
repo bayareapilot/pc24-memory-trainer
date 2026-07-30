@@ -10,6 +10,8 @@ A flashcard trainer and study schedule for the **Pilatus PC-24** — memory item
 | AFM Extended | 65 | Pilatus PC-24 EASA AFM, Report 02371, Issue 003 Rev 08 |
 | ACE Avionics | 46 | Pilatus ACE™ (powered by Honeywell) PC-24 Avionics System Pilot's Guide, D201912000296-R002 Rev 2 |
 
+Plus **63 annotated flight-deck plates** from the FlightSafety PILATUS PC-24 Pilot Training Manual, Rev 0.7 (Apr 2026), attached to the GFS session blocks whose switches they show.
+
 Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
 ## Use it
@@ -19,7 +21,7 @@ Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs 
 Five tabs:
 
 - **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards, and a GFS button that jumps to that day's simulator session
-- **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Checks persist, so you can work a session across an evening
+- **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
 - **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus FSI-deck, AFM-only, ACE-only, mock oral and whole-deck scopes — each with a pass standard and attempt history
 - **Reference** — all 198 cards, searchable
@@ -73,4 +75,6 @@ python3 build/build.py --bump
 
 Every card was transcribed from the source PDF and independently verified against it, field by field, with attention to numbers and units. One known source quirk: card E-21A prints "PDF" where it means "PFD" — corrected here.
 
-**For training purposes only.** The AFM, current revisions, Service Bulletins, and applicable AFM Supplements are the authoritative source. Card content is FlightSafety International material, reproduced with instructor permission for training use.
+**For training purposes only, and not for sale.** The AFM, current revisions, Service Bulletins, and applicable AFM Supplements are the authoritative source.
+
+Card content and the flight-deck panel plates are FlightSafety International material, © FlightSafety International, reproduced with instructor permission for personal training use only. The plates are excerpts from the PC-24 Pilot Training Manual and are not to be sold or redistributed for commercial use. Aircraft photography within them is credited to the photographers listed in the manual's front matter.
