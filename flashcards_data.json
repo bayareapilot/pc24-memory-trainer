@@ -1,0 +1,611 @@
+[
+ {
+  "id": "E-1",
+  "title": "All Brakes Fail",
+  "front": "Both the main brakes and emergency brake system are sensed to be inoperative.",
+  "back": "On-ground during taxi:\nNOTE: Some brake pressure may still be available.\n1. Wheel brakes and EMER Brake — Use if available to stop aircraft",
+  "reference": "QRH 3-BRKS-01"
+ },
+ {
+  "id": "E-2",
+  "title": "Cabin Altitude",
+  "front": "Cabin altitude above warning threshold and voice callout “CABIN ALTITUDE”.",
+  "back": "1. Crew oxygen masks — Don/100%/Establish COMM\n2. Passenger oxygen — ON, Instruct passengers to don dropdown masks\nIF rapid or explosive decompression:\n3. Emergency Descent-3-NAE-02 — Accomplish",
+  "reference": "QRH 3-ECS-01"
+ },
+ {
+  "id": "E-3",
+  "title": "Cabin Pressure",
+  "front": "Excessive positive or negative differential pressure.",
+  "back": "In Flight with excessive negative differential pressure:\n1. Aircraft — Reduce descent rate",
+  "reference": "QRH 3-ECS-02"
+ },
+ {
+  "id": "E-4",
+  "title": "L ENG Fail / R ENG Fail",
+  "front": "The indicated N1 has dropped 15% within 0.5 seconds. This will activate ATR during takeoff.",
+  "back": "1. Engine instruments — Monitor / Confirm",
+  "reference": "QRH 3-ENG-02"
+ },
+ {
+  "id": "E-5",
+  "title": "L Engine Fire / R Engine Fire",
+  "front": "The indicated Engine Fire detector senses a temperature above 510 °C. Additional indications: Audio “Left Engine Fire” callout, RED “FIRE” light on the associated Engine Isolation Pushbutton, Synoptic page: FIRE flag on Engine ITT indication, Red color of associated engine outline.",
+  "back": "1. ENGINE FIRE — CONFIRM L or R\nIF Fire Confirmed:\n2. THRUST LEVER — IDLE\n3. ENGINE SWITCH — OFF / STOP\n4. ENGINE ISOLATION push button — PUSH\nCheck associated CAS “ENGINE ISOLATED” after five sec. CONFIRM ASSOCIATED green “1” illuminated.\nNOTE: If possible, keep pitch and bank angles to within ±10° to achieve maximum extinguisher effectiveness.\nIF CAS Message remains, affected side:\n5. EXTINGUISHER push button — PUSH",
+  "reference": "QRH 3-FIRE-01"
+ },
+ {
+  "id": "E-6",
+  "title": "ENGINE HUNG START ON GROUND",
+  "front": "Indications: Engine Fails to Accelerate for > 30 Seconds.",
+  "back": "1. Engine Switch — OFF",
+  "reference": "QRH 3A-NAA-08"
+ },
+ {
+  "id": "E-7",
+  "title": "ENGINE HOT START ON GROUND",
+  "front": "Indications for Hot Start: Rapidly rising ITT approaching engine limits of 1,000 °C or ITT hanging between 900 °C and 1,000 °C for 15 seconds.",
+  "back": "1. Engine Switch — OFF",
+  "reference": "QRH 3A-NAA-07"
+ },
+ {
+  "id": "E-8",
+  "title": "SWPS INADVERTENT PUSHER OPERATION",
+  "front": "Non-commanded pusher operation, rapid nose-down motion.",
+  "back": "WARNING: NATURAL STALLS ARE NOT PREVENTED WITH THE STICK PUSHER INOPERATIVE. STALLS MUST BE AVOIDED WHEN THE STICK PUSHER IS INOPERATIVE.\n1. Control wheel — Hold against pusher action\n2. AP disconnect button — Press and hold continuously",
+  "reference": "QRH 3A-NAA-18"
+ },
+ {
+  "id": "E-9",
+  "title": "ENGINE FIRE ON GROUND / TAIL PIPE FIRE",
+  "front": "If during start, engine fire detector senses a temperature above 510 °C or else engine fire is indicated by ground personnel.",
+  "back": "1. THRUST LEVER — IDENTIFY/IDLE Affected Engine\n2. ENG SWITCH — OFF\n3. ENG ISOL pushbutton — Push/check after 5 sec amber ENG ISOL; Confirm green “1”\n4. FIRE XTING pushbutton — Push to activate",
+  "reference": "QRH 3-NAE-05"
+ },
+ {
+  "id": "E-10",
+  "title": "ENGINE FIRE OR FAILURE DURING TAKEOFF",
+  "front": "ENGINE FIRE OR FAILURE DURING TAKEOFF",
+  "back": "Airspeed below V1:\n1. Rejected Takeoff - 3-NAE-19 — Accomplish\n-END-\nAirspeed at or above V1:\n1. THRUST levers — Fully forward, ATR\n2. VR — Rotate to 9° ANU Initially\n3. Airspeed — Maintain at or above V2\n4. L/G — When positive rate of climb – UP",
+  "reference": "QRH 3-NAE-06"
+ },
+ {
+  "id": "E-11",
+  "title": "REJECTED TAKEOFF",
+  "front": "REJECTED TAKEOFF",
+  "back": "CAUTION: IF AUTOTHROTTLE WAS ENGAGED FOR TAKEOFF, ENSURE AUTOTHROTTLE IS DISCONNECTED BY EITHER PRESSING AN AT DISC PUSHBUTTON OR HOLDING THE THROTTLES AT IDLE FOR 2 TO 3 SECONDS UNTIL AUTOTHROTTLE DISCONNECTS.\n1. THRUST levers — IDLE\n2. BRAKES — Max Braking / As Required",
+  "reference": "QRH 3-NAE-19"
+ },
+ {
+  "id": "E-12",
+  "title": "EMERGENCY DESCENT",
+  "front": "EMERGENCY DESCENT",
+  "back": "1. Crew Oxygen Masks — DON / 100% / Establish COMM\n2. PASSENGER OXYGEN — ON, instruct passengers to don dropdown masks\n3. SEAT BELTS — ON\n4. THRUST Levers — IDLE\n5. AIRBRAKE lever — OUT",
+  "reference": "QRH 3-NAE-02"
+ },
+ {
+  "id": "E-13",
+  "title": "SMOKE, FIRE, OR FUMES IN COCKPIT / CABIN",
+  "front": "SMOKE, FIRE, OR FUMES IN COCKPIT / CABIN",
+  "back": "IMMEDIATE ACTION IF SMOKE AND / OR FUMES ARE PERCEPTIBLE:\n1. CREW OXYGEN MASK — DON / select EMGCY / Vent valve open\n2. Smoke Goggles — DON\n3. Passenger OXYGEN — ON, Instruct PAX to don dropdown masks\nLAND ASAP / INITIATE DIVERSION\n4. Aircraft — Land as soon as possible",
+  "reference": "QRH 3-SMOKE-01"
+ },
+ {
+  "id": "E-14",
+  "title": "EMERGENCY EVACUATION",
+  "front": "EMERGENCY EVACUATION",
+  "back": "1. PARK BRAKE — Set\n2. ATC / distress message — Notify\n3. ENG L+R switches — Both OFF",
+  "reference": "QRH 3-EVAC-01"
+ },
+ {
+  "id": "E-15",
+  "title": "TCAS RESOLUTION ADVISORY",
+  "front": "Accompanied by audio commands for climb, descend, level off or maintain vertical speed.",
+  "back": "1. Autopilot — Use yoke quick disconnect if AP engaged\n2. Aircraft attitude — Immediately comply with RA commands indicated on the PFD\n3. ATC — Inform of TCAS RA\nWhen clear of conflict:\n4. Aircraft — Return to previously assigned altitude and advise ATC",
+  "reference": "QRH 3B-FAS-20"
+ },
+ {
+  "id": "E-16",
+  "title": "RH ENGINE START",
+  "front": "RH ENGINE START",
+  "back": "RH Engine — Start\nTo start the RH Engine:\n1. R Engine switch rotate to RUN\n2. Confirm R Booster pump running and no FUEL PRESSURE CAS messages appear\n3. R START Press",
+  "reference": "AFM 4-PF-06"
+ },
+ {
+  "id": "E-17",
+  "title": "RH ENGINE START (CONTINUED)",
+  "front": "RH ENGINE START (CONTINUED)",
+  "back": "1. Monitor start sequence as follows:\n2. When pressing start button “START” will appear “ON” on the PFD\n3. At about 10% N2, “START” and “IGN” is illuminated in inverse video. Check N1 is increasing\n4. Observe light-up and engine parameters until “IDL” is reached\n5. Depending on ambient conditions “START” and “IGN” extinguish at approximately 45% - 50% of N2",
+  "reference": "AFM 4-PF-06"
+ },
+ {
+  "id": "E-18",
+  "title": "LH ENGINE START",
+  "front": "LH ENGINE START",
+  "back": "1. LH Engine — Start\n• Start LH Engine Accordingly\nNOTE: The right engine must exit QPM and set to Ground Idle before Left Engine start",
+  "reference": "AFM 4-PF-06"
+ },
+ {
+  "id": "E-19",
+  "title": "ENGINE APPROXIMATE GND IDLE VALUES",
+  "front": "ENGINE APPROXIMATE GND IDLE VALUES",
+  "back": "N1: 25%\nITT: 400 °C\nN2: Min 53.4%\nFF: 160-180 lb\nConfirm GEN 2 takes over and is supplying the aircraft.\nNOTE: If TAT or reported OAT is <10 °C and visible signs of moisture are present then set the IPS rotary switch to AUTO/NAI.",
+  "reference": "AFM 4-PF-06"
+ },
+ {
+  "id": "E-20",
+  "title": "AFCS ABNORMAL DISCONNECT",
+  "front": "AFCS ABNORMAL DISCONNECT",
+  "back": "Indication: Flashing red “AP” on PFD and continuous “Cavalry Charge” aural warning.\n1. Airplane control wheel — Grasp firmly and regain aircraft control\n2. Autopilot Disengage switch — Press to cancel aural warning (pilot or copilot wheel)\n3. Aircraft — Retrim manually as necessary\nIf no AFCS associated CAS messages:\n4. Aircraft — Attempt to re-engage autopilot once",
+  "reference": "QRH 3A-NAA-01"
+ },
+ {
+  "id": "E-21",
+  "title": "CLIMB",
+  "front": "CLIMB",
+  "back": "1. Gear — UP\n• Confirm Lever Up and Lights Out on System Summary Page\n2. Yaw Damper — ON\n• Confirm on FMA\n3. Flaps — UP\n• Confirm lever at 0 and indication on System Summary Page\n4. Thrust — MCT\n• Thrust Levers back to MCT gate within five min after setting T/O\n• Verify MCT indications on both engine PFD indications",
+  "reference": "AFM 4-IF-01"
+ },
+ {
+  "id": "L-1",
+  "title": "Maximum Operating Speed",
+  "front": "1. VMO (≤ 28,230 ft) — ?\n2. MMO (≥ 28,230 ft) — ?",
+  "back": "1. VMO — 290 KIAS\n2. MMO — 0.74 M\nNOTE\nMMO schedule for maximum speed above 28,230 ft at this location.",
+  "reference": "AFM Page 2-1-9"
+ },
+ {
+  "id": "L-2",
+  "title": "Weight Limits",
+  "front": "1. Max Zero Fuel Weight (MSN 101-500) — ?\n2. Max Ramp Weight (MSN 101-500) — ?\n3. Max Zero Fuel Weight (MSN 501-UP) — ?\n4. Max Ramp Weight (MSN 501-UP) — ?",
+  "back": "1. Max Zero Fuel Weight (MSN 101-500) — 14,220 lbs (6,450 kg)\n2. Max Ramp Weight (MSN 101-500) — 18,400 lbs (8,345 kg)\n3. Max Zero Fuel Weight (MSN 501-UP) — 14,660 lbs (6650 kg)\n4. Max Ramp Weight (MSN 501-UP) — 18,840 lbs (8545 kg)",
+  "reference": "AFM Page 2-1-23"
+ },
+ {
+  "id": "L-3",
+  "title": "Weight Limits",
+  "front": "1. Max Takeoff Weight (MSN 101-500) — ?\n2. Max Landing Weight (MSN 101-500) — ?\n3. Max Takeoff Weight (MSN 501-UP) — ?\n4. Max Landing Weight (MSN 501-UP) — ?",
+  "back": "1. Max Takeoff Weight (MSN 101-500) — 18,300 lbs (8,300 kg)\n2. Max Landing Weight (MSN 101-500) — 16,900 lbs (7,665 kg)\n3. Max Takeoff Weight (MSN 501-UP) — 18,740 lbs (8,500 kg)\n4. Max Landing Weight (MSN 501-UP) — 17,340 lbs (7,865 kg)",
+  "reference": "AFM Page 2-1-23"
+ },
+ {
+  "id": "L-4",
+  "title": "Weight Limits",
+  "front": "1. Maximum Baggage Weight (Small Restraint Net) — ?\n2. Maximum Baggage Weight (Large Restraint Net) — ?\n3. Maximum Cargo Weight (MSN 101-500) — ?\n4. Maximum Cargo Weight (MSN 500-UP) — ?",
+  "back": "1. Maximum Baggage Weight (Small Restraint Net) — 400 lbs (180 kg)\n2. Maximum Baggage Weight (Large Restraint Net) — 530 lbs (240 kg)\n3. Maximum Cargo Weight (MSN 101-500) — 2,500 lbs (1,134 kg)\n4. Maximum Cargo Weight (MSN 501-UP) — 2,940 lbs (1,334 kg)",
+  "reference": "AFM Page 2-1-23"
+ },
+ {
+  "id": "L-5",
+  "title": "Loading Limits",
+  "front": "1. Maximum Floor Loading (Over Floor Panels) — ?\n2. Maximum Floor Loading (On Seat Rails) — ?",
+  "back": "1. Maximum Floor Loading (Over Floor Panels) — 100 lbs/ft² (500 kg/m²)\n2. Maximum Floor Loading (On Seat Rails) — 670 lbs/ft (1,000 kg/m)",
+  "reference": "AFM Page 2-1-23"
+ },
+ {
+  "id": "L-6",
+  "title": "Load Factor Limits",
+  "front": "1. Flaps Up — ?\n2. Flaps Down — ?",
+  "back": "1. Flaps Up — +3.0g ; -1.2g\n2. Flaps Down — +2.0g ; -0.0g",
+  "reference": "AFM Page 2-1-24"
+ },
+ {
+  "id": "L-7",
+  "title": "Operating Altitude Limits",
+  "front": "Maximum Operating Altitude — ?",
+  "back": "Maximum Operating Altitude — 45,000 ft (13,716 m)",
+  "reference": "AFM Page 2-1-26"
+ },
+ {
+  "id": "L-8",
+  "title": "Outside Air Temperature Limits",
+  "front": "1. Minimum OAT (Sea Level) — ?\n2. Maximum OAT (Sea Level) — ?",
+  "back": "1. Minimum OAT (Sea Level) — -54 °C (-67 °F)\n2. Maximum OAT (Sea Level) — +50 °C (122 °F)",
+  "reference": "AFM Page 2-1-26"
+ },
+ {
+  "id": "L-9",
+  "title": "Passenger Seating Limits",
+  "front": "The maximum number of passengers in the Executive Interior Cabin is _____ passengers, including optional fit for two additional infants at first seating row left and right sides.",
+  "back": "The maximum number of passengers in the Executive Interior Cabin is 8 passengers, including optional fit for two additional infants at first seating row left and right sides.",
+  "reference": "AFM Page 2-1-25"
+ },
+ {
+  "id": "L-10",
+  "title": "Airport Limits",
+  "front": "1. Maximum Runway Slope — ?\n2. Approved Takeoff/Landing Surfaces — ?\n3. Contaminated Paved Runways — ?\nWith Gravel Kit Installed:\nDry/Wet Dirt-Sand-Gravel — ?\nDry/Wet Grass — ?",
+  "back": "1. Maximum Runway Slope — ±2%\n2. Approved Takeoff/Landing Surfaces — Dry and Wet Paved Runways\n3. Contaminated Paved Runways — *Per AFM Supplement 02442\nWith Gravel Kit Installed:\n• Dry/Wet Dirt-Sand-Gravel — Per AFM Supplement 02444\n• Dry/Wet Grass — Per AFM Supplement 02473",
+  "reference": "AFM Page 2-1-1, 2-1-2"
+ },
+ {
+  "id": "L-11",
+  "title": "Airport Limits",
+  "front": "1. Maximum Tailwind Component for takeoff and landing — ?\n2. Minimum Pressure Altitude — ?\n3. Maximum Pressure Altitude Landing Field Elevation — ?",
+  "back": "Maximum Tailwind Component for Takeoff and Landing — 10 kt\nMinimum Pressure Altitude — -1,000 ft MSL\nMaximum Pressure Altitude Landing Field Elevation — 10,000 ft MSL",
+  "reference": "AFM Page 2-1-2"
+ },
+ {
+  "id": "L-12",
+  "title": "Engines",
+  "front": "1. Number of Engines — ?\n2. Engine Manufacturer / Model Number — ?",
+  "back": "1. Number of Engines — 2\n2. Engine Manufacturer / Model Number — Williams International FJ44-4A QPM",
+  "reference": "AFM Page 1-1-2"
+ },
+ {
+  "id": "L-13",
+  "title": "Oil Quantity",
+  "front": "Oil level must not be below the ________ indicator mark on the oil tank sight glass prior to flight.",
+  "back": "Oil level must not be below the ADD indicator mark on the oil tank sight glass prior to flight.",
+  "reference": "AFM Page 2-1-26"
+ },
+ {
+  "id": "L-14",
+  "title": "Engine Thrust Settings (LB)",
+  "front": "1. Normal Takeoff Thrust — ?\n2. Automatic Thrust Reserve — ?",
+  "back": "1. Normal Takeoff Thrust — 3,420 lbs\n2. Automatic Thrust Reserve — 3,600 lbs",
+  "reference": "AFM Page 1-1-2"
+ },
+ {
+  "id": "L-15",
+  "title": "Starter Duty Cycle Limits (Seconds)",
+  "front": "1. Start Attempt 1 — ?\n2. Dry Motor Run — ?\n3. Start Attempt 2 — ?",
+  "back": "1. Start Attempt 1 — ON (Start) - 50 Sec., OFF - 1 Min.\n2. Dry Motor Run — ON (Start) - 50 Sec., OFF - 1 Min.\n3. Start Attempt 2 — ON (Start) - 50 Sec., OFF - 30 Min.\nNOTE\nAbort engine start where N1 fails to increase by 25% N2.",
+  "reference": "AFM Page 2-1-31, 2-1-32"
+ },
+ {
+  "id": "L-16",
+  "title": "Engine Starting Limits",
+  "front": "1. Maximum Tailwind Component for Engine Start — ?\n2. Maximum Crosswind Component for Engine Start — ?",
+  "back": "1. Max. Tailwind Component for Engine Start — 20 kt\n2. Max. Crosswind Component for Engine Start — 25 kt Tower Wind",
+  "reference": "AFM Page 2-1-31"
+ },
+ {
+  "id": "L-17",
+  "title": "Engine Starting Limits",
+  "front": "1. Minimum Time Between Engine Starts — ?\n2. Maximum Time to Light-off for Engine Start — ?",
+  "back": "1. Minimum Time Between Engine Starts — 60 Seconds\n2. Maximum Time to Light-off for Engine Start — 12 Seconds",
+  "reference": "AFM Page 2-1-31"
+ },
+ {
+  "id": "L-18",
+  "title": "Engine Starting Limits",
+  "front": "1. Minimum Ni-Cad Battery Voltage for Engine Start — ?\n2. Minimum Li-Ion Battery Voltage for Engine Start — ?\n3. Minimum Oil Temperature for Engine Start — ?",
+  "back": "1. Min. Ni-Cad Battery Voltage for Engine Start — 22.0 VDC (BAT 1); 23.5 VDC (BAT 2)\n2. Min. Li-Ion Battery Voltage for Engine Start — State of Charge (SOC) indicators of both batteries green\n3. Min. Oil Temperature for Engine Start — -40 °C",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-19",
+  "title": "Post Start Oil Temperature Limitations",
+  "front": "The minimum oil temp for N2 > __ % or QPM operation is __ °C.",
+  "back": "The minimum oil temp for N2 > 80% or QPM operation is +10 °C.",
+  "reference": "AFM Page 2-1-32"
+ },
+ {
+  "id": "L-20",
+  "title": "QPM Operation — Engine Limits",
+  "front": "Activation of QPM is permitted after at least two minutes of stabilized operation at ________ N2. After QPM termination, run engine at ground idle thrust for at least _____ before shutdown or increasing thrust.",
+  "back": "Activation of QPM is permitted after at least two minutes of stabilized operation at Ground Idle N2. After QPM termination, run engine at ground idle thrust for at least 2 Minutes before shutdown or increasing thrust.",
+  "reference": "AFM Page 2-1-36"
+ },
+ {
+  "id": "L-21",
+  "title": "QPM Operation — Engine Limits",
+  "front": "QPM operation is permitted provided the aircraft remains stationary with the ____ on. The thrust lever remains ____ during QPM operation. The maximum generator load while in QPM of ___ is not exceeded.",
+  "back": "QPM operation is permitted provided the aircraft remains stationary with the Park Brake on. The thrust lever remains IDLE during QPM operation. The maximum generator load while in QPM of 250 A is not exceeded.",
+  "reference": "AFM Page 2-1-36"
+ },
+ {
+  "id": "L-22",
+  "title": "Engine Cooldown",
+  "front": "Engine shut-down is permitted when the engine has been run at idle thrust for more than __.",
+  "back": "Engine shut-down is permitted when the engine has been run at idle thrust for more than 2 minutes.\nNOTE\nIt is recommended that the engine bleed valve is closed during this time.",
+  "reference": "AFM Page 2-1-36"
+ },
+ {
+  "id": "L-23",
+  "title": "Fuel Quantity",
+  "front": "1. Total quantity — ?\n2. Usable quantity — ?\n3. Maximum permissible imbalance — ?",
+  "back": "1. Total quantity — 895 US gal/5,999.8 lbs (3,389 liter/2,721 kg)\n2. Usable quantity — 890 US gal/5,964 lbs (3,369 liter/2,705 kg)\n3. Maximum permissible imbalance — 49 US gal/330 lbs (189 liter/150 kg)",
+  "reference": "AFM Page 2-1-18"
+ },
+ {
+  "id": "L-24",
+  "title": "Fuel Temperature",
+  "front": "1. Maximum fuel temperature — ?\n2. Minimum fuel temperature — ?",
+  "back": "1. Maximum fuel temperature — 80 °C\n2. Minimum fuel temperature — -40 °C",
+  "reference": "AFM Page 2-1-17"
+ },
+ {
+  "id": "L-25",
+  "title": "Pressure Refueling",
+  "front": "Maximum refueling pressure — ?",
+  "back": "Maximum refueling pressure — 60 PSI",
+  "reference": "AFM Page 2-1-19"
+ },
+ {
+  "id": "L-26",
+  "title": "Fuel Miscellaneous",
+  "front": "The electric fuel booster pumps and fuel crossfeed valve must be ___.",
+  "back": "The electric fuel booster pumps and fuel crossfeed valve must be operative.",
+  "reference": "AFM Page 2-1-17"
+ },
+ {
+  "id": "L-27",
+  "title": "Fuel Grades",
+  "front": "Approved Fuel Grades — ?",
+  "back": "Approved Fuel Grades — Jet A, Jet A-1, JP-8, TS-1",
+  "reference": "AFM Page 2-1-17"
+ },
+ {
+  "id": "L-28",
+  "title": "Maximum Landing Gear Speed",
+  "front": "1. VLO (Extend) — ?\n2. VLO (Retract) — ?\n3. VLO (Extend EGES) — ?\n4. VLE — ?",
+  "back": "1. VLO (Extend) — The lower of 250 KIAS or 0.74 M\n2. VLO (Retract) — 200 KIAS\n3. VLO (Extend EGES) — 180* KIAS\n4. VLE — The lower of 250 KIAS or 0.74 M\nNOTE\n* QRH L/G Emergency Extension (3-NAE-13) requires airspeed 160 KIAS or less.",
+  "reference": "AFM Page 2-1-10"
+ },
+ {
+  "id": "L-29",
+  "title": "Tire Limits",
+  "front": "Maximum Tire Speed — ?",
+  "back": "Maximum Tire Speed — 165 kt groundspeed",
+  "reference": "AFM Page 2-1-15"
+ },
+ {
+  "id": "L-30",
+  "title": "Maximum Flap Extended Speed VFE",
+  "front": "1. 8° — ?\n2. 15° — ?\n3. 33° — ?",
+  "back": "1. 8° — 200 KIAS\n2. 15° — 200 KIAS\n3. 33° — 175 KIAS",
+  "reference": "AFM Page 2-1-9"
+ },
+ {
+  "id": "L-31",
+  "title": "Cabin Pressurization Limits",
+  "front": "1. Maximum Positive Cabin Pressure Differential — ?\n2. Maximum Negative Cabin Pressure Differential — ?\n3. Maximum Pressure Differential for Takeoff & Landing — ?",
+  "back": "1. Maximum Positive Cabin Pressure Differential — 9.27 psid\n2. Maximum Negative Cabin Pressure Differential — -0.3 psid\n3. Maximum Pressure Differential for Takeoff & Landing — 0.7 psid",
+  "reference": "AFM Page 2-1-15"
+ },
+ {
+  "id": "L-32",
+  "title": "Airstair Limit",
+  "front": "Persons allowed to be on the forward airstair (forward cabin door) at any time — ?",
+  "back": "Persons allowed to be on the forward airstair (forward cabin door) at any time — 1 Person",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-33",
+  "title": "Emergency Exit Limit",
+  "front": "Each internal emergency exit overnight security pin, if installed, must be ___ and ___ before flight.",
+  "back": "Each internal emergency exit overnight security pin, if installed, must be removed and stowed before flight.",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-34",
+  "title": "GPU Limits",
+  "front": "Prior to connecting a GPU, ensure GPU voltage is greater than ___ voltage.",
+  "back": "Prior to connecting a GPU, ensure GPU voltage is greater than battery voltage.",
+  "reference": "AFM Page 2-1-17"
+ },
+ {
+  "id": "L-35",
+  "title": "GPU Limits",
+  "front": "1. Voltage — ?\n2. Load Capacity (Initial Start Surge) — ?\n3. Load Capacity (Continuous) — ?",
+  "back": "1. Voltage — 25.0 - 29.5 VDC\n2. Load Capacity (Initial Start Surge) — 1,200 A\n3. Load Capacity (Continuous) — 450 A",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-36",
+  "title": "GPU Limits",
+  "front": "1. Minimum Volts for Start — ?\n2. Minimum Volts to Charge Batteries — ?\n3. Maximum Volts to Charge Batteries — ?\n4. Minimum OAT for GPU Start — ?",
+  "back": "1. Minimum Volts for Start — 24.0 VDC\n2. Minimum Volts to Charge Batteries — 28.0 VDC\n3. Maximum Volts to Charge Batteries — 29.5 VDC\n4. Minimum OAT for GPU Start — -54 °C",
+  "reference": "AFM Page 2-1-16, 2-1-17"
+ },
+ {
+  "id": "L-37",
+  "title": "Generator Limits",
+  "front": "1. QPM — ?\n2. Ground Idle and Above — ?\n3. Flight — ?\n4. Maximum Voltage — ?",
+  "back": "1. QPM — 250 A\n2. Ground Idle and Above — 400 A\n3. Flight — 400 A\n4. Maximum Voltage — 29.5 VDC",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-38",
+  "title": "Battery Limits",
+  "front": "1. Minimum Battery Temperature for Flight — ?\n2. Minimum Ni-Cd Battery Temperature — ?\n3. Minimum Li-Ion Battery Temperature — ?\n4. Minimum Ni-Cd Battery Volts for Start — ?\n5. Minimum Li-Ion Battery Volts for Start — ?\n6. Maximum Battery Charge Rate Before Takeoff — ?",
+  "back": "1. Minimum Battery Temperature for Flight — 0 °C\n2. Minimum Ni-Cd Battery Temperature — -20 °C\n3. Minimum Li-Ion Battery Temperature — -5 °C\n4. Minimum Ni-Cd Battery Volts for Start — 22.0 VDC (Battery 1); 23.5 VDC (Battery 2)\n5. Min Li-Ion Battery Volts for Start — SOC Indicator on Both Batteries Green\n6. Maximum Battery Charge Rate Before Takeoff — Battery 1+2 must be <50 A and decreasing",
+  "reference": "AFM Page 2-1-16"
+ },
+ {
+  "id": "L-39",
+  "title": "Autopilot Limits",
+  "front": "During autopilot operation, a pilot must be ___ in a pilot position with their ___ fastened.",
+  "back": "During autopilot operation, a pilot must be seated in a pilot position with their seat belt fastened.",
+  "reference": "AFM Page 2-1-3"
+ },
+ {
+  "id": "L-40",
+  "title": "Autopilot Limits",
+  "front": "The autopilot (AP) and yaw damper (YD) must be ___ during takeoff and landing.",
+  "back": "The autopilot (AP) and yaw damper (YD) must be OFF during takeoff and landing.",
+  "reference": "AFM Page 2-1-3"
+ },
+ {
+  "id": "L-41",
+  "title": "Minimum A/P, Y/D, & A/T Altitudes",
+  "front": "1. All operations except approach, A/P disengage by — ?\n2. Non-Precision, Circling, and Visual Approaches (a/s <150 KIAS & VS <1,500 ft/min) — ?\n3. Approaches in VGP mode — ?\n4. Coupled ILS approaches with G/S < 4.5° — ?",
+  "back": "1. All operations except approach, A/P disengage by — 1,000 ft AGL\n2. Non-Precision, Circling, and Visual Approaches (a/s <150 KIAS & VS <1,500 ft/min) — 400 ft AGL\n3. Approaches in VGP mode — 200 ft AGL\n4. Coupled ILS approaches with G/S < 4.5° — 200 ft AGL",
+  "reference": "AFM Page 2-1-3"
+ },
+ {
+  "id": "L-42",
+  "title": "Yaw Damper Limits",
+  "front": "Operation above ___ is prohibited with the Yaw Damper disengaged.",
+  "back": "Operation above 30,000 feet MSL is prohibited with the Yaw Damper disengaged.",
+  "reference": "AFM Page 2-1-3"
+ },
+ {
+  "id": "L-43",
+  "title": "Severe Icing Conditions",
+  "front": "Flight in freezing rain, freezing drizzle, or mixed icing conditions (supercooled liquid water and ice crystals) may result in ice build-up on protected surfaces exceeding the capability of the ___ ____ system, or may result in ice forming aft of the protected surfaces.",
+  "back": "Flight in freezing rain, freezing drizzle, or mixed icing conditions (supercooled liquid water and ice crystals) may result in ice build-up on protected surfaces exceeding the capability of the Ice Protection system, or may result in ice forming aft of the protected surfaces.",
+  "reference": "AFM Page 2-1-21"
+ },
+ {
+  "id": "L-44",
+  "title": "Autopilot Usage in Icing Conditions",
+  "front": "Care must be taken when using the autopilot that tactile cues, such as increased aileron forces, could potentially be masked by the autopilot function. Periodically ___ the autopilot to check for abnormal forces.",
+  "back": "Care must be taken when using the autopilot that tactile cues, such as increased aileron forces, could potentially be masked by the autopilot function. Periodically disengage the autopilot to check for abnormal forces.",
+  "reference": "AFM Page 2-1-21"
+ },
+ {
+  "id": "L-45",
+  "title": "Nacelle Anti-Ice",
+  "front": "The Nacelle Anti-ice (NAI) must be on for all ground operations, takeoff, and landing when:",
+  "back": "The Nacelle Anti-ice (NAI) must be on for all ground operations, takeoff, and landing when:\n1. Visible moisture (i.e. standing water, slush, snow on taxi ways / runway) and indicated SAT or reported OAT <10 °C or\n2. Ice or other frozen precipitation is observed adhering to any part of the engine inlet.",
+  "reference": "AFM Page 2-1-37"
+ },
+ {
+  "id": "L-46",
+  "title": "Nacelle Anti-Ice",
+  "front": "The NAI must be on for climb, cruise, and descent when:",
+  "back": "The NAI must be on for climb, cruise, and descent when:\n1. In visible moisture with TAT <10 °C, or\n2. Flight through ice crystals, or\n3. Anytime ice accumulation is observed on the airframe",
+  "reference": "AFM Page 2-1-37"
+ },
+ {
+  "id": "L-47",
+  "title": "Nacelle Anti-Ice",
+  "front": "Do not operate the NAI when the TAT is ___ °C. Do not operate the NAI during ___ operation. When required for takeoff, NAI must be selected ON prior to setting ___.",
+  "back": "Do not operate the NAI when the TAT is >10 °C. Do not operate the NAI during QPM operation. When required for takeoff, NAI must be selected ON prior to setting takeoff power.",
+  "reference": "AFM Page 2-1-37"
+ },
+ {
+  "id": "L-48",
+  "title": "Horizontal Stabilizer De-Ice (HSDI)",
+  "front": "Operation of the HSDI is not recommended when TAT < ___ unless required due to the presence of icing conditions.\nIf operated at TAT ≤ -40 °C, a ___ must be performed before takeoff.",
+  "back": "Operation of the HSDI is not recommended when TAT < -40 °C unless required due to the presence of icing conditions.\nIf operated at TAT ≤ -40 °C, a visual inspection of the pneumatic boots and a system functional test must be performed before takeoff.",
+  "reference": "AFM Page 2-1-19"
+ },
+ {
+  "id": "L-49",
+  "title": "Oxygen System Limits",
+  "front": "1. Minimum oxygen quantity for dispatch — ?\n2. Minimum oxygen supply for each occupant for pressurized flight above 25,000 feet MSL — ?",
+  "back": "1. Minimum oxygen quantity for dispatch — 680 Liters\n2. Minimum oxygen supply for each occupant for pressurized flight above 25,000 feet MSL — 10 minutes",
+  "reference": "AFM Page 2-1-28"
+ },
+ {
+  "id": "L-50",
+  "title": "Electronic Charts",
+  "front": "Pilots are responsible for taxiing by ___ and for flying by airborne navigation with use of ___.",
+  "back": "Pilots are responsible for taxiing by external visual references and for flying by airborne navigation with use of primary navigation instruments.",
+  "reference": "AFM Page 2-1-7"
+ },
+ {
+  "id": "L-51",
+  "title": "Electronic Charts",
+  "front": "Position accuracy of a chart aircraft symbol can decrease in the case of insufficient ___ or ____. The aircraft symbol is not in-scale with ACE™ Electronic Charts.",
+  "back": "Position accuracy of a chart aircraft symbol can decrease in the case of insufficient GPS signal reception or GPS sensor failure. The aircraft symbol is not in-scale with ACE™ Electronic Charts.",
+  "reference": "AFM Page 2-1-7"
+ },
+ {
+  "id": "L-52",
+  "title": "Electronic Charts",
+  "front": "ACE™ Electronic Charts do not replace approved ____ or approved ____.",
+  "back": "ACE™ Electronic Charts do not replace approved published papers or approved electronic systems for aeronautical charts.",
+  "reference": "AFM Page 2-1-7"
+ },
+ {
+  "id": "L-53",
+  "title": "Weather Radar",
+  "front": "Operation of the weather radar is prohibited:",
+  "back": "Operation of the weather radar is prohibited:\n1. Within a hangar or other enclosure\n2. During airplane refueling/defueling operations\n3. With personnel present within the acceptable safe distance and ± 60° from the aircraft nose",
+  "reference": "AFM Page 2-1-8"
+ },
+ {
+  "id": "L-54",
+  "title": "INAV Map",
+  "front": "1. The INAV topographical map shall not be used for primary ___.\n2. The display of airspace shall not be used as the ___.",
+  "back": "1. The INAV topographical map shall not be used for primary navigation.\n2. The display of airspace shall not be used as the sole airspace reference.",
+  "reference": "AFM Page 2-1-8"
+ },
+ {
+  "id": "L-55",
+  "title": "Smart View (SV)",
+  "front": "Operations using Smart View are permitted when it is not used as a ___ of navigation reference or a ___ reference for obstacle clearance.",
+  "back": "Operations using Smart View are permitted when it is not used as a primary source of navigation reference or a primary reference for obstacle clearance.",
+  "reference": "AFM Page 2-1-8"
+ },
+ {
+  "id": "L-56",
+  "title": "Vertical Situation Display",
+  "front": "Use of the vertical situation display is permitted provided it is not used as a ___ of navigation.",
+  "back": "Use of the vertical situation display is permitted provided it is not used as a primary source of navigation.",
+  "reference": "AFM Page 2-1-8"
+ },
+ {
+  "id": "L-57",
+  "title": "FMS",
+  "front": "Accomplishment of ___ approach types using the FMS is prohibited.",
+  "back": "Accomplishment of ILS, LOC, LOC-BC, LDA, SDF and MLS approach types using the FMS is prohibited.",
+  "reference": "AFM Page 2-1-4"
+ },
+ {
+  "id": "AGI-1",
+  "title": "Display Unit (DU) Color Conventions — Red",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nRED — ?",
+  "back": "Warning Conditions, Warning CAS Messages; Flight Envelope and System Limitations, Invalid Primary Instruments",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-2",
+  "title": "Display Unit (DU) Color Conventions — Amber",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nAMBER — ?",
+  "back": "Caution Conditions, Caution CAS Messages; Invalid Data, Miscompare Annunciation",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-3",
+  "title": "Display Unit (DU) Color Conventions — Magenta",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nMAGENTA — ?",
+  "back": "FD Coupled Data, Active Route/Flight Plan, Flight Director Cue",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-4",
+  "title": "Display Unit (DU) Color Conventions — Cyan",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nCYAN — ?",
+  "back": "Advisory CAS Messages; Crew selected Data; Window with focus or cursor, curled arrow Prompts; FMS pending Flight Plan",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-5",
+  "title": "Display Unit (DU) Color Conventions — Green",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nGREEN — ?",
+  "back": "Autopilot Engaged Modes; Current Data; ON or Functioning",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-6",
+  "title": "Display Unit (DU) Color Conventions — White",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nWHITE — ?",
+  "back": "Armed/Standby Modes; Status Data; Scales and Associated Figures, Labels; Informational CAS Messages; Joystick Cross-Pointer Cursor, Active Flight Plan Waypoints",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-7",
+  "title": "Display Unit (DU) Color Conventions — Gray",
+  "front": "DISPLAY UNIT (DU) COLOR CONVENTIONS\n\nGRAY — ?",
+  "back": "Legends, Symbols or Units, Boxes (limits for displaying information); Aircraft Structures",
+  "reference": "Honeywell Pilot's Guide"
+ },
+ {
+  "id": "AGI-8",
+  "title": "Dimensions",
+  "front": "DIMENSIONS\n\n1. Total Length (Nose to Tail) — ?\n2. Total Height (At Tail) — ?\n3. Wingspan — ?",
+  "back": "1. Total Length (Nose to Tail) — 55 ft. 2 in. (16.8 m)\n2. Total Height (At Tail) — 17 ft. 4 in. (5.3 m)\n3. Wingspan — 55 ft. 9 in. (17 m)",
+  "reference": "AFM Page 1-1-3"
+ },
+ {
+  "id": "AGI-9",
+  "title": "Engine Danger Areas",
+  "front": "ENGINE DANGER AREAS\n\n1. Radius Forward of Engines — ?\n2. Engine Start — ?\n3. Engine Max Thrust — ?",
+  "back": "1. Radius Forward of Engines — 20 ft (6.1 m)\n2. Engine Start — 60 ft (18.3 m) x 36.7 ft (11.2 m) aft of engine\n3. Engine Max Thrust — 286 ft (87.2 m) x 125.7 ft (38.3 m) aft of engine",
+  "reference": "AFM Page 1-1-5"
+ }
+]
