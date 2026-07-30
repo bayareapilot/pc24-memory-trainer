@@ -2,7 +2,13 @@
 
 A flashcard trainer and study schedule for the **Pilatus PC-24** — memory items, limitations, and aircraft general knowledge.
 
-**152 cards.** From the FlightSafety PC-24 Memory Flash Cards (Rev 1.0, Mar 2026): 21 Emergency (E-1–E-21) · 57 Limitations (L-1–L-57) · 9 Aircraft General (AGI-1–AGI-9). From the Pilatus PC-24 EASA AFM (Report 02371, Issue 003 Rev 08): 65 AFM Extended (AFM-1–AFM-65).
+**198 cards** from three sources:
+
+| Section | Cards | Source |
+|---|---|---|
+| Emergency · Limitations · Aircraft General | 87 | FlightSafety PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026) |
+| AFM Extended | 65 | Pilatus PC-24 EASA AFM, Report 02371, Issue 003 Rev 08 |
+| ACE Avionics | 46 | Pilatus ACE™ (powered by Honeywell) PC-24 Avionics System Pilot's Guide, D201912000296-R002 Rev 2 |
 
 Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
@@ -12,7 +18,7 @@ Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs 
 
 Four tabs:
 
-- **Program** — a 7-day study schedule; each day has a Drill button that loads exactly that day's cards
+- **Program** — the 7-day FSI schedule, plus AFM Extended and ACE Avionics topic blocks; every row has a Drill button that loads exactly those cards
 - **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — three checkpoints, a 30-question mock oral, and a full-deck final, each with a pass standard and attempt history
 - **Reference** — all 87 cards, searchable
@@ -29,6 +35,7 @@ Three kinds of material, three standards of recall:
 | Emergency memory items | E-1–E-15, E-20 | Verbatim, in order, out loud |
 | Flows & general | E-16–E-19, E-21, AGI-1–9 | Fluent — sequence and meaning correct |
 | AFM Extended | AFM-1–AFM-65 | Working knowledge; not part of the memory-item standard |
+| ACE Avionics | ACE-1–ACE-46 | Working knowledge — alerts, mode logic, reversion |
 
 The AFM marks true memory items with a solid red box. There are exactly **16** in the manual and all 16 are already covered by the FSI Emergency cards — the AFM Extended set exists because the gap was in *limitations*, not memory items. E-16 to E-19 and E-21 are normal-procedure flows, not memory items.
 
@@ -36,7 +43,7 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 
 | Path | What it is |
 |---|---|
-| `index.html` | The trainer — one self-contained file, all 152 cards inline |
+| `index.html` | The trainer — one self-contained file, all 198 cards inline |
 | `PC-24 Memory Items Study Program.md` | Written study program: schedule, standards, memory anchors |
 | `PC24_FSI_Flashcards_Anki.txt` | Anki import (tab-separated, tagged `PC24::Section`) |
 | `flashcards_data.json` | Structured card data — the source for rebuilding `index.html` |

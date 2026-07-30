@@ -1,9 +1,9 @@
 # PC-24 Memory Items & Limitations Study Program
 
-**Sources:** FlightSafety International PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026) · Pilatus PC-24 EASA AFM Report 02371, Issue 003 Rev 08 (01 May 2025)
+**Sources:** FlightSafety International PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026) · Pilatus PC-24 EASA AFM Report 02371, Issue 003 Rev 08 (01 May 2025) · Pilatus ACE™ (powered by Honeywell) PC-24 Avionics System Pilot's Guide, D201912000296-R002 Rev 2 (Sep 2022)
 **Aircraft:** MSN 631 — all serial-dependent values resolved to the **MSN 501-up** column
-**Scope:** 152 cards — 87 FSI (21 Emergency E-1–E-21, 57 Limitations L-1–L-57, 9 Aircraft General AGI-1–AGI-9) plus 65 AFM Extended (AFM-1–AFM-65)
-**Program length:** 7-day compressed track (active) + AFM Extended topic blocks, drilled any time
+**Scope:** 198 cards — 87 FSI (21 Emergency E-1–E-21, 57 Limitations L-1–L-57, 9 Aircraft General AGI-1–AGI-9), 65 AFM Extended (AFM-1–AFM-65), 46 ACE Avionics (ACE-1–ACE-46)
+**Program length:** 7-day compressed track (active) + AFM Extended and ACE Avionics topic blocks, drilled any time
 
 ---
 
@@ -237,8 +237,34 @@ Note that **3-ENG-01 (dual engine failure) has no memory box** — its "Airspeed
 
 Every value was verified against the AFM: 258 numeric tokens checked for presence and 55 label-value pairings confirmed in context.
 
+## ACE Avionics — 46 cards (ACE-1 to ACE-46)
+
+The Honeywell ACE Pilot's Guide is 2,131 pages, almost all of it page-by-page operating detail that belongs in a lookup reference, not in memory. These cards deliberately cover only what you must recall **in the seat** — alerts, annunciations, mode logic, protections, and reversion. Menu navigation is excluded on purpose.
+
+Why a separate section rather than folding into AFM Extended: different source and different authority. The AFM carries approved limitations; the Pilot's Guide describes system behaviour. Keeping them apart means an examiner's "what's the limit?" and "what will the box do?" stay distinct in your head.
+
+| Topic | Cards | Why it earns a card |
+|---|---|---|
+| Alerting & aurals | 8 | CAS colour/chime/light logic, and the **aural priority order** — STALL is group 1 priority 1 and outranks everything |
+| AFCS & modes | 7 | FMA green/white logic, AP and YD interlocks, AP control and overpower limits, TCS |
+| Automation protections | 11 | **EDM**, SWPS, tactile feedback bank thresholds, rudder bias, autothrottle takeoff window |
+| Display failure & reversion | 7 | **DU failure vs AGM failure** — the guide calls this distinction essential |
+| Data integrity | 3 | Miscompare thresholds: IAS 10 kt, ROLL 6°, PITCH 5°, ALT 200 ft, BARO 0.02 inHg |
+| TCAS | 5 | Aurals, corrective vs preventive RAs, why traffic you can see may not appear |
+| EGPWS / TAWS | 5 | Mode 1/3/6 behaviour, the callout ladder, terrain caution vs warning |
+
+**The three highest-value items in this set:**
+
+1. **X on two displays is one AGM failure, not two dead screens.** AGM 1 drives DU 1 and 2; AGM 2 drives DU 3 and 4. A large X means the display works but is receiving no image data. Fix: rotate the circular collar around the affected side's PFD dimmer to the alternate AGM, then turn the still-useless DU past its detent to OFF/REV.
+2. **EDM needs all three: depressurization, above 30,000 ft, autopilot on.** It then turns 90° **left**, engages the autothrottle, idles the thrust, and descends at VMO to 15,000 ft, ending in heading mode at 175 kt. The AP QD button cancels EDM but does **not** disconnect the autothrottle.
+3. **The cavalry charge has exactly two mute buttons** — an AP quick-disconnect or the AP button on the Flight Controller. Master Caution and Master Warning will not silence it. Continuous cavalry charge means the aircraft dropped the autopilot; a single one means you did.
+
+Note that AGI-1 to AGI-7 in the FSI deck (display unit colour conventions) are already ACE-derived — they came from the same Honeywell guide. I left them in the FSI section so your checkride deck numbering stays exactly as FlightSafety issued it.
+
+Verification: 52 numeric tokens confirmed present in the Pilot's Guide text and 70 label-value pairings confirmed in context.
+
 ## What this program does *not* cover
 
-Systems theory, non-memory QRH procedures, performance charts, and avionics operation. Pair it with the FSI PC-24 Pilot Training Manual and QRH review — the limitations anchor much faster once each number is attached to the system it protects.
+Systems theory, non-memory QRH procedures, performance charts, and ACE page-by-page operation (flight planning entry, chart manipulation, datalink menus, radio tuning pages, SATCOM). Pair this with the FSI PC-24 Pilot Training Manual and QRH review — the limitations anchor much faster once each number is attached to the system it protects.
 
-*Values transcribed from the FSI card set Rev 1.0 and AFM Report 02371 Issue 003 Rev 08. For training purposes only — the AFM, current revisions, Service Bulletins, and applicable AFM Supplements remain the authoritative source. Card content is FlightSafety International and Pilatus material, reproduced with instructor permission for training use.*
+*Values transcribed from the FSI card set Rev 1.0, AFM Report 02371 Issue 003 Rev 08, and ACE Pilot's Guide D201912000296-R002 Rev 2. For training purposes only — the AFM, current revisions, Service Bulletins, and applicable AFM Supplements remain the authoritative source. Card content is FlightSafety International and Pilatus material, reproduced with instructor permission for training use.*

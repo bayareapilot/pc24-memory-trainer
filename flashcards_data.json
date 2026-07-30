@@ -1127,5 +1127,373 @@
   "back": "1. ADVISORY PURPOSES ONLY — it must always be cross-referenced against the AFM or other certified performance calculation software.\n2. (a) Acceleration and final segment for OEI climb procedure (b) consideration of turns in the OEI climb procedure for obstacle clearance (c) cold temperature compensation below standard temperatures (d) abnormal landing scenarios such as system failures and emergency landings.\n3. No — TOLD does not consider terrain data for climb performance. It is the operator's responsibility to determine the most limiting obstacle.\nTOLD does not support Supplements 02442, 02444, 02451, 02457 or 02473.",
   "reference": "AFM 4.4 (p 2-1-6)",
   "topic": "General ops"
+ },
+ {
+  "id": "ACE-1",
+  "title": "CAS Message Levels — Colour, Light and Chime",
+  "front": "For each CAS level state the colour, whether a master light illuminates, and the aural:\n1. Warning — ?\n2. Caution — ?\n3. Advisory — ?\n4. Status — ?",
+  "back": "1. WARNING — RED · master WARNING button lights · TRIPLE CHIME · posted in red reverse video until a master warning button is pushed, then red text on black\n2. CAUTION — AMBER · master CAUTION button lights · SINGLE CHIME · amber reverse video until acknowledged, then amber text on black\n3. ADVISORY — CYAN · no light, no chime · cyan reverse video for 5 seconds, then automatically to cyan on black\n4. STATUS — WHITE · no light, no chime · white reverse video for 5 seconds, then automatically to white on black\nPushing a master button silences the chime and drops the reverse video — that is what \"acknowledged\" means.",
+  "reference": "ACE Pilot's Guide 8-6 to 8-8",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-2",
+  "title": "CAS Window — Sort Order and Capacity",
+  "front": "1. In what order are CAS messages sorted — ?\n2. How are messages ordered within a colour group — ?\n3. How many messages display at once — ?\n4. Can the pilot clear a message — ?",
+  "back": "1. RED at the top, then AMBER, then CYAN, then WHITE\n2. Newest at the top of each colour group, oldest at the bottom\n3. As many as 12 at one time. With 12 or fewer, no manipulation is needed\n4. NO — the pilot cannot directly remove a message from the CAS stack. A message stays until the condition clears (or the CAS system removes it on a configuration change)\nWhen no messages are active, \"CAS\" is displayed on the top line. The CAS window is a high-priority window and is ALWAYS visible — on a composite PFD it moves to the bottom of the display, below the HSI.",
+  "reference": "ACE Pilot's Guide 8-2 to 8-8",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-3",
+  "title": "Aural Warning Priority — How Conflicts Resolve",
+  "front": "Two or more aural warnings are active at once. How does the system decide what you hear, and what is always first?",
+  "back": "Aurals are assigned to GROUPS by importance and urgency, and given a PRIORITY NUMBER within the group. ALL warnings from the most important group are presented first, in priority order. Warnings from the next group are not presented until no warnings from the more important group remain active.\nSTALL is group 1, priority 1 — it outranks everything and is NOT mutable. It persists until the stall condition is corrected.\nWorked example from the guide: with stall, speed and fire warnings all active, you hear STALL first (and only STALL) until the stall is resolved, then the speed warning, then the fire warning.",
+  "reference": "ACE Pilot's Guide 8-36, Table 8-5",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-4",
+  "title": "Aural Priority Order — The Top of the List",
+  "front": "State the aural message and relative priority for: stall, gear, overspeed, takeoff configuration, speed brake, cabin pressurization, and a red CAS warning.",
+  "back": "Priority 1  — STALL (continuous, not mutable)\nPriority 5  — \"GEAR\" (continuous, not mutable)\nPriority 6  — \"SPEED\" — overspeed (continuous, not mutable)\nPriority 7  — \"CAT 2 FAIL\" (single)\nPriority 8  — \"NO TAKEOFF\" — takeoff configuration (continuous, not mutable)\nPriority 9  — \"SPEED BRAKE\" (continuous, not mutable)\nPriority 10 — \"CABIN\" — cabin pressurized (continuous, not mutable)\nPriority 11 — TRIPLE CHIME — CAS warning (continuous, mutable)\nNote the pattern: the un-mutable, continuous aurals are the ones tied to an immediate flight-path or configuration hazard.",
+  "reference": "ACE Pilot's Guide Table 8-5 (8-37)",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-5",
+  "title": "Aural Priority Order — Fire, Cabin and Trim",
+  "front": "State the aural and priority for: pitch/yaw trim runaway, pitch trim in motion, left and right engine fire, cabin altitude, emergency descent, battery hot.",
+  "back": "Priority 12 — \"Trim Runaway\" — pitch trim runaway (continuous, mutable)\nPriority 13 — \"Trim Runaway\" — yaw trim runaway (continuous, mutable)\nPriority 14 — CLACKER — pitch trim in motion (continuous, mutable)\nPriority 15 — \"LEFT ENGINE FIRE\" (continuous, mutable)\nPriority 16 — \"RIGHT ENGINE FIRE\" (continuous, mutable)\nPriority 17 — \"CABIN ALTITUDE\" (continuous, mutable)\nPriority 18 — \"EMERGENCY DESCENT\" (single, not mutable)\nPriority 19 — \"Battery Hot\" (continuous, mutable)",
+  "reference": "ACE Pilot's Guide Table 8-5 (8-37, 8-38)",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-6",
+  "title": "Aural Priority Order — Automation and Advisory",
+  "front": "State the aural and priority for: AT engaged, CAS caution, AP uncommanded disconnect, minimums, AP commanded disconnect, altitude alert, autothrottle disconnect, ice mode.",
+  "back": "Priority 23 — \"AT ENGAGED\" (single)\nPriority 24 — SINGLE CHIME — CAS caution (continuous, mutable)\nPriority 25 — CAVALRY CHARGE — AP UNCOMMANDED disconnect (CONTINUOUS)\nPriority 26 — \"MINIMUMS\" (single)\nPriority 27 — CAVALRY CHARGE — AP COMMANDED disconnect (SINGLE)\nPriority 28 — C CHORD — altitude alert (single)\nPriority 29 — C CHORD — vertical track alert (single)\nPriority 30 — \"AUTOTHROTTLE\" — AT abnormal disconnect (continuous, mutable)\nPriority 31 — \"AUTOTHROTTLE\" — AT normal disconnect (single)\nPriority 32 — \"ICE\" — ice mode alert (single)\nThe commanded/uncommanded distinction is the one that matters: same cavalry charge, but CONTINUOUS means the aircraft dropped the autopilot, not you.",
+  "reference": "ACE Pilot's Guide Table 8-5 (8-38)",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-7",
+  "title": "Silencing the Cavalry Charge",
+  "front": "An uncommanded AP disconnect is sounding. How is that specific tone muted, and what will NOT mute it?",
+  "back": "The AP uncommanded disconnect tone is mutable ONLY via:\n• an AP QUICK DISCONNECT button (either yoke), or\n• the AP button on the Flight Controller\nPushing Master Caution or Master Warning will NOT silence it — those mute other aurals, not this one.\nThis is why the QRH AFCS Abnormal Disconnect procedure has you grasp the wheel and then press the AP disengage switch: that press is what stops the noise.",
+  "reference": "ACE Pilot's Guide Table 8-5 Note 3 (8-39)",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-8",
+  "title": "Aural Routing — EGPWS and TCAS vs CAS",
+  "front": "1. How do EGPWS and TCAS aurals reach you, relative to CAS aurals — ?\n2. What happens when a TAWS alert and a TCAS alert coincide — ?\n3. Which datalink aurals are inhibited, and when — ?",
+  "back": "1. EGPWS and TCAS aurals are input DIRECTLY to the Audio Panel and come straight to the headset, so they are heard SIMULTANEOUSLY with CAS-generated aurals.\n2. All TAWS alerts MUTE the TAS/TCAS alerts — terrain wins over traffic.\n3. ATC datalink aurals are inhibited during engine start, takeoff and landing; any alert received is annunciated at the completion of that phase. The SATCOM aural is inhibited during engine start, takeoff, approach and landing roll.",
+  "reference": "ACE Pilot's Guide Table 8-5 Notes 1, 2, 4, 5 (8-39)",
+  "topic": "Alerting & aurals"
+ },
+ {
+  "id": "ACE-9",
+  "title": "Flight Mode Annunciator — Layout and Colour Logic",
+  "front": "1. Where are lateral vs vertical FD modes displayed — ?\n2. What colour is an ACTIVE mode? An ARMED mode — ?\n3. What happens visually when an armed mode captures — ?",
+  "back": "1. Lateral modes are displayed to the LEFT of the AP engage annunciator; vertical modes to the RIGHT of the YD annunciator. The FMA sits in the upper-middle of the PFD.\n2. ACTIVE = GREEN. ARMED = WHITE.\n3. On capture the armed mode transitions to active and FLASHES GREEN REVERSE VIDEO for approximately 5 seconds, then remains steady green.\nFD modes are removed when the AP is not engaged and the FD has been deactivated.",
+  "reference": "ACE Pilot's Guide 6-17, 6-18",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-10",
+  "title": "Autopilot Status Annunciator",
+  "front": "State the meaning of each AP annunciator:\n1. Green AP — ?\n2. Amber TCS — ?\n3. Red AP flashing 5 seconds — ?\n4. Red AP flashing continuously — ?",
+  "back": "1. Green AP — autopilot engaged\n2. Amber TCS — the TCS button is pushed\n3. Red AP flashing for 5 seconds, then out — NORMAL disengagement. No pilot acknowledgment required.\n4. Red AP flashing CONTINUOUSLY until acknowledged with the Quick Disconnect — a FAILURE occurred while engaged. An \"AP X Fail\" advisory is displayed while the failure is present.\nOnly one AP annunciator can be displayed at a time. Continuous = the aircraft dropped it; brief = you commanded it.",
+  "reference": "ACE Pilot's Guide Table 4-25 (4-57)",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-11",
+  "title": "Autopilot Engagement and Disengagement",
+  "front": "1. What are the three normal means to manually disengage the AP — ?\n2. What does engaging the AP also engage — ?\n3. What happens if you engage the AP with the FD off — ?",
+  "back": "1. • the AP button on the Flight Controller\n  • an AP quick-disconnect button\n  • activation of manual stabilizer trim\n2. Selecting AP also activates the PITCH AUTOTRIM function and the YAW DAMPER (when not already active). Manual deselection of the AP does NOT deselect the YD.\n3. The FD automatically turns ON, with PITCH HOLD as the active vertical mode and ROLL HOLD as the active lateral mode.\nThe AP can also be disengaged with the TCS or QD buttons. A yaw damper failure due to YD-only faults does NOT disengage the autopilot.",
+  "reference": "ACE Pilot's Guide 4-56, 4-58",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-12",
+  "title": "Yaw Damper — Interlocks You Must Know",
+  "front": "1. What happens to the AP when you disengage the YD — ?\n2. Above 30,000 ft, how must the YD be disengaged — ?\n3. When does the YD disengage automatically — ?\n4. Green vs amber YD — ?",
+  "back": "1. Disengaging the YD ALSO disconnects the AP. (The reverse is not true: deselecting the AP with the AP button or manual electric trim does not disengage the YD.)\n2. The YD is INHIBITED from disengaging above 30,000 ft using the QD button — it must be disengaged with the YD button on the Flight Controller.\n3. Automatically when radio altitude is valid and the aircraft transitions below 30 FEET.\n4. Green YD = engaged. Amber YD = engaged, then a failure occurred.\nPushing either the YD button or the QD button gives a red AP flashing for 2.5 sec plus the AP disconnect tone; no acknowledgment required.",
+  "reference": "ACE Pilot's Guide 4-63, Tables 4-28, 4-29",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-13",
+  "title": "Autopilot Control and Overpower Limits",
+  "front": "1. AP roll and pitch control limits — ?\n2. Maximum momentary overpower force at the column, pitch and roll — ?\n3. Roll and pitch acceleration limits — ?",
+  "back": "1. Roll ±35 degrees · Pitch ±20 degrees\n2. Not more than 50 POUNDS in pitch and 30 POUNDS in roll, measured at the control column\n3. Roll acceleration limited to +6 deg/s² · pitch acceleration limited to +3.0 deg/s²\nIf the AP is engaged while outside the pitch or roll limits, it follows FD commands to bring the aircraft back within limits.",
+  "reference": "ACE Pilot's Guide 4-55, 4-58",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-14",
+  "title": "Touch Control Steering (TCS)",
+  "front": "What does pressing and releasing TCS do with the autopilot engaged?",
+  "back": "PRESSING TCS: the AFCS neutralizes the autopilot by RELEASING the aileron and elevator servo CLUTCHES, letting you hand-fly. An amber TCS is annunciated.\nRELEASING TCS: the autopilot clutches re-engage. The flight director modes react as if the autopilot had just been engaged — targets are SYNCHRONIZED with the current flight conditions.\nSo TCS is the tool for a quick manual correction without dropping the autopilot — but be aware your targets resync on release.",
+  "reference": "ACE Pilot's Guide 4-56",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-15",
+  "title": "Thrust Rating Selection — Auto-Rating Types",
+  "front": "In auto-rating mode, what are the rating types, and how many can be active at once?",
+  "back": "Four auto-rating types: TAKEOFF (TO) · MAX CONTINUOUS THRUST (MCT) · CLIMB (CLB) · CRUISE (CRZ). Rating types are MUTUALLY EXCLUSIVE — only ONE engine data rating type is active at a time. (IDL and ATR are also rating types.)\nThe TRS picks the rating from the phase of flight and communicates the active rating to the displays and to the autothrottle for scheduling engine response.\nTransitions back to TAKEOFF require: FD mode PIT, (V)FLC, VS, (V)ASEL, (V)ALT or VPATH, both engines on, and landing gear NOT extended. Any of flaps in takeoff config, gear extended, or FD mode GA drives it out of CLB/CRZ.",
+  "reference": "ACE Pilot's Guide 4-81, Table 4-32",
+  "topic": "AFCS & modes"
+ },
+ {
+  "id": "ACE-16",
+  "title": "Emergency Descent Mode — Activation",
+  "front": "What three conditions must all be present for EDM to activate?",
+  "back": "ALL of:\n1. A cabin DEPRESSURIZATION is detected\n2. Aircraft altitude is greater than 30,000 FEET\n3. The AUTOPILOT is ON\nEDM is an OPTION and must be enabled via APM to operate.\nBoth the lateral AND vertical fields of the FMA display an amber EDM to tell you the system is active.",
+  "reference": "ACE Pilot's Guide 4-69",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-17",
+  "title": "Emergency Descent Mode — What the Aircraft Does",
+  "front": "EDM has activated. Describe the full sequence the aircraft flies.",
+  "back": "1. Performs a 90° LEFT turn\n2. ENGAGES the autothrottle\n3. Commands thrust to IDLE\n4. Descends at VMO to 15,000 FEET\n5. At 15,000 ft: altitude capture, then the AP transitions to HEADING mode and 175-KNOT SPEED HOLD mode\nKnow the left turn and the 15,000 ft / 175 kt end state — that is what you will be asked to predict and to monitor.",
+  "reference": "ACE Pilot's Guide 4-69",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-18",
+  "title": "Emergency Descent Mode — Cancelling It",
+  "front": "1. What four actions cancel EDM — ?\n2. What do the other Flight Controller buttons do — ?\n3. Does the AP QD button disconnect the autothrottle — ?",
+  "back": "1. • the AP QD button on the control wheels\n  • activation of MANUAL TRIM\n  • the AP button on the Flight Controller\n  • the TCS button\n2. ALL other Flight Controller buttons are IGNORED and have no effect while EDM is active.\n3. NO. Pushing the AP QD button during EDM does NOT disconnect the AT. The AT must be disconnected with the AT button on the Flight Controller or the AT QD button on the thrust lever.\nOn releasing TCS, the AFCS reverts to basic PIT and ROL modes.",
+  "reference": "ACE Pilot's Guide 4-70",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-19",
+  "title": "SWPS — Warning, Pusher, and How to Stop It",
+  "front": "1. How does the stall warning present — ?\n2. What does the stall warning function do to the autopilot — ?\n3. How is an active stick pusher disconnected — ?",
+  "back": "1. STALL / STALL* annunciation on the PFD, the aural \"STALL\", and STICK SHAKER activation.\n2. The stall warning function DISENGAGES THE AUTOPILOT before reaching the stick pusher condition.\n3. By HOLDING the QD button on the pilot's yoke. (The pusher activates when the pilot does not respond to the stall warning — it engages the pitch servo and noses the aircraft down until the stall condition has passed.)\nThe SWPS computes from TWO AOA VANES, one each side, plus FLAPS and ICE MODE inputs. Left shaker/left AOA drives the pilot-side LSA; right drives the copilot-side LSA.",
+  "reference": "ACE Pilot's Guide 4-70, 4-71",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-20",
+  "title": "SWPS CAS Messages and Their Level",
+  "front": "State the alert level for: Pusher Fail, Shaker Fail, and L/R LSA Fail.",
+  "back": "Pusher Fail — CAUTION. At least one instance of the pusher is not available for engagement.\nShaker Fail — CAUTION. At least one instance of the shaker is not available.\nL LSA Fail / R LSA Fail / L+R LSA Fail — ADVISORY. The low speed awareness \"thermometer\" on that PFD has failed and will not be displayed.\nRemember the AFM warning that pairs with Pusher Fail: natural stalls are NOT prevented with the pusher inoperative — stalls must be avoided.",
+  "reference": "ACE Pilot's Guide Table 4-31 (4-71)",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-21",
+  "title": "Tactile Feedback System — Bank and Overspeed",
+  "front": "1. When is TFS active — ?\n2. At what bank does it engage, and until what — ?\n3. How do those numbers change in an overspeed condition — ?",
+  "back": "1. TFS is active when the aircraft is IN THE AIR and the AUTOPILOT IS OFF. (Option.)\n2. If the aircraft banks through 51°, the roll servo engages and opposes the pilot. The opposing force continues until bank is reduced to 31°.\n3. When TFS is activated for an OVERSPEED condition, bank protection activates at 31° instead of 51°, and opposes until bank is reduced to 11°.\nBNK and TF are displayed in the FMA; TF flashes reverse video until disengaged. Overspeed protection targets VMO/MMO — NOT placard speeds.",
+  "reference": "ACE Pilot's Guide 4-68, 4-69",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-22",
+  "title": "Tactile Feedback System — Overriding It",
+  "front": "How do you override or disconnect the TFS, and what is the difference between the two methods?",
+  "back": "AP QD button (either yoke): DEACTIVATES the TFS and INHIBITS it from reactivating until conditions are met where TFS would again be active.\nTCS button: overrides the opposing force TEMPORARILY. When TCS is released, the TFS RE-ENGAGES if the aircraft is still within the conditions where TFS would be active.\nSo QD is the \"make it stop\" action; TCS is the \"hold it off while I maneuver\" action.",
+  "reference": "ACE Pilot's Guide 4-68",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-23",
+  "title": "Rudder Bias",
+  "front": "1. When is the rudder bias system active — ?\n2. What two conditions engage it — ?\n3. Which way does it push, and how far — ?\n4. What annunciates — ?",
+  "back": "1. During the TAKEOFF and GO-AROUND phases, with the YAW DAMPER OFF, up to 2,500 FEET AGL.\n2. • the yaw damper is not active, AND\n  • the thrust (N1) difference between the two engines exceeds a defined threshold\n3. It commands the rudder TOWARD THE SIDE OF THE HIGHER-THRUST ENGINE at a predefined torque. It is NOT full authority — it supplies only a percentage of the required rudder input through the yaw servo.\n4. The RB annunciator REPLACES the yaw damper annunciator in the FMA field. Amber RB means rudder bias is NOT AVAILABLE.",
+  "reference": "ACE Pilot's Guide 4-67",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-24",
+  "title": "Mach Trim and Automatic Pitch Trim",
+  "front": "1. What does the Mach Trim function do, and when — ?\n2. What does automatic pitch trim do, and which motor does it use — ?",
+  "back": "1. Mach Trim automatically compensates for MACH TUCK by commanding the pitch trim actuator at high Mach numbers WHEN THE AUTOPILOT IS OFF.\n2. Automatic pitch trim commands the ALTERNATE STABILIZER TRIM MOTOR to offload steady-state loads on the AP elevator servo — keeping the elevator near neutral, improving cruise performance, and minimizing transients at AP disengagement.\nNote the split: Mach Trim works with the AP OFF; automatic pitch trim works with the AP ON (it is enabled by AP engagement).",
+  "reference": "ACE Pilot's Guide 4-66, 4-67",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-25",
+  "title": "Autothrottle — Takeoff Window Protection",
+  "front": "1. Between what limits does the AT takeoff monitor protect against inadvertent thrust reduction — ?\n2. Which lane performs it — ?\n3. How does the AT engage into takeoff thrust mode — ?",
+  "back": "1. From 60 KNOTS to 400 FEET AGL — the \"takeoff window\".\n2. LANE B of the autothrottle performs the takeoff monitor function and controls power to the TQA servos, and can disable AT control of the TQA so the system can reliably be disconnected and inhibited. (The AT function requires two AIOPs — lanes A and B. AT is hosted in MAU1 only.)\n3. With the AT armed for takeoff, ADVANCING the TLA of BOTH thrust levers while airspeed is LESS THAN 60 KNOTS engages the takeoff thrust control mode.",
+  "reference": "ACE Pilot's Guide 4-73, 4-74",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-26",
+  "title": "Autothrottle — Modes, Protections and Limits",
+  "front": "1. What are the primary AT modes — ?\n2. Does the AT protect against engine overspeed or over-temperature — ?\n3. When does the AT engage automatically — ?",
+  "back": "1. SPEED, THRUST, LIM and EDM.\n2. NO. Engine overspeed and over-temperature protection are FADEC functions, not AT functions. However, the AT ALWAYS HONORS the active engine thrust rating.\n3. Automatically when EMERGENCY DESCENT MODE or AUTOTHROTTLE SPEED PROTECTION mode becomes active.\nThe AT mode is synchronous with the active FD pitch mode: thrust mode when speed is being controlled by the FD mode or the FD mode is TO/GA, otherwise speed mode. Disengagement sounds the \"AUTOTHROTTLE\" aural.",
+  "reference": "ACE Pilot's Guide 4-73, 4-74",
+  "topic": "Automation protections"
+ },
+ {
+  "id": "ACE-27",
+  "title": "Which AGM Drives Which Display",
+  "front": "State the display architecture: which AGM drives which DUs, and how many unique images can one AGM produce?",
+  "back": "AGM 1 drives DU 1 and DU 2. AGM 2 drives DU 3 and DU 4.\nDU 1 = pilot PFD · DU 2 and DU 3 = the two middle MFDs · DU 4 = copilot PFD.\nAn individual AGM can generate only TWO different screen images at any one time. That is why, after an AGM failure, the copilot PFD shows an EXACT DUPLICATE of the pilot PFD rather than its own independent image — the images are identical, not symmetrical.",
+  "reference": "ACE Pilot's Guide 5-48, 5-49",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-28",
+  "title": "DU Failure vs AGM Failure — The Critical Distinction",
+  "front": "The guide says distinguishing a DU failure from an AGM failure is essential. How do you tell them apart?",
+  "back": "DU FAILURE — that DU goes BLANK (dark, no image), shows a GROSSLY DISTORTED image, or is physically damaged (cracked/shattered). The other three DUs keep working normally; both AGMs are healthy.\nAGM FAILURE — the two DUs driven by that AGM each display a LARGE \"X\". A large X means the DU is OPERATING but is NOT RECEIVING IMAGE DATA from the selected AGM.\nSo: X on both DU 1 and DU 2 (or both DU 3 and DU 4) is almost certainly ONE AGM failure — NOT two failed displays. Concluding \"two DUs failed\" would be wrong, precisely because they are displaying the X.",
+  "reference": "ACE Pilot's Guide 5-47, 5-49, 5-50",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-29",
+  "title": "Single DU Failure — Action",
+  "front": "A single DU has failed. What is the corrective action?",
+  "back": "Turn that DU's DIMMER CONTROL past the detent to the OFF / REV position. This tells the ACE system the display is no longer of any use so it can redistribute the images.\nThe remaining three DUs continue to present all information. Nothing is wrong with either AGM or any other avionics — only that one KDU-1200 display has failed.",
+  "reference": "ACE Pilot's Guide 5-47, 5-49",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-30",
+  "title": "AGM Failure — Action",
+  "front": "DUs 1 and 2 are both displaying a large X. State the corrective actions in order.",
+  "back": "1. Turn the CIRCULAR COLLAR surrounding the PFD DIMMER on the AFFECTED SIDE to select the ALTERNATE (non-normal) AGM to drive the displays. For DUs 1 and 2 showing X, move the collar around the AGM2 dimmer to PILOTS PFD.\n2. Then indicate that DU 2 is still showing an X and is of no use: turn the DU 2 dimmer PAST THE DETENT to OFF / REV.\n3. Use the TSC MFD SWAP button to alternate between the Situational Awareness and Systems displays on DU 3.\nWhat you lose: the copilot no longer has an independently configurable PFD (it is a slave image of the pilot's), and you can no longer show Situational and Systems at the same time.",
+  "reference": "ACE Pilot's Guide 5-49",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-31",
+  "title": "Two DUs Failed — Reversion Logic",
+  "front": "Two DUs have failed and been turned off. What appears where, for each pair?",
+  "back": "DU 2 + DU 3 (both middle) — COMPOSITE display on DU 1; normal PFD continues on DU 4\nDU 1 + DU 2 — left PFD on DU 3; single MFD on DU 4\nDU 3 + DU 4 — normal left PFD continues on DU 1; single MFD on DU 2\nDU 1 + DU 4 (both outboard) — left PFD on DU 2; single MFD on DU 3\nIn every case the single MFD toggles between Situational Awareness and Systems with the TSC MFD Swap button.\nThe logic is optimized for SINGLE-PILOT operations: the composite display — the hardest to work with — only appears if BOTH MIDDLE displays are gone. In two-crew ops the copilot (full PFD on DU 4) should take pilot-flying duties.",
+  "reference": "ACE Pilot's Guide 5-50, 5-51, 5-52",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-32",
+  "title": "Display Integrity Monitors",
+  "front": "Name the two display monitors and what each one checks.",
+  "back": "DU CRC MONITOR — constantly evaluates the display integrity of each DU individually, verifying that image data generated by the AGM is properly rendered on that DU. If tripped, a \"Check DU X\" CAUTION is posted; that DU is considered UNRELIABLE and should be reverted off (dimming knob to OFF / REV). Inhibited for a DU that is not powered.\nCRITICAL SYMBOL MONITOR — compares AGM-generated image data against the raw data for critical items, confirming the graphics processor is not outputting corrupt image data. Critical items: airspeed, baro altitude, baro correction, pitch, roll, zero-pitch reference line and flight path symbol on each PFD; N1 fan speed (and status) and ITT (and status) in the engine windows.",
+  "reference": "ACE Pilot's Guide 5-45, 5-46, Table 5-1",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-33",
+  "title": "Critical Symbol Monitor CAS Messages — Actions",
+  "front": "State the required action for: \"Check Pilot PFD\", \"Check Copilot PFD\", and \"Check Engine Display\".",
+  "back": "Check Pilot PFD — cross-check critical data on the pilot PFD against the STANDBY attitude indicator or the copilot PFD. If the data does not reasonably agree, REVERT THE PILOT PFD TO AGM2.\nCheck Copilot PFD — cross-check against the standby AI or the pilot PFD. If it does not reasonably agree, REVERT THE COPILOT PFD TO AGM1.\nCheck Engine Display — cross-check ITT and N2 fan speed against another display. If they do not reasonably agree, revert the affected PFD to an alternate AGM.\nIn every case the drill is the same: CROSS-CHECK FIRST, revert only if the data disagrees.",
+  "reference": "ACE Pilot's Guide Table 5-2 (5-46)",
+  "topic": "Display failure & reversion"
+ },
+ {
+  "id": "ACE-34",
+  "title": "PFD Miscompare Thresholds",
+  "front": "State the difference between left and right PFD that triggers each miscompare:\n1. IAS? — ?\n2. ROLL? — ?\n3. PITCH? — ?\n4. ALT? — ?\n5. BARO? — ?",
+  "back": "1. IAS? — 10 KNOTS or more (upper-left of both airspeed indicators)\n2. ROLL? — 6 DEGREES or more (upper-left of both PFDs)\n3. PITCH? — 5 DEGREES or more (upper-right of both PFDs)\n4. ALT? — 200 FEET or more (upper-right of both altitude displays)\n5. BARO? — 0.02 inHg or more (or 1 hPa), when the altimeters are set up for synchronization (lower-right of both altitude displays)\nAll are displayed in AMBER REVERSE VIDEO. Mnemonic for the attitude pair: roll tolerance is the larger number (6), pitch the smaller (5).",
+  "reference": "ACE Pilot's Guide 6-10, 6-26, 6-71",
+  "topic": "Data integrity"
+ },
+ {
+  "id": "ACE-35",
+  "title": "Radio Altitude and Vertical Deviation Miscompare",
+  "front": "1. How is the RAD? miscompare threshold computed, and how long must it persist — ?\n2. What triggers a VDEV? miscompare — ?",
+  "back": "1. RAD? appears when the difference between radio altitude indications exceeds a predefined threshold for MORE THAN 1 SECOND. The threshold is computed as:\n   10 + 0.0625 × [ABS(Pilot RadAlt) + ABS(Copilot RadAlt)]\n   — i.e. the allowable difference GROWS with height, so it is tightest near the ground where it matters.\n2. VDEV? appears below the vertical deviation scale when the pilot side and copilot side have selected TWO DIFFERENT FMSs as navigation source, the FMS vertical deviation type is VPATH, and the difference between left and right vertical deviation exceeds 50% OF FULL SCALE.",
+  "reference": "ACE Pilot's Guide 6-46, 6-56",
+  "topic": "Data integrity"
+ },
+ {
+  "id": "ACE-36",
+  "title": "Invalid Data Presentation",
+  "front": "How does the PFD present invalid airspeed, altitude, or attitude data — and how does that differ from a miscompare?",
+  "back": "INVALID data is REMOVED and replaced with a large X over the affected area:\n• Invalid airspeed — the airspeed tape is removed and replaced with an X; the rolling digits are removed\n• Invalid altitude — all altitude data removed, X over the entire altitude tape\nA MISCOMPARE (amber \"?\" annunciator) means both sides are producing data but they DISAGREE — you must decide which to trust, typically by cross-checking the standby instrument. An X means that data is GONE.\nDifferent problem, different action: miscompare → cross-check and choose; X → use the other source.",
+  "reference": "ACE Pilot's Guide 6-10, 6-71",
+  "topic": "Data integrity"
+ },
+ {
+  "id": "ACE-37",
+  "title": "TCAS Aural Notifications",
+  "front": "State the aural for: a new traffic advisory, a further TA while one is active, an RA that has cleared, and the self-test result.",
+  "back": "New traffic advisory — \"TRAFFIC, TRAFFIC\"\nWhen a previous TA is already active — \"TRAFFIC\"\nRA cleared (TCAS II only) — \"CLEAR OF CONFLICT\"\nSelf-test passed — \"TCAS SYSTEM TEST OK\"\nSelf-test failed — \"TCAS SYSTEM TEST FAIL\"",
+  "reference": "ACE Pilot's Guide Table 15-2 (15-51)",
+  "topic": "TCAS"
+ },
+ {
+  "id": "ACE-38",
+  "title": "Resolution Advisories — Corrective vs Preventive",
+  "front": "What is the aural difference between a CORRECTIVE and a PREVENTIVE RA?",
+  "back": "CORRECTIVE RA — tells you to CHANGE the flight path:\n  Climb — \"CLIMB, CLIMB, CLIMB\"\n  Descent — \"DESCEND, DESCEND, DESCEND\"\n  Crossover climb — \"CLIMB, CROSSING CLIMB, CLIMB\"\nPREVENTIVE RA — tells you NOT to change what you are doing:\n  \"MONITOR VERTICAL SPEED, MONITOR VERTICAL SPEED\"\nA preventive RA requires you to keep out of a vertical band — it does not require a maneuver. RAs are TCAS II installations only.",
+  "reference": "ACE Pilot's Guide Table 15-3 (15-52)",
+  "topic": "TCAS"
+ },
+ {
+  "id": "ACE-39",
+  "title": "Transponder — Never Select STBY on the Ground",
+  "front": "Why must the transponder not be set to STBY on the ground, and what should be selected instead?",
+  "back": "The ACE transponder supplies AUTOMATIC air-to-ground (GND) switching, so the old practice of selecting STBY on the ground does NOT apply. The pilot must NEVER set the active mode to STBY while on the ground.\nInstead select the mode you want IN FLIGHT — normally TA/RA for TCAS II (or TA for TCAS I). Transmissions begin automatically at takeoff and stop automatically on landing (except replies to specifically addressed interrogations).\nOn the ground with GND displayed and not in STBY, the transponder still replies to interrogations addressed to the aircraft by name, and other traffic can be viewed with TA or TA/RA selected.",
+  "reference": "ACE Pilot's Guide 15-57, 15-58",
+  "topic": "TCAS"
+ },
+ {
+  "id": "ACE-40",
+  "title": "TCAS Before Takeoff",
+  "front": "How is TCAS tested and armed before flight, and what does it do while still on the ground?",
+  "back": "Test with the TCAS TEST softkey during cockpit preparation. After passing self-test, place TCAS in TA/RA (TCAS II) or TA (TCAS I) by selecting the transponder to TA/RA or TA.\nWhile the aircraft is on the ground (per air-ground logic) TCAS does NOT issue advisories — although threat traffic IS displayed in YELLOW.\nOn transition to air mode the GND annunciator is removed, the transponder begins broadcast operation, and TCAS becomes active.",
+  "reference": "ACE Pilot's Guide 15-58",
+  "topic": "TCAS"
+ },
+ {
+  "id": "ACE-41",
+  "title": "TCAS Limitations — Why Traffic May Not Appear",
+  "front": "Name the situations in which an aircraft you can see is not shown by TCAS.",
+  "back": "• NO OPERATING TRANSPONDER — TCAS cannot detect it at all\n• NON-ALTITUDE REPORTING (NAR) intruder — range and bearing only; can produce a TA but never an RA; TCAS ASSUMES NAR traffic is CO-ALTITUDE with you\n• ANTENNA SHADING — most small aircraft have one transponder antenna on the belly; when you are above them the antenna can be shaded so interrogations or replies do not get through. Also happens when the other aircraft maneuvers and blocks line of sight\n• CONE OF CONFUSION — the upper directional antenna determines bearing only for intruders between -10° and +70° elevation; outside that they are tracked with NO bearing\n• LOWER MONOPOLE ANTENNA — no bearing available; the intruder is tracked but NOT DISPLAYED unless a TA is issued\n• A poor transponder on the other aircraft — ground stations have more gain, so ATC may call traffic your TCAS never sees\n• NO CLOSURE RATE — TCAS derives closest point of approach; co-speed same-direction traffic may never be a threat",
+  "reference": "ACE Pilot's Guide 15-59, 15-60",
+  "topic": "TCAS"
+ },
+ {
+  "id": "ACE-42",
+  "title": "EGPWS Mode 1 — Excessive Descent Rate",
+  "front": "1. When is Mode 1 active — ?\n2. Outer boundary alert — ?\n3. Inner boundary alert — ?",
+  "back": "1. Active regardless of flight phase whenever radio altitude is VALID and LESS THAN 2,450 FEET AGL. Lower cutoff at 10 ft RA during landing; re-enabled at 30 ft RA during takeoff. When barometric input is used, cut off at 30 ft and re-enabled at 65 ft.\n2. OUTER — GND PROX annunciator and \"SINKRATE, SINKRATE\". Repeated twice, then silent unless the condition degrades by about 20% (by computed time to impact), which gives two more and repeats the cycle.\n3. INNER — PULL UP annunciator and \"PULL UP, PULL UP\", or optionally a continuous \"WHOOP-WHOOP PULL UP\", repeating continuously until the inner boundary is exited.\nSteep approach selected desensitizes the outer curve by 500 FPM and the inner by 200 FPM.",
+  "reference": "ACE Pilot's Guide 16-31, 16-32",
+  "topic": "EGPWS / TAWS"
+ },
+ {
+  "id": "ACE-43",
+  "title": "EGPWS Mode 3 — Altitude Loss After Takeoff",
+  "front": "1. When is Mode 3 enabled — ?\n2. What is the alert — ?\n3. How does the aural repeat — ?",
+  "back": "1. Enabled after TAKEOFF or GO-AROUND when the landing gear or flaps are NOT in the landing configuration, and stays enabled until the EGPWS detects the aircraft has gained enough altitude to no longer be in the takeoff phase.\n2. A GND PROX caution on the right side of the attitude indicator and the aural \"DON'T SINK, DON'T SINK\".\n3. The aural is annunciated again only when a further 20% OF RADIO ALTITUDE is lost. If that additional altitude is lost, two more aurals are given and another 20% is added into the calculation — ratcheting until the original altitude is recovered. The visual stays on the whole time the envelope is violated.",
+  "reference": "ACE Pilot's Guide 16-40",
+  "topic": "EGPWS / TAWS"
+ },
+ {
+  "id": "ACE-44",
+  "title": "EGPWS Mode 6 — Advisory Callouts",
+  "front": "List the Mode 6 callouts and the altitude each occurs at.",
+  "back": "\"MINIMUMS\" — at minimums\n\"APPROACHING MINIMUMS\" — DH/MDA bug setting PLUS 80 FEET\n\"FIVE HUNDRED\" — 500 ft AGL\n\"ONE HUNDRED\" — 100 ft AGL\n\"FIFTY\" — 50 · \"FORTY\" — 40 · \"THIRTY\" — 30 · \"TWENTY\" — 20 · \"TEN\" — 10 ft AGL\nEach selected callout is annunciated ONCE PER APPROACH. The system must transition to approach mode to RE-ARM the callouts for the next approach. Valid radio altitude above the highest selected callout must be present; minimums callouts additionally need the landing gear down (or alternate mode 4B select). No visual alerting accompanies Mode 6 callouts.",
+  "reference": "ACE Pilot's Guide Table 16-3 (16-47)",
+  "topic": "EGPWS / TAWS"
+ },
+ {
+  "id": "ACE-45",
+  "title": "Terrain and Obstacle Alerts — Caution vs Warning",
+  "front": "State the aural, colour and repeat behaviour for terrain/obstacle CAUTION and WARNING alerts.",
+  "back": "CAUTION — \"CAUTION TERRAIN, CAUTION TERRAIN\" (optionally \"TERRAIN AHEAD, TERRAIN AHEAD\"); for obstacles \"CAUTION OBSTACLE, CAUTION OBSTACLE\" (optionally \"OBSTACLE AHEAD\"). Repeated EVERY 10 SECONDS while inside the caution envelope. Threat terrain is coded AMBER; GND PROX caution on the attitude indicator.\nWARNING — \"TERRAIN, TERRAIN, PULL UP\" (optionally \"TERRAIN AHEAD, PULL UP\"); for obstacles \"OBSTACLE, OBSTACLE, PULL UP\". \"PULL UP\" repeats CONTINUOUSLY while inside the warning envelope. Threat terrain is coded RED; PULL UP warning on the attitude indicator.\nIn both cases only terrain along the aircraft track and within ±90° OF TRACK is coded, and the threat image appears on the HSI.",
+  "reference": "ACE Pilot's Guide 16-53, 16-54",
+  "topic": "EGPWS / TAWS"
+ },
+ {
+  "id": "ACE-46",
+  "title": "EGPWS Class A-Only Modes",
+  "front": "Which EGPWS modes are unavailable when Class B TAWS is selected, and what does each do?",
+  "back": "MODE 2 — Excessive Closure to Terrain. Alerts on excessive terrain closure rate; the aircraft need NOT be descending — level flight or a climb toward rising terrain can trigger it. Sub-modes 2A and 2B by configuration. In a high-integrity terrain awareness state the maximum altitude is reduced from 2,450 ft to 950 ft to cut nuisance alerts.\nMODE 4 — Unsafe Terrain Clearance. 4A: cruise/approach, gear not in landing config. 4B: gear in landing config, flaps not. 4C: takeoff phase with either gear or flaps not in landing config.\nMODE 5 — Excessive Deviation Below Glideslope. Front-course ILS, or below the selected GPS vertical path on approaches to LPV minimums. Needs localizer within ±2 dots, radio altitude valid and below 1,000 ft, and gear down; below 500 ft it is enabled without a valid localizer.\nSubsequent Mode 4 aurals occur only when envelope penetration increases by 20%.",
+  "reference": "ACE Pilot's Guide 16-33, 16-34, 16-42, 16-49",
+  "topic": "EGPWS / TAWS"
  }
 ]
