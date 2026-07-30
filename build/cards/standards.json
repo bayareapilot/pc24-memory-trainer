@@ -1,0 +1,80 @@
+{
+  "brief": {
+    "label": "Briefed",
+    "demo": "Both pilots state the agreement back in their own words — who does what, and when.",
+    "gate": "Advance when it is said out loud by both of you. An assumed agreement is not one; the point of the brief is to find the places where you each assumed something different.",
+    "who": "both"
+  },
+  "locate": {
+    "label": "Located — no hunting",
+    "demo": "Partner names the control; you put a finger on it and say its name back. No narrating the search, no sweeping the panel.",
+    "gate": "First touch correct, inside about two seconds, three times running from different starting hand positions. A correct find after a visible search is a miss — note it and come back to it before the block ends.",
+    "who": "flying"
+  },
+  "recall": {
+    "label": "Recalled — exact",
+    "demo": "You state the value and its unit from memory, out loud, before looking at any gauge, page or card.",
+    "gate": "Exact number and exact unit on the first attempt. \"About 290\" is a bust, and so is a self-corrected guess. Miss it and the card goes on tonight's re-drill list; do not keep grinding it in the seat.",
+    "who": "flying"
+  },
+  "verbatim": {
+    "label": "Verbatim — 100%",
+    "demo": "Challenge and response, word for word, in the published order, out loud — with your hands reaching the actual switch as the words come out.",
+    "gate": "No prompting, no reordering, no paraphrase, and the hands must not lag the words. Anything less and you run the whole drill again from the top — not from the step you missed. Partner logs it and says nothing until the flow finishes.",
+    "who": "flying"
+  },
+  "flow": {
+    "label": "Flow — unprompted",
+    "demo": "The complete sequence, in order, with every confirmation actually read off the display page it lives on — not assumed.",
+    "gate": "No checklist prompting on the flow itself, and no skipped confirmation. Wording may flex; sequence and the confirmations may not. Two clean runs before you call it done.",
+    "who": "flying"
+  },
+  "operate": {
+    "label": "Operated — and read back",
+    "demo": "You make the selection in the device, then read the resulting indication aloud — synoptic page, CAS, annunciator, whichever the system answers on.",
+    "gate": "Correct selection first time, and the resulting indication named correctly without help. Getting the switch right but not knowing what the screen now says is a miss — that is the half that matters under load.",
+    "who": "flying"
+  },
+  "identify": {
+    "label": "Identified — unaided",
+    "demo": "Partner triggers or sets the condition without telling you what it is. You name it — by aural, colour, annunciation or synoptic state — before reading its label.",
+    "gate": "Correct name before the label is read, with no hints. If you needed the label, that one goes on the re-drill list.",
+    "who": "flying"
+  },
+  "explain": {
+    "label": "Explained — no notes",
+    "demo": "You explain the logic to your partner in your own words, with nothing in front of you: what the system does, when, and what it does not do.",
+    "gate": "Partner has the card or the manual open and cannot find a gap or a wrong condition. If they have to fill in a step for you, it is not yet known.",
+    "who": "flying"
+  },
+  "repeat": {
+    "label": "Repeated to fluency",
+    "demo": "The repetitions actually happen, back to back, in the seat.",
+    "gate": "The last repetition is at least as clean and at least as fast as the first. If it is getting worse you are tired — stop the block and note it, because grinding a degrading drill trains the error.",
+    "who": "flying"
+  },
+  "trap": {
+    "label": "Trap caught",
+    "demo": "Partner deliberately sets or walks you into the error without warning. You catch it, stop, and say what the trap was.",
+    "gate": "Caught before the consequence, and named out loud. Catching it silently is half credit — naming it is what makes it stick. Missed it? Reset and let them spring it again later in the session, not immediately.",
+    "who": "both"
+  },
+  "swap": {
+    "label": "Repeated from the other seat",
+    "demo": "The other pilot now flies it, to the same standard the block already set. You take the monitoring and checklist role.",
+    "gate": "Advance when the second pilot meets the standard unaided — not when they have watched you do it. Both of you need this from both seats; the start flow in particular is asymmetric.",
+    "who": "monitoring"
+  },
+  "note": {
+    "label": "Nothing to demonstrate",
+    "demo": "Nothing to perform — this line sets how the block is run, or tells you where its limit is.",
+    "gate": "Read it, agree it, tick it. It is on the list so the standard is explicit rather than assumed.",
+    "who": "both"
+  },
+  "log": {
+    "label": "Written down",
+    "demo": "The list physically exists — paper, notes app, anything you will still have tonight.",
+    "gate": "Written, not remembered. This is the block that feeds tomorrow's drilling, so \"I'll recall it later\" fails the standard.",
+    "who": "both"
+  }
+}

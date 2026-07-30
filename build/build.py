@@ -60,11 +60,31 @@ def load_cards():
     return cards
 
 
-def load_gfs(cards):
-    """Load the GFS session plans, and prove every card reference resolves.
+def load_standards():
+    """Completion standards — what the partner must observe, and what advances you.
 
-    A typo'd card id would render as a chip that drills nothing, so it is worth
-    failing the build over rather than discovering it in the device.
+    Items name a standard by key rather than restating it, so every item of the
+    same kind is judged identically. That consistency is the point: a training
+    standard that drifts item to item is not a standard.
+    """
+    path = BUILD / 'cards' / 'standards.json'
+    standards = json.loads(path.read_text())
+    for key, s in standards.items():
+        for field in ('label', 'demo', 'gate', 'who'):
+            if not s.get(field):
+                raise SystemExit(f'standard "{key}" missing field: {field}')
+        if s['who'] not in ('flying', 'monitoring', 'both'):
+            raise SystemExit(f'standard "{key}" has a bad "who": {s["who"]}')
+    print(f'  {"standards.json":20} {len(standards):>4} completion standards')
+    return standards
+
+
+def load_gfs(cards, standards):
+    """Load the GFS session plans, and prove every reference resolves.
+
+    A typo'd card id would render as a chip that drills nothing, and an unknown
+    standard key would render an item with no completion criteria at all. Both
+    are worth failing the build over rather than discovering in the device.
     """
     path = BUILD / 'cards' / 'gfs_sessions.json'
     sessions = json.loads(path.read_text())
@@ -87,11 +107,22 @@ def load_gfs(cards):
             if missing:
                 raise SystemExit(
                     f'GFS {s["key"]} / "{b["title"]}" references unknown cards: {missing}')
+            for it in b['items']:
+                if not isinstance(it, dict) or not it.get('do') or not it.get('std'):
+                    raise SystemExit(
+                        f'GFS {s["key"]} / "{b["title"]}": item needs both "do" and "std": {it!r}')
+                if it['std'] not in standards:
+                    raise SystemExit(
+                        f'GFS {s["key"]} / "{b["title"]}": unknown standard "{it["std"]}" '
+                        f'on item {it["do"][:48]!r}')
             blocks += 1
             items += len(b['items'])
             minutes += b['min']
+    crits = sum(1 for s in sessions for b in s['blocks'] for i in b['items'] if i.get('crit'))
+    exits = sum(1 for s in sessions for b in s['blocks'] if b.get('exit'))
     print(f'  {"gfs_sessions.json":20} {len(sessions):>4} sessions, '
           f'{blocks} blocks, {items} items, {minutes} min')
+    print(f'  {"":20} {crits:>4} item criteria, {exits} block exit gates')
     return sessions
 
 
@@ -143,14 +174,16 @@ def load_panels(cards):
     return refs
 
 
-def build_index(cards, gfs, panels):
+def build_index(cards, gfs, panels, standards):
     template = (BUILD / 'trainer.template.html').read_text()
-    for placeholder in ('__CARDS_DATA__', '__GFS_DATA__', '__PANELS_DATA__'):
+    for placeholder in ('__CARDS_DATA__', '__GFS_DATA__', '__PANELS_DATA__',
+                        '__STANDARDS_DATA__'):
         if placeholder not in template:
             raise SystemExit(f'template is missing the {placeholder} placeholder')
     out = template
     for placeholder, data in (('__CARDS_DATA__', cards), ('__GFS_DATA__', gfs),
-                              ('__PANELS_DATA__', panels)):
+                              ('__PANELS_DATA__', panels),
+                              ('__STANDARDS_DATA__', standards)):
         payload = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
         out = out.replace(placeholder, payload)
     (ROOT / 'index.html').write_text(out)
@@ -194,13 +227,14 @@ def main():
     print('loading card sources:')
     cards = load_cards()
     print(f'  {"TOTAL":20} {len(cards):>4} cards')
-    gfs = load_gfs(cards)
+    standards = load_standards()
+    gfs = load_gfs(cards, standards)
     panels = load_panels(cards)
 
     (ROOT / 'flashcards_data.json').write_text(
         json.dumps(cards, ensure_ascii=False, indent=1))
 
-    size = build_index(cards, gfs, panels)
+    size = build_index(cards, gfs, panels, standards)
     rows = build_anki(cards)
     print(f'\nindex.html               {size:>7} bytes')
     print(f'PC24_FSI_Flashcards_Anki {rows:>7} rows')

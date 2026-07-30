@@ -260,6 +260,54 @@
   .gfs-cards .cardchip.learned { color: var(--good); border-color: var(--good); }
   .gfs-cards button { margin-left: auto; }
 
+  /* ---- completion standards ---- */
+  .gfs-items li { margin: 0 0 6px; }
+  details.std { margin: 1px 0 0 30px; }
+  details.std > summary {
+    list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    font: 700 .64rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 5px; padding: 4px 7px;
+  }
+  details.std > summary::-webkit-details-marker { display: none; }
+  details.std > summary::after { content: '▸'; font-size: .7rem; letter-spacing: 0; }
+  details.std[open] > summary::after { content: '▾'; }
+  details.std > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  details.std.s-verbatim > summary { color: var(--emer); border-color: var(--emer); }
+  details.std.s-recall > summary { color: var(--limit); border-color: var(--limit); }
+  details.std.s-note > summary { opacity: .7; }
+  .stdbody {
+    margin: 7px 0 3px; padding: 9px 11px; border-radius: 7px;
+    background: var(--panel-2); border: 1px solid var(--line); font-size: .82rem; line-height: 1.5;
+  }
+  .stdbody p { margin: 0 0 7px; }
+  .stdbody p:last-child { margin-bottom: 0; }
+  .stdbody b { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: block; }
+  .stdbody .who { font-size: .72rem; color: var(--muted); font-style: italic; }
+  .stdbody .crit { border-left: 3px solid var(--accent); padding-left: 9px; }
+  .stdbody .crit b { color: var(--accent); }
+
+  .gfs-exit {
+    margin-top: 11px; padding: 10px 12px; border-radius: 8px;
+    background: var(--panel-2); border: 1px solid var(--accent); font-size: .83rem; line-height: 1.5;
+  }
+  .gfs-exit b { display: block; font: 700 .66rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase; letter-spacing: .07em; color: var(--accent); margin-bottom: 5px; }
+
+  details.legend {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 14px; overflow: hidden;
+  }
+  details.legend > summary {
+    cursor: pointer; list-style: none; padding: 12px 15px; font-size: .9rem; font-weight: 600;
+  }
+  details.legend > summary::-webkit-details-marker { display: none; }
+  details.legend > summary small { display: block; color: var(--muted); font-weight: 400; font-size: .78rem; margin-top: 2px; }
+  details.legend .inner { padding: 2px 15px 15px; border-top: 1px solid var(--line); }
+  details.legend .row { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  details.legend .row:last-child { border-bottom: 0; }
+
   /* ---- panel plates ---- */
   .gfs-panels { margin-top: 11px; padding-top: 10px; border-top: 1px dashed var(--line); }
   .gfs-panels > h4 {
@@ -373,7 +421,7 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.2.0 (2026-07-30)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.3.0 (2026-07-30)</span></span>
   </header>
 
   <div id="update-bar" role="status">
@@ -696,6 +744,13 @@ const GFS_PHASES = { 1: 'Ground school evening', 2: 'Simulator prep' };
    block when they share a card, so the images follow the cards rather than needing
    a second hand-maintained mapping. */
 const PANELS = __PANELS_DATA__;
+
+/* Completion standards. Each item names one by key rather than restating it, so
+   every item of the same kind is judged identically — a standard that drifts
+   item to item is not a standard. */
+const STANDARDS = __STANDARDS_DATA__;
+const WHO = { flying: 'Flying pilot demonstrates', monitoring: 'Monitoring pilot demonstrates',
+              both: 'Both pilots' };
 function platesFor(cardIds) {
   if (!cardIds || !cardIds.length) return [];
   const want = new Set(cardIds);
@@ -753,7 +808,8 @@ function gfsIndexFor(dayLabel) {
 const isChecked = k => !!state.gfs[k];
 const hhmm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
 
-const sessionItemKeys = s => s.blocks.flatMap(b => b.items.map(t => itemKey(s.key, t)));
+// Keyed on the item's `do` text, unchanged by the move to objects, so progress carries over.
+const sessionItemKeys = s => s.blocks.flatMap(b => b.items.map(i => itemKey(s.key, i.do)));
 const sessionCards = s => uniq(s.blocks.flatMap(b => b.cards || []));
 const sessionMinutes = s => s.blocks.reduce((n, b) => n + b.min, 0);
 
@@ -786,7 +842,18 @@ function renderGfs() {
   const cards = sessionCards(s);
   const total = sessionMinutes(s);
 
-  let html = `<div class="gfs-head">
+  let html = `<details class="legend"><summary>The ${Object.keys(STANDARDS).length} completion standards
+      <small>What your partner watches for, and what advances you to the next item</small></summary>
+    <div class="inner">${Object.entries(STANDARDS).map(([k, st]) => `
+      <div class="row">
+        <details class="std s-${k}" open><summary>${esc(st.label)}</summary>
+          <div class="stdbody">
+            <p><b>Partner watches for</b>${esc(st.demo)}</p>
+            <p><b>Advance when</b>${esc(st.gate)}</p>
+            <p class="who">${WHO[st.who]}</p>
+          </div></details>
+      </div>`).join('')}</div></details>
+    <div class="gfs-head">
     <span class="day">${s.day}</span>
     <h3>${esc(s.title)}</h3>
     <div class="gfs-bar"><i style="width:${keys.length ? (done / keys.length) * 100 : 0}%"></i></div>
@@ -804,17 +871,25 @@ function renderGfs() {
 
   let at = 0;
   s.blocks.forEach((b, bi) => {
-    const bKeys = b.items.map(t => itemKey(s.key, t));
+    const bKeys = b.items.map(i => itemKey(s.key, i.do));
     const bDone = bKeys.every(isChecked);
     const win = `${hhmm(at)}–${hhmm(at + b.min)}`;
     at += b.min;
     html += `<div class="gfs-block${bDone ? ' done' : ''}" data-block="${bi}">
       <div class="bh"><span class="bt">${esc(b.title)}</span>
         <span class="win">${win} · ${b.min} min</span></div>
-      <ul class="gfs-items">${b.items.map((t, ii) => {
+      <ul class="gfs-items">${b.items.map((it, ii) => {
         const k = bKeys[ii];
+        const st = STANDARDS[it.std];
         return `<li><label><input type="checkbox" data-k="${k}"${isChecked(k) ? ' checked' : ''}>
-          <span>${esc(t)}</span></label></li>`;
+          <span>${esc(it.do)}</span></label>
+          <details class="std s-${it.std}"><summary>${esc(st.label)}</summary>
+            <div class="stdbody">
+              <p><b>Partner watches for</b>${esc(st.demo)}</p>
+              <p><b>Advance when</b>${esc(st.gate)}</p>
+              ${it.crit ? `<p class="crit"><b>This item</b>${esc(it.crit)}</p>` : ''}
+              <p class="who">${WHO[st.who]}</p>
+            </div></details></li>`;
       }).join('')}</ul>`;
     if (b.cards && b.cards.length) {
       html += `<div class="gfs-cards">
@@ -830,6 +905,7 @@ function renderGfs() {
             </button>`).join('')}</div></div>`;
       }
     }
+    if (b.exit) html += `<div class="gfs-exit"><b>Before you leave this block</b>${esc(b.exit)}</div>`;
     html += '</div>';
   });
 
@@ -847,7 +923,7 @@ function renderGfs() {
     const blk = cb.closest('.gfs-block');
     const bi = +blk.dataset.block;
     blk.classList.toggle('done',
-      s.blocks[bi].items.every(t => isChecked(itemKey(s.key, t))));
+      s.blocks[bi].items.every(i => isChecked(itemKey(s.key, i.do))));
     renderGfsOptions();
   }));
   el.querySelectorAll('[data-bdrill]').forEach(b => b.addEventListener('click', () => {

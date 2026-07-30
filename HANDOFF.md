@@ -12,8 +12,9 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 
 - **198 cards** — 87 FSI + 65 AFM Extended + 46 ACE Avionics
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
+- **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.2.0**, service worker **CACHE_VERSION v6**
+- App version **v2.3.0**, service worker **CACHE_VERSION v7**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -78,6 +79,43 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
+
+## Completion standards
+
+Added 2026-07-30. Every GFS item carries a **standard** — what the partner must observe,
+and what advances you to the next item. Items are `{do, std[, crit]}`; `std` names one of
+13 keys in `build/cards/standards.json`, each with `label`, `demo`, `gate` and `who`.
+
+**The design decision worth defending: 13 shared standards, not 397 bespoke ones.** A
+training standard that is worded differently for every item is not a standard — it drifts,
+and two items of the same kind end up judged differently. Naming a shared standard means
+every recall item is graded identically, and the standard can be improved in one place.
+Item-specific criteria go in `crit` (19 of them, only where there is a hard number — the
+five-minute MCT gate, the two-minute QPM gates, mask-donning times).
+
+The 13: `brief`, `locate`, `recall`, `verbatim`, `flow`, `operate`, `identify`, `explain`,
+`repeat`, `trap`, `swap`, `note`, `log`. `note` exists for lines that set how a block is
+run and have nothing to demonstrate; `swap` for the other-seat repeats. Without those two,
+those items get a standard they cannot meet.
+
+Ten blocks also carry an `exit` — a stricter gate than "all items met their standard",
+used where the block is a rehearsal for a named gate (GND 8's verbatim block, GND 6's
+profile runs, SIM 3's fire drills).
+
+Two things to know before editing:
+
+1. **Check state is keyed on the item's `do` text**, so the string→object migration
+   preserved every existing check. Verified: all 397 hashes unchanged. Keep hashing `do`.
+2. `build.py` fails on an item missing `do`/`std`, or naming a standard that does not
+   exist. A bad key would otherwise render an item with no criteria at all.
+
+Badge colour follows the standard: `verbatim` red, `recall` amber, `note` dimmed, so the
+hard items are scannable without expanding anything. The `s-<key>` class drives it — a new
+standard gets the default grey unless you add a rule.
+
+The classifier that assigned these lives in the scratch work, not the repo; it was a
+one-time migration with ~70 hand corrections after review. Re-running it is not a thing you
+should need to do — edit `gfs_sessions.json` directly.
 
 ## Panel plates
 
@@ -146,11 +184,12 @@ python3 build/build.py --bump
 | Path | Role |
 |---|---|
 | `build/cards/{fsi,afm,ace}_cards.json` | **Card sources — edit these, not index.html** |
-| `build/cards/gfs_sessions.json` | **GFS session sources** — same rule; card refs are validated at build time |
+| `build/cards/gfs_sessions.json` | **GFS session sources** — same rule; card refs and standard keys validated at build time |
+| `build/cards/standards.json` | **The 13 completion standards** — edit here, not per item |
 | `build/cards/panel_refs.json` | **Panel plate mapping** — page → cards; refs and image presence validated at build time |
 | `build/render_panels.py` | Renders `images/panels/*.webp` from the PDF. Separate step — needs the PDF + a venv |
 | `images/panels/` | 63 rendered plates + `index.json` for the service worker. Generated, but **committed** |
-| `build/trainer.template.html` | App template; injected at the `__CARDS_DATA__`, `__GFS_DATA__` and `__PANELS_DATA__` placeholders |
+| `build/trainer.template.html` | App template; injected at the `__CARDS_DATA__`, `__GFS_DATA__`, `__PANELS_DATA__` and `__STANDARDS_DATA__` placeholders |
 | `build/build.py` | Merges sources → `index.html`, `flashcards_data.json`, Anki deck. `--bump` increments `CACHE_VERSION` |
 | `build/generate_{afm,ace}_cards.py` | The scripts that authored those card sets; keep for provenance and value citations |
 | `index.html` | **Generated. Never hand-edit** — the next build overwrites it |

@@ -21,7 +21,7 @@ Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs 
 Five tabs:
 
 - **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards, and a GFS button that jumps to that day's simulator session
-- **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
+- **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Every item carries a completion standard — what your partner watches for, and what advances you to the next item — so the list is a set of gates, not a to-do list. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
 - **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus FSI-deck, AFM-only, ACE-only, mock oral and whole-deck scopes — each with a pass standard and attempt history
 - **Reference** — all 198 cards, searchable
@@ -56,7 +56,7 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 
 ## Rebuilding
 
-Card sources and the GFS session plans live in `build/cards/`. Edit those, never `index.html` (it is generated). The build fails if a GFS block references a card id that doesn't exist.
+Card sources, the GFS session plans and the completion standards live in `build/cards/`. Edit those, never `index.html` (it is generated). The build fails if a GFS block references a card id that doesn't exist, if an item names an unknown standard, or if a panel plate's image is missing.
 
 ```bash
 python3 build/build.py --bump
