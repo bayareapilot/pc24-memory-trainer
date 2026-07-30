@@ -1,8 +1,10 @@
 # PC-24 Memory Trainer
 
-A flashcard trainer and study schedule for the **Pilatus PC-24** — memory items, limitations, and aircraft general knowledge, built from the FlightSafety International PC-24 Memory Flash Cards (Rev 1.0, Mar 2026).
+A flashcard trainer and study schedule for the **Pilatus PC-24** — memory items, limitations, and aircraft general knowledge.
 
-**87 cards:** 21 Emergency (E-1–E-21) · 57 Limitations (L-1–L-57) · 9 Aircraft General (AGI-1–AGI-9)
+**152 cards.** From the FlightSafety PC-24 Memory Flash Cards (Rev 1.0, Mar 2026): 21 Emergency (E-1–E-21) · 57 Limitations (L-1–L-57) · 9 Aircraft General (AGI-1–AGI-9). From the Pilatus PC-24 EASA AFM (Report 02371, Issue 003 Rev 08): 65 AFM Extended (AFM-1–AFM-65).
+
+Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
 ## Use it
 
@@ -26,12 +28,15 @@ Three kinds of material, three standards of recall:
 | Limitations | L-1–L-57 | Exact number and exact unit, every time |
 | Emergency memory items | E-1–E-15, E-20 | Verbatim, in order, out loud |
 | Flows & general | E-16–E-19, E-21, AGI-1–9 | Fluent — sequence and meaning correct |
+| AFM Extended | AFM-1–AFM-65 | Working knowledge; not part of the memory-item standard |
+
+The AFM marks true memory items with a solid red box. There are exactly **16** in the manual and all 16 are already covered by the FSI Emergency cards — the AFM Extended set exists because the gap was in *limitations*, not memory items. E-16 to E-19 and E-21 are normal-procedure flows, not memory items.
 
 ## Files
 
 | Path | What it is |
 |---|---|
-| `index.html` | The trainer — one self-contained file, all 87 cards inline |
+| `index.html` | The trainer — one self-contained file, all 152 cards inline |
 | `PC-24 Memory Items Study Program.md` | Written study program: schedule, standards, memory anchors |
 | `PC24_FSI_Flashcards_Anki.txt` | Anki import (tab-separated, tagged `PC24::Section`) |
 | `flashcards_data.json` | Structured card data — the source for rebuilding `index.html` |

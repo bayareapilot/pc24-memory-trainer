@@ -1,8 +1,9 @@
 # PC-24 Memory Items & Limitations Study Program
 
-**Source:** FlightSafety International PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026)
-**Scope:** All 87 content cards — 21 Emergency (E-1–E-21), 57 Limitations (L-1–L-57), 9 Aircraft General (AGI-1–AGI-9)
-**Program length:** 21 days core + daily maintenance until class start (7-day compressed track included)
+**Sources:** FlightSafety International PC-24 Memory Flash Cards, Rev 1.0 (Mar 2026) · Pilatus PC-24 EASA AFM Report 02371, Issue 003 Rev 08 (01 May 2025)
+**Aircraft:** MSN 631 — all serial-dependent values resolved to the **MSN 501-up** column
+**Scope:** 152 cards — 87 FSI (21 Emergency E-1–E-21, 57 Limitations L-1–L-57, 9 Aircraft General AGI-1–AGI-9) plus 65 AFM Extended (AFM-1–AFM-65)
+**Program length:** 7-day compressed track (active) + AFM Extended topic blocks, drilled any time
 
 ---
 
@@ -185,8 +186,59 @@ From Aug 5 on: 10 minutes of due-card review every evening for the rest of class
 
 ---
 
+## AFM Extended — 65 additional cards (AFM-1 to AFM-65)
+
+The AFM was cross-checked against the FSI deck. Two findings shaped this set:
+
+**1. The FSI deck is complete on memory items.** The AFM marks true memory items with a solid red box around the challenge-and-response items. There are exactly **16** of them in the whole manual, and all 16 are already in your FSI Emergency cards:
+
+| AFM procedure | FSI card |
+|---|---|
+| 3-BRKS-01 All Brakes Fail | E-1 |
+| 3-ECS-01 Cabin Altitude | E-2 |
+| 3-ECS-02 Cabin Pressure | E-3 |
+| 3-ENG-02 L/R ENG Fail | E-4 |
+| 3-FIRE-01 L/R Engine Fire | E-5 |
+| 3A-NAA-08 Engine Hung Start | E-6 |
+| 3A-NAA-07 Engine Hot Start | E-7 |
+| 3A-NAA-18 SWPS Inadvertent Pusher | E-8 |
+| 3-NAE-05 Engine Fire On-ground / Tail Pipe | E-9 |
+| 3-NAE-06 Engine Fire or Failure During Takeoff | E-10 |
+| 3-NAE-19 Rejected Takeoff | E-11 |
+| 3-NAE-02 Emergency Descent | E-12 |
+| 3-SMOKE-01 Smoke, Fire or Fumes | E-13 |
+| 3-EVAC-01 Emergency Evacuation | E-14 |
+| TCAS Resolution Advisory | E-15 |
+| 3A-NAA-01 AFCS Abnormal Disconnect | E-20 |
+
+The other five FSI Emergency cards (E-16 to E-19, E-21) are engine-start and climb **flows** from Section 4 Normal Procedures, not memory items. Worth knowing which is which: instructors expect the 16 verbatim, and the 5 flows fluently.
+
+Note that **3-ENG-01 (dual engine failure) has no memory box** — its "Airspeed — As Required" step is deliberately not a memory item. Its 150 KIAS flaps-up glide speed is on card AFM-19 anyway, because you need that number.
+
+**2. The real gap was limitations, not memory items.** AFM Section 2 carries far more than the 57 FSI limitation cards. The 65 new cards cover, by topic:
+
+| Topic | Cards | Highlights |
+|---|---|---|
+| MSN 631 | 2 | Your weight and CG limits, no serial ambiguity |
+| Airspeeds | 6 | **VO, VO RUDDER, VMCG, VMC, VMCL** — entirely absent from the FSI deck |
+| AFCS | 4 | AP min 400 ft AGL / YD min 50 ft AGL after takeoff; AT override 3 sec; TCAS inhibit 1,100/900 ft |
+| Powerplant | 11 | Full engine limit table, transients, oil pressure by N2, QPM's 7-gate list |
+| Icing | 9 | WAI inhibits, flaps 15 in active icing, severe-icing visual cues |
+| Flight controls | 3 | Airbrake stowed by 50 ft AGL; no flaps above 20,000 ft |
+| Brakes & gear | 2 | 120-minute brake cooling rule |
+| Fuel | 3 | Unusable quantity, defuel pressure, full grade list |
+| Oxygen | 2 | Saver not below 25,000 ft; pax masks max 40,000 ft cabin |
+| Cabin & loading | 4 | 66 lb baggage/cargo split, 1,800 lb straps, seating by config |
+| Electrical | 2 | 32 V charge ceiling; CB reset rules |
+| Emergency knowledge | 4 | Airstart ≤150 KIAS on battery; second extinguisher green "2" |
+| General ops | 13 | Land ASAP vs practical, RVSM, FMS approach conditions, wet runway |
+
+**How to use them:** these are *not* required for your checkride memory-item standard, so they don't touch the 7-day schedule. Drill them by topic from the Program tab's Extended section once the FSI deck is solid — or pull a topic the night after class covers that system. Exam has an "AFM Extended only" scope and an "Everything" scope (152 cards).
+
+Every value was verified against the AFM: 258 numeric tokens checked for presence and 55 label-value pairings confirmed in context.
+
 ## What this program does *not* cover
 
-This deck is the FSI memory-item set only. It does not teach systems knowledge, non-memory QRH procedures, performance, or avionics operation. Pair it with the FSI PC-24 Pilot Training Manual and QRH review during the same weeks — the limitations here will anchor much faster once each number is attached to the system it protects.
+Systems theory, non-memory QRH procedures, performance charts, and avionics operation. Pair it with the FSI PC-24 Pilot Training Manual and QRH review — the limitations anchor much faster once each number is attached to the system it protects.
 
-*All values transcribed from the FSI card set Rev 1.0. For training purposes only — the AFM, current revisions, and applicable supplements remain the authoritative source.*
+*Values transcribed from the FSI card set Rev 1.0 and AFM Report 02371 Issue 003 Rev 08. For training purposes only — the AFM, current revisions, Service Bulletins, and applicable AFM Supplements remain the authoritative source. Card content is FlightSafety International and Pilatus material, reproduced with instructor permission for training use.*
