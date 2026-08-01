@@ -14,7 +14,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.3.0**, service worker **CACHE_VERSION v7**
+- App version **v2.4.0**, service worker **CACHE_VERSION v8**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -79,6 +79,39 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
+
+## Card divisions
+
+Added 2026-07-30. `DIVISIONS` in the template splits the deck by provenance:
+
+- **FSI Memory Flash Cards (87)** — what FSI actually issued, subdivided into
+  **memory items (16)**, **normal procedure flows (5)**, **limitations (57)** and
+  **aircraft general (9)**.
+- **Supplementary (111)** — AFM Extended (65) and ACE Avionics (46), built here.
+
+The memory-item / flow split inside the E- range is the one that matters: the AFM
+red-boxes exactly 16 procedures (E-1..E-15 and E-20), and only those carry the verbatim
+standard. E-16..E-19 and E-21 share the E- numbering because that is how FSI issued them,
+not because they are memory items — see the E-16..E-21 note under Card sections.
+`AGI-1..AGI-7` stay in the issued deck even though the content is ACE-derived, for the
+same reason: FSI issued them there.
+
+Surfaces in three places: Drill scope (optgrouped), Exam scope (each subdivision has its
+own pass standard — 100% for memory items and limitations, 90% for flows and general),
+and Program view as two phases at the bottom. Reference groups are relabelled
+`FSI deck — …` and `Supplementary · …` so provenance is visible while browsing.
+
+Three things worth not re-deriving:
+
+1. **`DIVISIONS` must be declared before `EXAM_SCOPES`, `REF_GROUPS` and
+   `renderScopeOptions`.** `EXAM_SCOPES` spreads it at module-evaluation time, so
+   declaring it lower down throws a temporal-dead-zone error that kills the entire
+   script — the page renders the tab bar and nothing else, with no console error to
+   find. This happened once; the layout assert caught it.
+2. **Exam scope keys `fsi`, `afm` and `ace` were kept** rather than renamed, so exam
+   history recorded before the divisions existed still resolves to a label.
+3. The old Drill scope label read `Full deck (87)` — a stale count from before the AFM
+   and ACE cards existed. It now reads from `CARDS.length`.
 
 ## Completion standards
 

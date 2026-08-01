@@ -421,7 +421,7 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.3.0 (2026-07-30)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.4.0 (2026-07-30)</span></span>
   </header>
 
   <div id="update-bar" role="status">
@@ -469,11 +469,20 @@
         <option value="gate-sim3">Gate — before SIM 3: fire, smoke, evac, icing</option>
         <option value="gate-sim4">Gate — before SIM 4: decompression, controls</option>
         <option value="gate-los">Gate — before SIM 7 LOS: whole deck</option>
-        <option value="fsi">FSI deck only (87 cards)</option>
-        <option value="mock">Mock oral — 30 random from the FSI deck</option>
-        <option value="afm">AFM Extended only (65 cards)</option>
-        <option value="ace">ACE Avionics only (46 cards)</option>
-        <option value="everything">Everything — FSI + AFM + ACE (198 cards)</option>
+        <optgroup label="FSI Memory Flash Cards — the issued deck">
+          <option value="fsi-mem">Memory items only — 16, verbatim</option>
+          <option value="fsi-flow">Normal procedure flows — 5</option>
+          <option value="fsi-lim">Limitations — 57, exact</option>
+          <option value="fsi-agi">Aircraft general — 9</option>
+          <option value="fsi">Whole issued deck — 87</option>
+          <option value="mock">Mock oral — 30 random from the issued deck</option>
+        </optgroup>
+        <optgroup label="Supplementary">
+          <option value="afm">AFM Extended only — 65</option>
+          <option value="ace">ACE Avionics only — 46</option>
+          <option value="supp">Both supplementary sets — 111</option>
+          <option value="everything">Everything — 198</option>
+        </optgroup>
       </select>
       <button class="btn primary" id="exam-start">Begin</button>
     </div>
@@ -517,6 +526,51 @@ const ACE_TOPICS = topicsOf('ACE');
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const range = (p, a, b) => Array.from({length: b - a + 1}, (_, i) => `${p}-${a + i}`);
 const uniq = a => [...new Set(a)];
+
+/* ---------- divisions ----------
+   The 87 cards FSI actually issued as the PC-24 Memory Flash Cards deck, kept
+   distinct from the 111 supplementary cards built here from the AFM and the ACE
+   guide. Inside the issued deck, the 16 true memory items are separated from the
+   5 normal-procedure flows: the AFM red-boxes exactly 16, and only those carry
+   the verbatim standard. E-16..E-19 and E-21 sit in the same E- numbering because
+   that is how FSI issued them, not because they are memory items.
+   AGI-1..AGI-7 are ACE-derived content that FSI issued in this deck, so they
+   belong here regardless of where the facts came from. */
+const MEMORY_ITEM_IDS = [...range('E', 1, 15), 'E-20'];
+const FLOW_IDS = [...range('E', 16, 19), 'E-21'];
+const isFsiIssued = id => ['E', 'L', 'AGI'].includes(sec(id));
+
+const DIVISIONS = [
+  { key: 'fsi', label: 'FSI Memory Flash Cards', issued: true,
+    note: 'The deck FSI issued — Rev 1.0, Mar 2026',
+    ids: () => CARDS.filter(c => isFsiIssued(c.id)).map(c => c.id),
+    groups: [
+      { key: 'fsi-mem', label: 'Memory items', pass: 100,
+        note: 'Verbatim, in order, out loud — the 16 the AFM red-boxes',
+        ids: () => MEMORY_ITEM_IDS },
+      { key: 'fsi-flow', label: 'Normal procedure flows', pass: 90,
+        note: 'Fluent — sequence and confirmations correct',
+        ids: () => FLOW_IDS },
+      { key: 'fsi-lim', label: 'Limitations', pass: 100,
+        note: 'Exact number, exact unit',
+        ids: () => CARDS.filter(c => sec(c.id) === 'L').map(c => c.id) },
+      { key: 'fsi-agi', label: 'Aircraft general', pass: 90,
+        note: 'Fluent',
+        ids: () => CARDS.filter(c => sec(c.id) === 'AGI').map(c => c.id) },
+    ] },
+  { key: 'supp', label: 'Supplementary — built from the source manuals', issued: false,
+    note: 'Not part of the issued deck',
+    ids: () => CARDS.filter(c => !isFsiIssued(c.id)).map(c => c.id),
+    groups: [
+      { key: 'afm', label: 'AFM Extended', pass: 90, note: 'Working knowledge',
+        ids: () => CARDS.filter(c => sec(c.id) === 'AFM').map(c => c.id) },
+      { key: 'ace', label: 'ACE Avionics', pass: 90, note: 'Working knowledge',
+        ids: () => CARDS.filter(c => sec(c.id) === 'ACE').map(c => c.id) },
+    ] },
+];
+const DIV_GROUPS = Object.fromEntries(
+  DIVISIONS.flatMap(d => d.groups).map(g => [g.key, g]));
+
 
 /* Schedule is keyed to FSI COURSE DAYS, not calendar dates — FlightSafety
    Pilatus PC-24 Pilot Client Guide Rev 1.0, Pilot Initial (FAA): 9 ground
@@ -620,11 +674,13 @@ const GATES = [
 
 const EXAM_SCOPES = {
   ...Object.fromEntries(GATES.map(g => [g.key, { ids: g.ids, pass: g.pass }])),
-  fsi: { ids: () => CARDS.filter(c => ['E','L','AGI'].includes(sec(c.id))).map(c => c.id), pass: 100 },
-  mock: { ids: () => shuffle(CARDS.filter(c => ['E','L','AGI'].includes(sec(c.id)))
+  // Division and group scopes. Keys match the historical fsi/afm/ace values, so
+  // exam history recorded before the divisions existed still resolves.
+  ...Object.fromEntries(DIVISIONS.map(d => [d.key, { ids: d.ids, pass: d.issued ? 100 : 90 }])),
+  ...Object.fromEntries(DIVISIONS.flatMap(d => d.groups)
+     .map(g => [g.key, { ids: g.ids, pass: g.pass }])),
+  mock: { ids: () => shuffle(CARDS.filter(c => isFsiIssued(c.id))
                              .map(c => c.id)).slice(0, 30), pass: 90 },
-  afm: { ids: () => CARDS.filter(c => sec(c.id) === 'AFM').map(c => c.id), pass: 90 },
-  ace: { ids: () => CARDS.filter(c => sec(c.id) === 'ACE').map(c => c.id), pass: 90 },
   everything: { ids: () => CARDS.map(c => c.id), pass: 95 },
 };
 
@@ -639,12 +695,13 @@ DAYS.push(...ACE_TOPICS.map(t => ({ d: 'ACE', phase: 5, title: t,
   ids: CARDS.filter(c => c.topic === t && sec(c.id) === 'ACE').map(c => c.id),
   note: 'ACE Pilot\'s Guide Rev 2' })));
 const REF_GROUPS = [
-  ['Emergency — memory items & flows', CARDS.filter(c => sec(c.id) === 'E')],
-  ['Limitations', CARDS.filter(c => sec(c.id) === 'L')],
-  ['Aircraft General', CARDS.filter(c => sec(c.id) === 'AGI')],
-  ...AFM_TOPICS.map(t => [`AFM Extended — ${t}`,
+  ['FSI deck — memory items (verbatim)', CARDS.filter(c => MEMORY_ITEM_IDS.includes(c.id))],
+  ['FSI deck — normal procedure flows', CARDS.filter(c => FLOW_IDS.includes(c.id))],
+  ['FSI deck — limitations', CARDS.filter(c => sec(c.id) === 'L')],
+  ['FSI deck — aircraft general', CARDS.filter(c => sec(c.id) === 'AGI')],
+  ...AFM_TOPICS.map(t => [`Supplementary · AFM Extended — ${t}`,
      CARDS.filter(c => c.topic === t && sec(c.id) === 'AFM')]),
-  ...ACE_TOPICS.map(t => [`ACE Avionics — ${t}`,
+  ...ACE_TOPICS.map(t => [`Supplementary · ACE Avionics — ${t}`,
      CARDS.filter(c => c.topic === t && sec(c.id) === 'ACE')]),
 ];
 const byId = Object.fromEntries(CARDS.map(c => [c.id, c]));
@@ -709,6 +766,29 @@ function renderProgram() {
     </div>`;
   }
   html += '</div>';
+  // Where each card came from: the deck FSI issued, versus what was built here.
+  for (const d of DIVISIONS) {
+    html += `<div class="phase"><h3>${d.label}</h3>`;
+    const all = d.ids();
+    html += `<div class="dayrow${d.issued ? ' checkpoint' : ''}">
+      <span class="d">${d.issued ? 'ISSUED' : 'EXTRA'}</span>
+      <span class="t">${d.issued ? 'Everything FSI handed you' : 'Built here from the AFM and ACE guide'}<small>${esc(d.note)}</small></span>
+      <button class="btn" data-drill='${JSON.stringify(all)}'>Drill</button>
+      <button class="btn primary" data-exam="${d.key}">Run exam</button>
+      <span class="chip">${all.length} cards · ${all.filter(isLearned).length} learned</span>
+    </div>`;
+    for (const g of d.groups) {
+      const ids = g.ids();
+      html += `<div class="dayrow">
+        <span class="d">${ids.length}</span>
+        <span class="t">${esc(g.label)}<small>${esc(g.note)} · ${g.pass}% standard</small></span>
+        <button class="btn" data-drill='${JSON.stringify(ids)}'>Drill</button>
+        <button class="btn" data-exam="${g.key}">Exam</button>
+        <span class="chip ${sec(ids[0])}">${ids.filter(isLearned).length} learned</span>
+      </div>`;
+    }
+    html += '</div>';
+  }
   html += `<div class="phase"><h3>Every evening</h3>
     <div class="dayrow"><span class="d">Daily</span>
     <span class="t">Drill today's ground-school block, then clear anything due<small>Cards drilled the same evening class covers that system stick far better than cards drilled cold</small></span>
@@ -946,16 +1026,25 @@ gfsPick.addEventListener('change', () => {
 /* ---------- drill view ---------- */
 const scopeSel = document.getElementById('drill-scope');
 function renderScopeOptions() {
-  let html = '<option value="all">Full deck (87)</option><option value="due">Due today</option>';
-  for (const s of ['E','L','AGI','AFM','ACE']) html += `<option value="sec:${s}">${SECTIONS[s]}</option>`;
+  let html = `<option value="all">Full deck (${CARDS.length})</option><option value="due">Due today</option>`;
+  // Divisions first: the issued FSI deck and its four parts, then the supplementary sets.
+  for (const d of DIVISIONS) {
+    html += `<optgroup label="${d.label}">`;
+    html += `<option value="div:${d.key}">Whole ${d.issued ? 'issued deck' : 'supplementary set'} (${d.ids().length})</option>`;
+    for (const g of d.groups) html += `<option value="grp:${g.key}">${g.label} (${g.ids().length})</option>`;
+    html += '</optgroup>';
+  }
+  html += '<optgroup label="Course days and topic blocks">';
   // Skip the one whole-deck block; every other day/topic block gets its own option.
   DAYS.forEach((day, i) => { if (day.ids && day.ids.length < CARDS.length) html += `<option value="day:${i}">${day.d} — ${day.title}</option>`; });
-  scopeSel.innerHTML = html;
+  scopeSel.innerHTML = html + '</optgroup>';
 }
 function scopeIds(v) {
   if (v === 'all') return CARDS.map(c => c.id);
   if (v === 'due') return CARDS.map(c => c.id).filter(isDue);
   if (v.startsWith('sec:')) return CARDS.filter(c => sec(c.id) === v.slice(4)).map(c => c.id);
+  if (v.startsWith('div:')) return DIVISIONS.find(d => d.key === v.slice(4)).ids();
+  if (v.startsWith('grp:')) return DIV_GROUPS[v.slice(4)].ids();
   if (v.startsWith('day:')) return DAYS[+v.slice(4)].ids;
   return [];
 }
@@ -1117,7 +1206,10 @@ function renderExamHistory() {
   if (!state.exams.length) { el.innerHTML = ''; return; }
   const names = { 'gate-normal': 'Gate · GND 6 normal flows', 'gate-emer': 'Gate · GND 8 emergency',
     'gate-written': 'Gate · written test', 'gate-sim3': 'Gate · SIM 3', 'gate-sim4': 'Gate · SIM 4',
-    'gate-los': 'Gate · SIM 7 LOS', fsi: 'FSI deck', mock: 'Mock oral',
+    'gate-los': 'Gate · SIM 7 LOS', fsi: 'FSI deck — all 87', mock: 'Mock oral',
+    'fsi-mem': 'FSI · memory items', 'fsi-flow': 'FSI · normal flows',
+    'fsi-lim': 'FSI · limitations', 'fsi-agi': 'FSI · aircraft general',
+    supp: 'Supplementary — AFM + ACE',
     afm: 'AFM Extended', ace: 'ACE Avionics', everything: 'Everything' };
   el.innerHTML = `<h3 style="font-family:'Avenir Next Condensed','Helvetica Neue','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem">Attempt history</h3>
     <table><thead><tr><th>Date</th><th>Exam</th><th>Cards</th><th>Score</th><th>Result</th></tr></thead><tbody>

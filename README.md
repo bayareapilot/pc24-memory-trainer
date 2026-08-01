@@ -12,6 +12,8 @@ A flashcard trainer and study schedule for the **Pilatus PC-24** — memory item
 
 Plus **63 annotated flight-deck plates** from the FlightSafety PILATUS PC-24 Pilot Training Manual, Rev 0.7 (Apr 2026), attached to the GFS session blocks whose switches they show.
 
+The app keeps the issued deck distinct from the supplementary material. **FSI Memory Flash Cards (87)** subdivides into memory items (16), normal procedure flows (5), limitations (57) and aircraft general (9); each is separately drillable and examinable with its own pass standard. **Supplementary (111)** is the AFM and ACE material built here.
+
 Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
 ## Use it
@@ -22,8 +24,8 @@ Five tabs:
 
 - **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards, and a GFS button that jumps to that day's simulator session
 - **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Every item carries a completion standard — what your partner watches for, and what advances you to the next item — so the list is a set of gates, not a to-do list. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
-- **Drill** — flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
-- **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus FSI-deck, AFM-only, ACE-only, mock oral and whole-deck scopes — each with a pass standard and attempt history
+- **Drill** — pick any scope: the whole issued FSI deck, one of its four subdivisions, a supplementary set, or a single course day. Flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
+- **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus each subdivision of the issued deck on its own standard — memory items at 100% verbatim, limitations at 100% exact, flows and aircraft general at 90% — and mock oral, supplementary and whole-deck scopes. Every attempt is logged with its result
 - **Reference** — all 198 cards, searchable
 
 Progress is stored in your browser's `localStorage`, so it stays on the device and never leaves it. Each install keeps its own record — drill in one place so your due-card schedule doesn't fragment.
