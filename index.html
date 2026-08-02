@@ -260,6 +260,74 @@
   .gfs-cards .cardchip.learned { color: var(--good); border-color: var(--good); }
   .gfs-cards button { margin-left: auto; }
 
+  /* ---- global search ---- */
+  header.app #search-open {
+    margin-left: auto; appearance: none; cursor: pointer; flex: none;
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 14px;
+    font: 600 .84rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  header.app #search-open span { color: var(--accent); font-size: 1.05rem; }
+  header.app #search-open:hover { border-color: var(--accent); }
+  header.app #search-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  #search { display: none; position: fixed; inset: 0; z-index: 70; background: var(--ground); overflow: auto; -webkit-overflow-scrolling: touch; }
+  #search.show { display: block; }
+  #search .sbar {
+    position: sticky; top: 0; z-index: 2; display: flex; gap: 9px; align-items: center;
+    padding: calc(12px + env(safe-area-inset-top)) 14px 12px;
+    background: var(--ground); border-bottom: 1px solid var(--line);
+  }
+  #search input {
+    flex: 1 1 auto; min-width: 0; background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 1rem;
+  }
+  #search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  #search .sbar button {
+    appearance: none; cursor: pointer; flex: none; background: transparent; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 8px; padding: 10px 13px;
+    font: 700 .82rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .sfilters { display: flex; flex-wrap: wrap; gap: 6px; padding: 11px 14px 0; max-width: 940px; margin: 0 auto; }
+  .sfilters button {
+    appearance: none; cursor: pointer; background: var(--panel); color: var(--muted);
+    border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px;
+    font: 700 .72rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .sfilters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  #search-results { padding: 12px 14px calc(40px + env(safe-area-inset-bottom)); max-width: 940px; margin: 0 auto; }
+  #search-results > h4 {
+    font: 700 .7rem/1 -apple-system, BlinkMacSystemFont, sans-serif; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--muted); margin: 18px 0 8px;
+  }
+  #search-results > h4:first-child { margin-top: 4px; }
+  .hit {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 11px 13px; margin-bottom: 7px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .hit .body { flex: 1 1 auto; min-width: 0; }
+  .hit .cid { font: 700 .7rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); letter-spacing: .04em; }
+  .hit .ttl { font-size: .92rem; font-weight: 600; margin: 2px 0; overflow-wrap: anywhere; }
+  .hit .snip { font-size: .82rem; color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
+  .hit .where { font: 700 .66rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); letter-spacing: .04em; }
+  .hit .acts { display: flex; flex-direction: column; gap: 6px; flex: none; }
+  .hit .acts button {
+    appearance: none; cursor: pointer; background: transparent; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 7px; padding: 7px 11px; white-space: nowrap;
+    font: 700 .74rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .hit .acts button:hover { border-color: var(--accent); color: var(--accent); }
+  .hit img { width: 84px; flex: none; border-radius: 6px; background: #fff; aspect-ratio: 1584/1224; object-fit: cover; }
+  #search mark { background: var(--accent); color: var(--accent-ink); border-radius: 3px; padding: 0 2px; }
+  .smsg { color: var(--muted); font-size: .9rem; padding: 22px 2px; line-height: 1.7; }
+  .smsg kbd {
+    font: 700 .78rem/1 ui-monospace, Menlo, monospace; background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px;
+  }
+  /* Briefly ring a GFS block that search jumped to, so the target is obvious. */
+  @keyframes flashring { from { box-shadow: 0 0 0 3px var(--accent); } to { box-shadow: 0 0 0 3px transparent; } }
+  .gfs-block.flash { animation: flashring 1.6s ease-out; }
+
   /* ---- completion standards ---- */
   .gfs-items li { margin: 0 0 6px; }
   details.std { margin: 1px 0 0 30px; }
@@ -421,7 +489,10 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.4.0 (2026-07-30)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.5.0 (2026-07-30)</span></span>
+    <button type="button" id="search-open" aria-label="Search everything">
+      <span aria-hidden="true">⌕</span> Search
+    </button>
   </header>
 
   <div id="update-bar" role="status">
@@ -492,13 +563,23 @@
 
   <!-- REFERENCE -->
   <section class="view" id="view-reference">
-    <input class="search" id="ref-search" type="search" placeholder="Search cards — try &quot;VMO&quot;, &quot;battery&quot;, &quot;fire&quot;…" aria-label="Search cards">
+    <input class="search" id="ref-search" type="search" placeholder="Filter these 198 cards — or use Search above to search everything" aria-label="Filter cards">
     <div id="ref-list"></div>
   </section>
 
   <footer>For training purposes only, and not for sale. The AFM, current revisions, and applicable
   supplements are authoritative.<br>Panel illustrations from the Pilatus PC-24 Pilot Training Manual,
   © FlightSafety International, reproduced for personal training use by permission.</footer>
+</div>
+
+<div id="search" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="sbar">
+    <input id="search-input" type="search" autocomplete="off" autocapitalize="off" spellcheck="false"
+           placeholder="Search cards, GFS items, panels…" aria-label="Search query">
+    <button type="button" id="search-close">Close</button>
+  </div>
+  <div class="sfilters" id="search-filters"></div>
+  <div id="search-results"></div>
 </div>
 
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Panel illustration">
@@ -1236,6 +1317,150 @@ function renderReference(filter) {
   el.innerHTML = html || '<p style="color:var(--muted)">No cards match.</p>';
 }
 document.getElementById('ref-search').addEventListener('input', e => renderReference(e.target.value));
+
+/* ---------- global search ----------
+   Reachable from every tab, because the Reference tab's filter was effectively
+   invisible: it only exists once you are already in that tab, and it only
+   narrows that one list. This searches cards, GFS items and panel plates, and
+   every result does something — drill the card, jump to the block, open the plate. */
+const SEARCH_INDEX = [
+  ...CARDS.map(c => ({
+    kind: 'card', id: c.id, title: c.title,
+    where: SECTIONS[sec(c.id)],
+    hay: `${c.id} ${c.title} ${c.front} ${c.back} ${c.reference}`.toLowerCase(),
+    text: `${c.front}\n${c.back}`, card: c,
+  })),
+  ...GFS.flatMap((s, si) => s.blocks.flatMap((b, bi) => b.items.map(it => ({
+    kind: 'gfs', id: `${s.key}:${bi}`, title: it.do,
+    where: `${s.day} · ${b.title}`,
+    hay: `${s.day} ${s.title} ${b.title} ${it.do} ${it.crit || ''} ${STANDARDS[it.std].label}`.toLowerCase(),
+    text: `${STANDARDS[it.std].label} — ${STANDARDS[it.std].gate}`, si, bi,
+  })))),
+  ...PANELS.map(p => ({
+    kind: 'panel', id: String(p.page), title: p.title,
+    where: `PTM ${p.folio} · ${p.chapter}`,
+    hay: `${p.folio} ${p.chapter} ${p.title} ${p.cards.join(' ')}`.toLowerCase(),
+    text: p.cards.join(' · '), panel: p,
+  })),
+];
+const KIND_LABEL = { card: 'Cards', gfs: 'GFS items', panel: 'Panel plates' };
+let searchKind = 'all';
+
+const sEl = document.getElementById('search');
+const sInput = document.getElementById('search-input');
+const sResults = document.getElementById('search-results');
+let sReturn = null;
+
+function terms(q) { return q.toLowerCase().split(/\s+/).filter(Boolean); }
+/* Escape first, then wrap matches, so card text containing < or & stays safe.
+   Marks are staged as control characters that cannot occur in the source text,
+   then swapped for tags at the end \u2014 wrapping in real tags mid-loop would let a
+   later term match inside "<mark>" and corrupt the markup. */
+const MARK_O = '\u0001', MARK_C = '\u0002';
+function hl(text, ts) {
+  let out = esc(text);
+  for (const t of ts) {
+    const rx = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    out = out.replace(rx, MARK_O + '$1' + MARK_C);
+  }
+  return out.split(MARK_O).join('<mark>').split(MARK_C).join('</mark>');
+}
+// Window the body text around the first hit so long card backs stay scannable.
+function snippet(text, ts) {
+  const flat = text.replace(/\s+/g, ' ').trim();
+  const low = flat.toLowerCase();
+  let at = -1;
+  for (const t of ts) { const i = low.indexOf(t); if (i >= 0 && (at < 0 || i < at)) at = i; }
+  if (at < 0) return flat.slice(0, 130) + (flat.length > 130 ? '…' : '');
+  const from = Math.max(0, at - 45);
+  const to = Math.min(flat.length, at + 105);
+  return (from ? '…' : '') + flat.slice(from, to) + (to < flat.length ? '…' : '');
+}
+
+function runSearch() {
+  const q = sInput.value.trim();
+  const ts = terms(q);
+  if (!ts.length) {
+    sResults.innerHTML = `<p class="smsg">Search every card, every GFS item and every panel plate.<br>
+      Try <kbd>VMO</kbd>, <kbd>QPM</kbd>, <kbd>mask</kbd>, <kbd>E-16</kbd>, <kbd>start</kbd> or <kbd>NAI</kbd>.<br>
+      All terms must match. Press <kbd>Esc</kbd> to close.</p>`;
+    return;
+  }
+  const hits = SEARCH_INDEX.filter(r => (searchKind === 'all' || r.kind === searchKind)
+                                        && ts.every(t => r.hay.includes(t)));
+  if (!hits.length) {
+    sResults.innerHTML = `<p class="smsg">Nothing matches <b>${esc(q)}</b>${searchKind === 'all' ? '' : ' in ' + KIND_LABEL[searchKind]}.</p>`;
+    return;
+  }
+  let html = '';
+  for (const kind of ['card', 'gfs', 'panel']) {
+    const group = hits.filter(h => h.kind === kind);
+    if (!group.length) continue;
+    html += `<h4>${KIND_LABEL[kind]} (${group.length})</h4>`;
+    for (const h of group.slice(0, 60)) {
+      const act = kind === 'card' ? `<button data-drill1="${h.id}">Drill</button>`
+                : kind === 'gfs' ? `<button data-jump="${h.si}:${h.bi}">Open</button>`
+                : `<button data-plate2="${h.id}">View</button>`;
+      html += `<div class="hit">
+        ${kind === 'panel' ? `<img src="${h.panel.img}" alt="" loading="lazy" decoding="async">` : ''}
+        <div class="body">
+          <div class="${kind === 'card' ? 'cid' : 'where'}">${kind === 'card' ? h.id + ' · ' + esc(h.where) : esc(h.where)}</div>
+          <div class="ttl">${hl(h.title, ts)}</div>
+          <div class="snip">${hl(snippet(h.text, ts), ts)}</div>
+        </div>
+        <div class="acts">${act}</div>
+      </div>`;
+    }
+    if (group.length > 60) html += `<p class="smsg">${group.length - 60} more — add another word to narrow it.</p>`;
+  }
+  sResults.innerHTML = html;
+  sResults.querySelectorAll('[data-drill1]').forEach(b => b.addEventListener('click', () => {
+    closeSearch(); startDrill([b.dataset.drill1], false); show('drill');
+  }));
+  sResults.querySelectorAll('[data-plate2]').forEach(b => b.addEventListener('click', () => {
+    closeSearch(); openPlate(+b.dataset.plate2);
+  }));
+  sResults.querySelectorAll('[data-jump]').forEach(b => b.addEventListener('click', () => {
+    const [si, bi] = b.dataset.jump.split(':').map(Number);
+    closeSearch();
+    gfsPick.value = String(si); state.gfsPick = si; save();
+    renderGfs(); show('gfs');
+    const blk = document.querySelector(`#gfs-area .gfs-block[data-block="${bi}"]`);
+    if (blk) { blk.scrollIntoView({ block: 'center' }); blk.classList.add('flash'); setTimeout(() => blk.classList.remove('flash'), 1700); }
+  }));
+}
+
+function renderSearchFilters() {
+  const el = document.getElementById('search-filters');
+  const kinds = [['all', 'Everything'], ['card', 'Cards'], ['gfs', 'GFS items'], ['panel', 'Panels']];
+  el.innerHTML = kinds.map(([k, label]) =>
+    `<button type="button" data-kind="${k}" aria-pressed="${k === searchKind}">${label}</button>`).join('');
+  el.querySelectorAll('[data-kind]').forEach(b => b.addEventListener('click', () => {
+    searchKind = b.dataset.kind; renderSearchFilters(); runSearch();
+  }));
+}
+
+function openSearch() {
+  sReturn = document.activeElement;
+  sEl.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  renderSearchFilters(); runSearch();
+  sInput.focus(); sInput.select();
+}
+function closeSearch() {
+  sEl.classList.remove('show');
+  document.body.style.overflow = '';
+  if (sReturn && sReturn.focus) sReturn.focus();
+}
+document.getElementById('search-open').addEventListener('click', openSearch);
+document.getElementById('search-close').addEventListener('click', closeSearch);
+sInput.addEventListener('input', runSearch);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && sEl.classList.contains('show')) { closeSearch(); return; }
+  // "/" opens search from anywhere, unless you are already typing in a field.
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+  if (e.key === '/' && !typing && !sEl.classList.contains('show')) { e.preventDefault(); openSearch(); }
+});
 
 /* ---------- boot ---------- */
 renderProgram();

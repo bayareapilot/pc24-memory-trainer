@@ -14,7 +14,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.4.0**, service worker **CACHE_VERSION v8**
+- App version **v2.5.0**, service worker **CACHE_VERSION v9**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -79,6 +79,33 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
+
+## Global search
+
+Added 2026-07-30, because Derek asked for a card search that already existed and he had
+never found it. The Reference tab's box only appears once you are in that tab and only
+narrows that one list, so it was effectively invisible. The fix was discoverability, not
+new matching.
+
+A **Search** button sits in the header on every tab (plus `/` on a keyboard). It opens a
+full-screen overlay over one flat index of **658 entries** — 198 cards, 397 GFS items, 63
+panel plates — built once at load from the same data the views use, so it cannot drift.
+
+Every result does something rather than just reporting a match: a card offers **Drill**,
+a GFS item **Open** (switches session, scrolls to the block, flashes it), a plate **View**
+(opens the lightbox). Matching is multi-term AND over id, title, body, reference, block
+and session titles, standard labels and panel chapters.
+
+Three implementation notes:
+
+1. **Highlighting stages marks as `\u0001`/`\u0002`, then swaps them for tags last.**
+   Escape first, wrap after. Wrapping in real `<mark>` tags inside the per-term loop lets
+   a later term match the letters of an earlier tag and corrupt the markup. Do not
+   "simplify" this back to a direct tag replace.
+2. **Results cap at 60 per group with a visible "N more" line.** A one-letter query
+   matches most of the index; silent truncation would read as "that is all there is".
+3. The Reference filter was left in place but relabelled to "Filter these 198 cards" so
+   the two boxes are not mistaken for each other.
 
 ## Card divisions
 

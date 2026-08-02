@@ -10,7 +10,7 @@
  * the old cache is deleted on activate, so a stale card set cannot survive.
  */
 
-const CACHE_VERSION = 'v8';
+const CACHE_VERSION = 'v9';
 const CACHE_NAME = `pc24-trainer-${CACHE_VERSION}`;
 
 const PRECACHE = [

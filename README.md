@@ -26,7 +26,9 @@ Five tabs:
 - **GFS** — one Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Every item carries a completion standard — what your partner watches for, and what advances you to the next item — so the list is a set of gates, not a to-do list. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
 - **Drill** — pick any scope: the whole issued FSI deck, one of its four subdivisions, a supplementary set, or a single course day. Flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus each subdivision of the issued deck on its own standard — memory items at 100% verbatim, limitations at 100% exact, flows and aircraft general at 90% — and mock oral, supplementary and whole-deck scopes. Every attempt is logged with its result
-- **Reference** — all 198 cards, searchable
+- **Reference** — all 198 cards, grouped by provenance, with a filter box for narrowing the list
+
+A **Search** button in the header works from any tab (or press `/`): one box over all 198 cards, all 397 GFS items and all 63 panel plates. Results are actionable — drill the card, jump to the GFS block, open the plate.
 
 Progress is stored in your browser's `localStorage`, so it stays on the device and never leaves it. Each install keeps its own record — drill in one place so your due-card schedule doesn't fragment.
 
