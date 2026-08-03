@@ -6,7 +6,12 @@ Written 2026-07-30, substantially extended 2026-08-02. Point a new session at th
 
 Derek Evans is a contract pilot in **FlightSafety Pilatus PC-24 Pilot Initial (FAA)** training. Class started **Thu 30 Jul 2026** (that day was GND 1). Their aircraft is **MSN 631**, which puts every serial-dependent AFM value in the **MSN 501-up** column.
 
-**Course position as of Sun 2 Aug 2026: GND 2 complete** (finished Fri 31 Jul; the course does not run weekends, so GND 3 is Mon 3 Aug). Do not re-derive this from file dates or from this document's own header — the app now stores it in `state.courseDay` and that is the thing to trust. Ask Derek if it looks stale.
+**Course position: starting GND 5 on Monday morning** (Derek, 8am Monday). **This class runs weekends** — GND 1 Thu 30 Jul, GND 2 Fri, GND 3 Sat, GND 4 Sun, GND 5 Mon. So GND 6 SIT falls the next day, and the whole 9-day ground school runs Thu-to-Fri with no break.
+
+Two warnings, both learned the hard way in this repo:
+
+1. **Do not re-derive the course position from file dates, git dates, or this document's header.** I did that twice and was wrong both times — once by three days, once by an off-by-one from assuming weekends were off. The app stores it in `state.courseDay`; that or Derek are the only sources. Ask.
+2. **The host clock disagreed with Derek by a day** (machine said Sun 2 Aug while he said Mon 8am). Trust Derek on the calendar.
 
 The deliverable is a flashcard trainer plus a study schedule aligned to the FSI syllabus.
 
@@ -244,7 +249,7 @@ whose non-boilerplate text is short with 2+ short title-case label lines.
 
 Keyed to **course day numbers, not calendar dates** — ground school may or may not run weekends, and this is deliberate. Do not reintroduce dated rows.
 
-- **Phase 1 · GND 1–9** — each block holds the cards for the systems taught that day. All 198 cards map to exactly one ground day. SIT falls on Days 6 and 8.
+- **Phase 1 · GND 1–9** — each block holds the cards for the systems taught that day. This class runs consecutive days including the weekend, so GND day N is calendar day N from Thu 30 Jul. All 198 cards map to exactly one ground day. SIT falls on Days 6 and 8.
 - **Phase 2 · SIM 1–7** — prep blocks from each session's listed maneuvers. SIM 7 is the LOS.
 - **Phase 3 · six gates** — `gate-normal` (before GND 6 SIT, 90%), `gate-emer` (before GND 8 SIT, **100% verbatim** — the real memory-item deadline), `gate-written` (before the written test, 100%), `gate-sim3`, `gate-sim4`, `gate-los` (95%).
 - **Phases 4–5** — AFM and ACE topic blocks for targeted review.
