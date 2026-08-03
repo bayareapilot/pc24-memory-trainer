@@ -1,10 +1,12 @@
 # Handoff — PC-24 Memory Trainer
 
-Written 2026-07-30. Point a new session at this file plus the repo.
+Written 2026-07-30, substantially extended 2026-08-02. Point a new session at this file plus the repo.
 
 ## Who and what
 
-Derek Evans is a contract pilot in **FlightSafety Pilatus PC-24 Pilot Initial (FAA)** training. Class started **Thu 30 Jul 2026**; that day was ground school Day 1. Their aircraft is **MSN 631**, which puts every serial-dependent AFM value in the **MSN 501-up** column.
+Derek Evans is a contract pilot in **FlightSafety Pilatus PC-24 Pilot Initial (FAA)** training. Class started **Thu 30 Jul 2026** (that day was GND 1). Their aircraft is **MSN 631**, which puts every serial-dependent AFM value in the **MSN 501-up** column.
+
+**Course position as of Sun 2 Aug 2026: GND 2 complete** (finished Fri 31 Jul; the course does not run weekends, so GND 3 is Mon 3 Aug). Do not re-derive this from file dates or from this document's own header — the app now stores it in `state.courseDay` and that is the thing to trust. Ask Derek if it looks stale.
 
 The deliverable is a flashcard trainer plus a study schedule aligned to the FSI syllabus.
 
@@ -14,7 +16,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.5.0**, service worker **CACHE_VERSION v9**
+- App version **v2.6.0**, service worker **CACHE_VERSION v10**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -51,7 +53,7 @@ Two findings worth not re-deriving:
 
 ## GFS sessions
 
-Added 2026-07-30. The **GFS tab** holds one Graphical Flight Simulator session per course
+Added 2026-08-02. The **GFS tab** holds one Graphical Flight Simulator session per course
 day — 9 ground-school evenings and 7 simulator pre-briefs — because the device is where
 switch geography, flows and avionics button-pushing get learned, not the full-motion sim.
 
@@ -80,9 +82,28 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
 
+## Course-day pointer
+
+Added 2026-08-02, after I spent a session giving advice based on this file's own
+write date and telling Derek to run the GND 1 session when he had already finished
+GND 2. The schedule is deliberately keyed to course **day numbers**, not calendar
+dates, so the app cannot infer where he is — and neither can you. It now asks.
+
+`state.courseDay` holds a GFS session key (`'gnd2'`), not an index, so it survives
+reordering. A select at the top of the GFS tab sets it. Effects:
+
+- the GFS tab opens on that session by default (`state.gfsPick` still wins if set,
+  so browsing away is not overridden)
+- a hint line names the session to run and the next class day, and correctly says
+  "That was the last one" at SIM 7 rather than inventing a next day
+- the matching Program-view row gets a green **You are here** chip
+
+**If a future session needs to know where Derek is in the course, read
+`state.courseDay` or ask him. Do not infer it from dates in this file.**
+
 ## Global search
 
-Added 2026-07-30, because Derek asked for a card search that already existed and he had
+Added 2026-08-02, because Derek asked for a card search that already existed and he had
 never found it. The Reference tab's box only appears once you are in that tab and only
 narrows that one list, so it was effectively invisible. The fix was discoverability, not
 new matching.
@@ -109,7 +130,7 @@ Three implementation notes:
 
 ## Card divisions
 
-Added 2026-07-30. `DIVISIONS` in the template splits the deck by provenance:
+Added 2026-08-02. `DIVISIONS` in the template splits the deck by provenance:
 
 - **FSI Memory Flash Cards (87)** — what FSI actually issued, subdivided into
   **memory items (16)**, **normal procedure flows (5)**, **limitations (57)** and
@@ -142,7 +163,7 @@ Three things worth not re-deriving:
 
 ## Completion standards
 
-Added 2026-07-30. Every GFS item carries a **standard** — what the partner must observe,
+Added 2026-08-02. Every GFS item carries a **standard** — what the partner must observe,
 and what advances you to the next item. Items are `{do, std[, crit]}`; `std` names one of
 13 keys in `build/cards/standards.json`, each with `label`, `demo`, `gate` and `who`.
 
@@ -179,11 +200,11 @@ should need to do — edit `gfs_sessions.json` directly.
 
 ## Panel plates
 
-Added 2026-07-30. Each GFS block shows thumbnails of the annotated flight-deck plates
+Added 2026-08-02. Each GFS block shows thumbnails of the annotated flight-deck plates
 from the FSI Pilot Training Manual that cover the switches in that block — tap for a
 full-resolution view with a fit/natural zoom toggle.
 
-**Licensing.** Derek's FSI instructor cleared this on 2026-07-30: reproduction is
+**Licensing.** Derek's FSI instructor cleared this on 2026-08-02: reproduction is
 permitted **for personal training purposes and not for sale**. That is a narrower grant
 than the flashcard text, which is why the condition is stated in the app footer, the
 lightbox caption, and the README. Keep those notices on any new image work. The manual's
@@ -254,7 +275,7 @@ python3 build/build.py --bump
 | `build/generate_{afm,ace}_cards.py` | The scripts that authored those card sets; keep for provenance and value citations |
 | `index.html` | **Generated. Never hand-edit** — the next build overwrites it |
 
-Verified 2026-07-30: `build.py` reproduces the deployed `index.html` byte-for-byte.
+Verified 2026-08-02: `build.py` reproduces the deployed `index.html` byte-for-byte.
 
 To change the schedule, gates, styling or UI, edit `build/trainer.template.html`, then rebuild.
 

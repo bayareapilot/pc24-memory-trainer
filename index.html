@@ -260,6 +260,25 @@
   .gfs-cards .cardchip.learned { color: var(--good); border-color: var(--good); }
   .gfs-cards button { margin-left: auto; }
 
+  /* ---- course-day pointer ---- */
+  .coursebar {
+    background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 12px 15px; margin-bottom: 14px;
+  }
+  .coursebar label {
+    display: block; font: 700 .68rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 7px;
+  }
+  .coursebar select { max-width: 100%; }
+  .coursebar p { margin: 9px 0 0; font-size: .84rem; line-height: 1.5; color: var(--muted); }
+  .coursebar p b { color: var(--ink); }
+  .dayrow.here { border-left: 4px solid var(--good); }
+  .dayrow .nowchip {
+    font: 700 .62rem/1 -apple-system, BlinkMacSystemFont, sans-serif; text-transform: uppercase;
+    letter-spacing: .07em; background: var(--good); color: var(--ground);
+    border-radius: 4px; padding: 4px 6px; flex: none;
+  }
+
   /* ---- global search ---- */
   header.app #search-open {
     margin-left: auto; appearance: none; cursor: pointer; flex: none;
@@ -489,7 +508,7 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.5.0 (2026-07-30)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.6.0 (2026-08-02)</span></span>
     <button type="button" id="search-open" aria-label="Search everything">
       <span aria-hidden="true">⌕</span> Search
     </button>
@@ -512,6 +531,11 @@
 
   <!-- GFS -->
   <section class="view" id="view-gfs">
+    <div class="coursebar">
+      <label for="course-day">Last class day you finished</label>
+      <select id="course-day"></select>
+      <p id="course-hint"></p>
+    </div>
     <div class="controls">
       <select id="gfs-pick" aria-label="GFS session"></select>
     </div>
@@ -789,7 +813,7 @@ const byId = Object.fromEntries(CARDS.map(c => [c.id, c]));
 
 /* ---------- state ---------- */
 const LS_KEY = 'pc24-trainer-v1';
-let state = { srs: {}, exams: [], gfs: {}, gfsPick: null };
+let state = { srs: {}, exams: [], gfs: {}, gfsPick: null, courseDay: null };
 try { state = Object.assign(state, JSON.parse(localStorage.getItem(LS_KEY) || '{}')); } catch (e) {}
 const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
 
@@ -837,8 +861,10 @@ function renderProgram() {
     }
     const ids = day.ids;
     const stats = ids ? `${ids.length} cards · ${ids.filter(isLearned).length} learned` : (day.note || '');
-    html += `<div class="dayrow${day.exam ? ' checkpoint' : ''}">
+    const here = state.courseDay && day.d.toLowerCase().replace(/\s+/g, '') === state.courseDay;
+    html += `<div class="dayrow${day.exam ? ' checkpoint' : ''}${here ? ' here' : ''}">
       <span class="d">${day.d}</span>
+      ${here ? '<span class="nowchip">You are here</span>' : ''}
       <span class="t">${esc(day.title)}<small>${esc(idLabel(ids))}${ids && day.note ? ' · ' : ''}${esc(day.note || '')}</small></span>
       ${ids ? `<button class="btn" data-drill='${JSON.stringify(ids)}'>Drill</button>` : ''}
       ${gfsIndexFor(day.d) >= 0 ? `<button class="btn" data-gfs="${gfsIndexFor(day.d)}">GFS</button>` : ''}
@@ -990,9 +1016,10 @@ function renderGfsOptions() {
     html += `<option value="${i}">${s.day} — ${esc(s.title)}${mark}</option>`;
   });
   gfsPick.innerHTML = html + '</optgroup>';
-  gfsPick.value = String(state.gfsPick ?? GFS.findIndex(s => {
+  // Prefer where you said you are; otherwise the first session with work left.
+  gfsPick.value = String(state.gfsPick ?? (courseIndex() >= 0 ? courseIndex() : GFS.findIndex(s => {
     const k = sessionItemKeys(s); return k.filter(isChecked).length < k.length;
-  }));
+  })));
   if (gfsPick.value === '-1') gfsPick.value = '0';
 }
 
@@ -1102,6 +1129,34 @@ function renderGfs() {
 }
 gfsPick.addEventListener('change', () => {
   state.gfsPick = +gfsPick.value; save(); renderGfs();
+});
+
+/* Where you are in the course. The schedule is keyed to course DAY NUMBERS, not
+   calendar dates, because ground school may or may not run weekends — so the app
+   cannot infer this and has to be told. Stored as a session key, not an index, so
+   it survives reordering. */
+const courseSel = document.getElementById('course-day');
+const courseIndex = () => GFS.findIndex(s => s.key === state.courseDay);
+function renderCourseDay() {
+  courseSel.innerHTML = '<option value="">Not started yet</option>' +
+    GFS.map(s => `<option value="${s.key}">${s.day} — ${esc(s.title)}</option>`).join('');
+  courseSel.value = state.courseDay || '';
+  const i = courseIndex();
+  const hint = document.getElementById('course-hint');
+  if (i < 0) {
+    hint.innerHTML = 'Set this and the GFS tab will open on the right session each time.';
+  } else {
+    const done = GFS[i], next = GFS[i + 1];
+    hint.innerHTML = `Run the <b>${done.day}</b> session below — it drills what class covered that day.`
+      + (next ? ` Next class day is <b>${next.day}</b>.` : ' That was the last one.');
+  }
+}
+courseSel.addEventListener('change', () => {
+  state.courseDay = courseSel.value || null;
+  const i = courseIndex();
+  if (i >= 0) { state.gfsPick = i; gfsPick.value = String(i); }
+  save();
+  renderCourseDay(); renderGfsOptions(); renderGfs(); renderProgram();
 });
 
 /* ---------- drill view ---------- */
@@ -1463,6 +1518,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- boot ---------- */
+renderCourseDay();
 renderProgram();
 renderGfsOptions();
 renderGfs();
