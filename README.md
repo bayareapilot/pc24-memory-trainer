@@ -20,13 +20,14 @@ Serial-dependent values are resolved for **MSN 631** (the MSN 501-up column).
 
 Open the site, then on iPhone tap **Share → Add to Home Screen**. It installs as a standalone app, works with no signal, and updates itself when a new card set is published.
 
-Five tabs:
+Six tabs:
 
 - **Program** — the FSI Pilot Initial syllabus: ground Days 1–9 matched to the topics taught each day, SIM 1–7 prep blocks, six gates, plus AFM and ACE topic blocks. Every row has a Drill button that loads exactly those cards, and a GFS button that jumps to that day's simulator session
 - **GFS** — tell it the last class day you finished and it opens on the right session. One Graphical Flight Simulator session per course day: 9 ground-school evenings and 7 simulator pre-briefs. Time-boxed blocks with a running clock, a checkbox per item, and the cards behind each block with its own Drill button. Every item carries a completion standard — what your partner watches for, and what advances you to the next item — so the list is a set of gates, not a to-do list. Checks persist, so you can work a session across an evening. Each block also shows the annotated flight-deck plates covering its switches — tap one to zoom
 - **Drill** — pick any scope: the whole issued FSI deck, one of its four subdivisions, a supplementary set, or a single course day. Flip cards with grading; misses re-queue immediately and return on a 1/3/7-day spaced-repetition schedule
 - **Exam** — six syllabus gates (before GND 6 SIT, GND 8 SIT, the written test, SIM 3, SIM 4, SIM 7 LOS), plus each subdivision of the issued deck on its own standard — memory items at 100% verbatim, limitations at 100% exact, flows and aircraft general at 90% — and mock oral, supplementary and whole-deck scopes. Every attempt is logged with its result
 - **Reference** — all 198 cards, grouped by provenance, with a filter box for narrowing the list
+- **Gouge** — a student-written gouge verified line by line against the AFM and the FSI Pilot Training Manual. 186 items, each marked verified / wrong / conflict / incomplete / unverified, with the AFM value shown wherever the gouge is wrong. Opens on "needs attention"
 
 A **Search** button in the header works from any tab (or press `/`): one box over all 198 cards, all 397 GFS items and all 63 panel plates. Results are actionable — drill the card, jump to the GFS block, open the plate.
 

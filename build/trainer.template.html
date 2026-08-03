@@ -109,8 +109,8 @@
   /* Five tabs do not fit a 375 px phone at the full padding, and a tab you have to
      scroll sideways to discover is a tab you forget exists. Tighten to fit. */
   @media (max-width: 430px) {
-    nav.tabs { gap: 3px; }
-    nav.tabs button { padding: 11px 8px 12px; font-size: .86rem; letter-spacing: .01em; }
+    nav.tabs { gap: 2px; }
+    nav.tabs button { padding: 11px 5px 12px; font-size: .79rem; letter-spacing: 0; }
   }
 
   .view { display: none; }
@@ -259,6 +259,66 @@
   }
   .gfs-cards .cardchip.learned { color: var(--good); border-color: var(--good); }
   .gfs-cards button { margin-left: auto; }
+
+  /* ---- gouge ---- */
+  .gouge-head {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 14px;
+  }
+  .gouge-head h3 { font-family: "Avenir Next Condensed","Helvetica Neue",sans-serif; font-size: 1.15rem; margin: 0 0 6px; }
+  .gouge-head p { margin: 7px 0 0; font-size: .84rem; line-height: 1.55; color: var(--muted); }
+  .gouge-tally { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+  .gouge-tally span {
+    font: 700 .68rem/1 -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .04em;
+    border-radius: 5px; padding: 5px 8px; border: 1px solid var(--line); color: var(--muted);
+  }
+  .gouge-tally span.n-error { color: var(--again); border-color: var(--again); }
+  .gouge-tally span.n-conflict { color: var(--limit); border-color: var(--limit); }
+  .gouge-tally span.n-ok { color: var(--good); border-color: var(--good); }
+
+  .gsec { margin-bottom: 22px; }
+  .gsec > h4 {
+    font-family: "Avenir Next Condensed","Helvetica Neue",sans-serif; font-size: 1.05rem;
+    text-transform: uppercase; letter-spacing: .05em; margin: 0 0 9px;
+  }
+  .gsec .warn {
+    background: var(--emer-bg); border: 1px solid var(--again); border-left: 4px solid var(--again);
+    border-radius: 9px; padding: 11px 13px; margin-bottom: 10px; font-size: .86rem; line-height: 1.55;
+  }
+  .gitem {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 11px 13px; margin-bottom: 7px;
+  }
+  .gitem.s-error { border-left: 4px solid var(--again); }
+  .gitem.s-conflict { border-left: 4px solid var(--limit); }
+  .gitem.s-incomplete { border-left: 4px solid var(--afm); }
+  .gitem.s-unverified { border-left: 4px solid var(--line); }
+  .gitem.s-ok { border-left: 4px solid var(--good); }
+  .gitem .top { display: flex; flex-wrap: wrap; gap: 5px 9px; align-items: baseline; }
+  .gitem .lbl { flex: 1 1 180px; font-size: .93rem; font-weight: 600; }
+  .gitem .badge {
+    font: 700 .62rem/1 -apple-system, BlinkMacSystemFont, sans-serif; text-transform: uppercase;
+    letter-spacing: .07em; border-radius: 4px; padding: 4px 6px; flex: none; border: 1px solid;
+  }
+  .badge.s-error { color: var(--again); border-color: var(--again); }
+  .badge.s-conflict { color: var(--limit); border-color: var(--limit); }
+  .badge.s-incomplete { color: var(--afm); border-color: var(--afm); }
+  .badge.s-unverified { color: var(--muted); border-color: var(--line); }
+  .badge.s-ok { color: var(--good); border-color: var(--good); }
+  .gitem .says { font-size: .86rem; line-height: 1.5; margin-top: 7px; }
+  .gitem .says b { font: 700 .64rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: block; margin-bottom: 2px; }
+  .gitem .fix {
+    margin-top: 8px; padding: 9px 11px; border-radius: 7px; font-size: .85rem; line-height: 1.55;
+    background: var(--panel-2); border: 1px solid var(--line);
+  }
+  .gitem.s-error .fix { border-color: var(--again); }
+  .gitem .fix b { font: 700 .64rem/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase; letter-spacing: .07em; color: var(--again); display: block; margin-bottom: 3px; }
+  .gitem.s-ok .fix b, .gitem.s-unverified .fix b { color: var(--muted); }
+  .gitem.s-conflict .fix b { color: var(--limit); }
+  .gitem.s-incomplete .fix b { color: var(--afm); }
+  .gitem .src { margin-top: 6px; font-size: .74rem; color: var(--muted); }
 
   /* ---- course-day pointer ---- */
   .coursebar {
@@ -508,7 +568,7 @@
 <div class="wrap">
   <header class="app">
     <h1>PC-24 Memory Trainer</h1>
-    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.6.0 (2026-08-02)</span></span>
+    <span class="sub"><span class="offline-dot" title="Offline — using cached cards"></span>FSI + AFM + ACE · <span id="ccount"></span> cards · MSN 631 · <span id="ver">v2.7.0 (2026-08-03)</span></span>
     <button type="button" id="search-open" aria-label="Search everything">
       <span aria-hidden="true">⌕</span> Search
     </button>
@@ -524,6 +584,7 @@
     <button role="tab" aria-selected="false" data-view="drill">Drill</button>
     <button role="tab" aria-selected="false" data-view="exam">Exam</button>
     <button role="tab" aria-selected="false" data-view="reference">Reference</button>
+    <button role="tab" aria-selected="false" data-view="gouge">Gouge</button>
   </nav>
 
   <!-- PROGRAM -->
@@ -583,6 +644,12 @@
     </div>
     <div id="exam-area"></div>
     <div class="history" id="exam-history"></div>
+  </section>
+
+  <!-- GOUGE -->
+  <section class="view" id="view-gouge">
+    <div class="sfilters" id="gouge-filters"></div>
+    <div id="gouge-area"></div>
   </section>
 
   <!-- REFERENCE -->
@@ -1373,6 +1440,81 @@ function renderReference(filter) {
 }
 document.getElementById('ref-search').addEventListener('input', e => renderReference(e.target.value));
 
+/* ---------- gouge ----------
+   A student-written gouge, verified line by line against the AFM and the FSI
+   Pilot Training Manual. Status per line, because a gouge is only useful if you
+   know which numbers you can trust — and the wrong ones are the whole point of
+   reading it here rather than off the PDF. */
+const GOUGE = __GOUGE_DATA__;
+const G_STATUS = { error: 'Wrong', conflict: 'Conflict', incomplete: 'Incomplete',
+                   unverified: 'Unverified', ok: 'Verified' };
+const G_FIXLABEL = { error: 'Per the AFM', conflict: 'The conflict',
+                     incomplete: "What's missing", unverified: 'Note', ok: 'Note' };
+let gougeFilter = 'flagged';
+
+function gougeCounts() {
+  const c = { error: 0, conflict: 0, incomplete: 0, unverified: 0, ok: 0 };
+  for (const s of GOUGE.sections) for (const i of s.items) c[i.status]++;
+  return c;
+}
+function gougeShow(it) {
+  if (gougeFilter === 'all') return true;
+  if (gougeFilter === 'flagged') return ['error', 'conflict', 'incomplete'].includes(it.status);
+  return it.status === gougeFilter;
+}
+function renderGougeFilters() {
+  const c = gougeCounts();
+  const opts = [['flagged', `Needs attention (${c.error + c.conflict + c.incomplete})`],
+                ['error', `Wrong (${c.error})`],
+                ['conflict', `Conflicts (${c.conflict})`],
+                ['incomplete', `Incomplete (${c.incomplete})`],
+                ['unverified', `Unverified (${c.unverified})`],
+                ['ok', `Verified (${c.ok})`],
+                ['all', `Everything (${Object.values(c).reduce((a, b) => a + b, 0)})`]];
+  const el = document.getElementById('gouge-filters');
+  el.innerHTML = opts.map(([k, label]) =>
+    `<button type="button" data-gf="${k}" aria-pressed="${k === gougeFilter}">${label}</button>`).join('');
+  el.querySelectorAll('[data-gf]').forEach(b => b.addEventListener('click', () => {
+    gougeFilter = b.dataset.gf; renderGougeFilters(); renderGouge();
+  }));
+}
+function renderGouge() {
+  const c = gougeCounts();
+  const m = GOUGE.meta;
+  let html = `<div class="gouge-head">
+    <h3>${esc(m.title)}</h3>
+    <p>${esc(m.source)}</p>
+    <p>${esc(m.note)}</p>
+    <p><b>${esc(m.aircraft)}</b></p>
+    <div class="gouge-tally">
+      <span class="n-error">${c.error} wrong</span>
+      <span class="n-conflict">${c.conflict} conflict</span>
+      <span>${c.incomplete} incomplete</span>
+      <span>${c.unverified} unverified</span>
+      <span class="n-ok">${c.ok} verified</span>
+    </div></div>`;
+  let shown = 0;
+  for (const sec of GOUGE.sections) {
+    const items = sec.items.filter(gougeShow);
+    if (!items.length) continue;
+    html += `<div class="gsec"><h4>${esc(sec.name)}</h4>`;
+    if (sec.warn) html += `<div class="warn">${esc(sec.warn)}</div>`;
+    for (const it of items) {
+      shown++;
+      html += `<div class="gitem s-${it.status}">
+        <div class="top"><span class="lbl">${esc(it.label)}</span>
+          <span class="badge s-${it.status}">${G_STATUS[it.status]}</span></div>
+        <div class="says"><b>Gouge says</b>${esc(it.gouge)}</div>
+        ${it.correct ? `<div class="fix"><b>${G_FIXLABEL[it.status]}</b>${esc(it.correct)}</div>` : ''}
+        ${it.src ? `<div class="src">Checked against: ${esc(it.src)}</div>` : ''}
+      </div>`;
+    }
+    html += '</div>';
+  }
+  if (!shown) html += '<p class="smsg">Nothing in that category.</p>';
+  document.getElementById('gouge-area').innerHTML = html;
+}
+
 /* ---------- global search ----------
    Reachable from every tab, because the Reference tab's filter was effectively
    invisible: it only exists once you are already in that tab, and it only
@@ -1391,6 +1533,12 @@ const SEARCH_INDEX = [
     hay: `${s.day} ${s.title} ${b.title} ${it.do} ${it.crit || ''} ${STANDARDS[it.std].label}`.toLowerCase(),
     text: `${STANDARDS[it.std].label} — ${STANDARDS[it.std].gate}`, si, bi,
   })))),
+  ...GOUGE.sections.flatMap(sec => sec.items.map(it => ({
+    kind: 'gouge', id: it.label, title: it.label,
+    where: `${sec.name} · ${G_STATUS[it.status]}`,
+    hay: `${sec.name} ${it.label} ${it.gouge} ${it.correct || ''} ${G_STATUS[it.status]}`.toLowerCase(),
+    text: `Gouge: ${it.gouge}${it.correct ? ' — ' + it.correct : ''}`, status: it.status,
+  }))),
   ...PANELS.map(p => ({
     kind: 'panel', id: String(p.page), title: p.title,
     where: `PTM ${p.folio} · ${p.chapter}`,
@@ -1398,7 +1546,7 @@ const SEARCH_INDEX = [
     text: p.cards.join(' · '), panel: p,
   })),
 ];
-const KIND_LABEL = { card: 'Cards', gfs: 'GFS items', panel: 'Panel plates' };
+const KIND_LABEL = { card: 'Cards', gfs: 'GFS items', gouge: 'Gouge lines', panel: 'Panel plates' };
 let searchKind = 'all';
 
 const sEl = document.getElementById('search');
@@ -1448,13 +1596,14 @@ function runSearch() {
     return;
   }
   let html = '';
-  for (const kind of ['card', 'gfs', 'panel']) {
+  for (const kind of ['card', 'gfs', 'gouge', 'panel']) {
     const group = hits.filter(h => h.kind === kind);
     if (!group.length) continue;
     html += `<h4>${KIND_LABEL[kind]} (${group.length})</h4>`;
     for (const h of group.slice(0, 60)) {
       const act = kind === 'card' ? `<button data-drill1="${h.id}">Drill</button>`
                 : kind === 'gfs' ? `<button data-jump="${h.si}:${h.bi}">Open</button>`
+                : kind === 'gouge' ? `<button data-gouge1="${esc(h.status)}">Open</button>`
                 : `<button data-plate2="${h.id}">View</button>`;
       html += `<div class="hit">
         ${kind === 'panel' ? `<img src="${h.panel.img}" alt="" loading="lazy" decoding="async">` : ''}
@@ -1472,6 +1621,11 @@ function runSearch() {
   sResults.querySelectorAll('[data-drill1]').forEach(b => b.addEventListener('click', () => {
     closeSearch(); startDrill([b.dataset.drill1], false); show('drill');
   }));
+  sResults.querySelectorAll('[data-gouge1]').forEach(b => b.addEventListener('click', () => {
+    closeSearch();
+    gougeFilter = b.dataset.gouge1 === 'ok' ? 'ok' : 'all';
+    renderGougeFilters(); renderGouge(); show('gouge');
+  }));
   sResults.querySelectorAll('[data-plate2]').forEach(b => b.addEventListener('click', () => {
     closeSearch(); openPlate(+b.dataset.plate2);
   }));
@@ -1487,7 +1641,7 @@ function runSearch() {
 
 function renderSearchFilters() {
   const el = document.getElementById('search-filters');
-  const kinds = [['all', 'Everything'], ['card', 'Cards'], ['gfs', 'GFS items'], ['panel', 'Panels']];
+  const kinds = [['all', 'Everything'], ['card', 'Cards'], ['gfs', 'GFS items'], ['gouge', 'Gouge'], ['panel', 'Panels']];
   el.innerHTML = kinds.map(([k, label]) =>
     `<button type="button" data-kind="${k}" aria-pressed="${k === searchKind}">${label}</button>`).join('');
   el.querySelectorAll('[data-kind]').forEach(b => b.addEventListener('click', () => {
@@ -1519,6 +1673,8 @@ document.addEventListener('keydown', e => {
 
 /* ---------- boot ---------- */
 renderCourseDay();
+renderGougeFilters();
+renderGouge();
 renderProgram();
 renderGfsOptions();
 renderGfs();

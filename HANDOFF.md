@@ -21,7 +21,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.6.0**, service worker **CACHE_VERSION v10**
+- App version **v2.7.0**, service worker **CACHE_VERSION v11**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -37,6 +37,7 @@ All in `/Users/derekevans/Documents/AI Code/Pilatus PC24/` and **git-ignored** (
 | `PC-24 AFM.pdf` | Pilatus EASA AFM Report 02371, Issue 003 Rev 08, 01 May 2025 — 1,074 pp Vol 1 |
 | `Pc24 ACE.pdf` | Honeywell ACE Pilot's Guide D201912000296-R002 Rev 2, Sep 2022 — 2,131 pp |
 | `PC24 Client Schedule.pdf` | FSI Pilot Client Guide Rev 1.0 — the course syllabus |
+| `PC-24.pdf` | **Student gouge**, 11 pp, by another student (Lukas Gonzalez). NOT authoritative — verified line by line, see Gouge tab |
 | `Pilot Training Manual.pdf` | FSI PILATUS PC-24 Pilot Training Manual Rev 0.7, Apr 2026 — 781 pp, source of the 63 panel plates |
 
 Derek confirmed with his FSI instructor on 2026-07-30 that posting this content publicly is permitted. That is why the repo is public. Attribution and "for training purposes only" notices are in the README, the app footer, and the study program.
@@ -86,6 +87,42 @@ safety-critical number. Follow it when editing `build/cards/gfs_sessions.json`.
 
 `GFS Session Plan.md` at the repo root is the standalone prose version of the GND 1 session,
 written before the in-app feature. Keep or drop it; the app is the live artifact.
+
+## Gouge tab
+
+Added 2026-08-03. A student-written gouge (`PC-24.pdf`) verified line by line against
+the AFM and PTM Appendix B, in `build/cards/gouge.json`. 186 items across 16 sections,
+each with a status: `ok` / `error` / `conflict` / `incomplete` / `unverified`.
+**As checked: 10 wrong, 3 conflicts, 19 incomplete, 39 unverified, 115 verified.**
+
+`build.py` fails on an unknown status, and on any non-`ok` item with no `correct` text —
+a flagged line with nothing to flag reads as verified, which is worse than not flagging.
+
+The findings that matter:
+
+1. **Every weight in the gouge is the MSN 101-500 column.** Ramp, takeoff, landing, ZFW
+   and cargo are all the early-serial values; MSN 631 is 501-UP, so all five are 440 lb
+   low (cargo 440 lb). AFM p97 prints both columns side by side — that page is the proof.
+2. **"Charging not to exceed 32 V" is wrong — it is 29.5 V**, and the gouge contradicts
+   itself two lines later with the correct 28.0/29.5 figures.
+3. **Approved surfaces are overstated.** Baseline is dry/wet PAVED only; dirt, sand,
+   gravel and grass each need an AFM Supplement plus the gravel kit.
+4. **Gear warning is flaps 33°, not "flaps > 20°"**, and it is an OR of two conditions,
+   not an AND of three (AFM p480).
+5. **"Mobile 25" should be Mobil 254.**
+6. **VLO EGES is a genuine FSI-internal conflict**: the Memory Flash Card says 180 KIAS
+   (with a QRH note of 160), PTM App B says 160. Fly 160.
+
+Two things the verification exposed about our own deck:
+
+- **There is no VFE card.** VFE 8°/15° = 200 KIAS and 33° = 175 KIAS are confirmed
+  (PTM p144, App B p773) but absent from all 198 cards. Worth adding.
+- The deck also lacks N1/N2/oil-pressure/oil-temperature limit cards, which PTM App B
+  p776 tabulates in full.
+
+Honesty rule for this tab: `unverified` means exactly that — not found in the AFM
+limitations or PTM Appendix B in the searches run. It does not mean wrong. Do not
+upgrade an item to `ok` without an actual source, and record the source in `src`.
 
 ## Course-day pointer
 

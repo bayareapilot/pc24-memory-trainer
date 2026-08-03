@@ -174,16 +174,51 @@ def load_panels(cards):
     return refs
 
 
-def build_index(cards, gfs, panels, standards):
+
+def load_gouge():
+    """Load the verified student gouge.
+
+    Every item carries a status: ok / error / conflict / incomplete / unverified.
+    The build fails on an unknown status, and on an error/conflict/incomplete item
+    with no correction text — a flagged line with nothing to flag would be worse
+    than not flagging it, because it would read as verified.
+    """
+    path = BUILD / 'cards' / 'gouge.json'
+    data = json.loads(path.read_text())
+    valid = {'ok', 'error', 'conflict', 'incomplete', 'unverified'}
+    counts = {k: 0 for k in valid}
+    for sec in data['sections']:
+        if not sec.get('name') or not sec.get('items'):
+            raise SystemExit(f'gouge section missing name/items: {sec.get("name")!r}')
+        for it in sec['items']:
+            for field in ('label', 'gouge', 'status'):
+                if not it.get(field):
+                    raise SystemExit(f'gouge item missing {field}: {it!r}')
+            if it['status'] not in valid:
+                raise SystemExit(f'gouge item bad status {it["status"]!r}: {it["label"]}')
+            if it['status'] != 'ok' and not it.get('correct'):
+                raise SystemExit(
+                    f'gouge item flagged {it["status"]} but has no correction: {it["label"]}')
+            counts[it['status']] += 1
+    total = sum(counts.values())
+    print(f'  {"gouge.json":20} {total:>4} items in {len(data["sections"])} sections')
+    print(f'  {"":20} {counts["error"]} errors, {counts["conflict"]} conflicts, '
+          f'{counts["incomplete"]} incomplete, {counts["unverified"]} unverified, '
+          f'{counts["ok"]} verified')
+    return data
+
+
+def build_index(cards, gfs, panels, standards, gouge):
     template = (BUILD / 'trainer.template.html').read_text()
     for placeholder in ('__CARDS_DATA__', '__GFS_DATA__', '__PANELS_DATA__',
-                        '__STANDARDS_DATA__'):
+                        '__STANDARDS_DATA__', '__GOUGE_DATA__'):
         if placeholder not in template:
             raise SystemExit(f'template is missing the {placeholder} placeholder')
     out = template
     for placeholder, data in (('__CARDS_DATA__', cards), ('__GFS_DATA__', gfs),
                               ('__PANELS_DATA__', panels),
-                              ('__STANDARDS_DATA__', standards)):
+                              ('__STANDARDS_DATA__', standards),
+                              ('__GOUGE_DATA__', gouge)):
         payload = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
         out = out.replace(placeholder, payload)
     (ROOT / 'index.html').write_text(out)
@@ -230,11 +265,12 @@ def main():
     standards = load_standards()
     gfs = load_gfs(cards, standards)
     panels = load_panels(cards)
+    gouge = load_gouge()
 
     (ROOT / 'flashcards_data.json').write_text(
         json.dumps(cards, ensure_ascii=False, indent=1))
 
-    size = build_index(cards, gfs, panels, standards)
+    size = build_index(cards, gfs, panels, standards, gouge)
     rows = build_anki(cards)
     print(f'\nindex.html               {size:>7} bytes')
     print(f'PC24_FSI_Flashcards_Anki {rows:>7} rows')
