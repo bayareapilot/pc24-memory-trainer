@@ -21,7 +21,8 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.7.0**, service worker **CACHE_VERSION v11**
+- App version **v2.7.0**, service worker **CACHE_VERSION v12**
+- **`PC-24 Study Reference.pdf`** — 35-page consolidated two-column study PDF, 198 cards + 117 verified gouge lines. Regenerate with `build/make_study_pdf.py` (needs reportlab).
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
@@ -93,7 +94,7 @@ written before the in-app feature. Keep or drop it; the app is the live artifact
 Added 2026-08-03. A student-written gouge (`PC-24.pdf`) verified line by line against
 the AFM and PTM Appendix B, in `build/cards/gouge.json`. 186 items across 16 sections,
 each with a status: `ok` / `error` / `conflict` / `incomplete` / `unverified`.
-**As checked: 10 wrong, 3 conflicts, 19 incomplete, 39 unverified, 115 verified.**
+**As checked: 7 wrong, 3 conflicts, 20 incomplete, 39 unverified, 117 verified.**
 
 `build.py` fails on an unknown status, and on any non-`ok` item with no `correct` text —
 a flagged line with nothing to flag reads as verified, which is worse than not flagging.
@@ -103,15 +104,30 @@ The findings that matter:
 1. **Every weight in the gouge is the MSN 101-500 column.** Ramp, takeoff, landing, ZFW
    and cargo are all the early-serial values; MSN 631 is 501-UP, so all five are 440 lb
    low (cargo 440 lb). AFM p97 prints both columns side by side — that page is the proof.
-2. **"Charging not to exceed 32 V" is wrong — it is 29.5 V**, and the gouge contradicts
-   itself two lines later with the correct 28.0/29.5 figures.
-3. **Approved surfaces are overstated.** Baseline is dry/wet PAVED only; dirt, sand,
-   gravel and grass each need an AFM Supplement plus the gravel kit.
-4. **Gear warning is flaps 33°, not "flaps > 20°"**, and it is an OR of two conditions,
+2. **Gear warning is flaps 33°, not "flaps > 20°"**, and it is an OR of two conditions,
    not an AND of three (AFM p480).
-5. **"Mobile 25" should be Mobil 254.**
-6. **VLO EGES is a genuine FSI-internal conflict**: the Memory Flash Card says 180 KIAS
+3. **"Mobile 25" should be Mobil 254.**
+4. **VLO EGES is a genuine FSI-internal conflict**: the Memory Flash Card says 180 KIAS
    (with a QRH note of 160), PTM App B says 160. Fly 160.
+
+### Three items I flagged wrongly, then corrected — read before flagging anything else
+
+I marked these as errors and they were not. All three were my mistake, and two of them
+were already answered inside our own deck:
+
+- **"Charging not to exceed 32 V" is CORRECT.** AFM p90 §11.2 Battery Limitations says
+  exactly that. It is the battery-side ceiling; the 29.5 VDC figure is a *different* limit
+  (max GPU/generator output, and max volts to charge from the GPU). **Card AFM-47 already
+  documents this exact trap** — I called the gouge wrong without checking my own card.
+- **WAI inhibited at TAT > 15 °C is CORRECT.** AFM p94 §15.2. I conflated it with the
+  windshield-heat inhibit (TAT > 10 °C) and with the separate "do not operate WAI above
+  TAT 10 °C unless icing requires it" rule. Three temperatures, three systems.
+- **Approved surfaces** was reclassified `error` → `incomplete`. The surfaces *are*
+  approved; the gouge just omits that each non-paved one needs its own AFM Supplement.
+
+Lesson for the next session: before marking a gouge line wrong, grep the 198 cards for
+the same value. Two of these three were sitting in the deck already. An over-flagged
+gouge is its own hazard — it trains distrust of correct numbers.
 
 Two things the verification exposed about our own deck:
 

@@ -54,6 +54,7 @@ The AFM marks true memory items with a solid red box. There are exactly **16** i
 | `index.html` | The trainer — one self-contained file, all 198 cards and 16 GFS sessions inline |
 | `PC-24 Memory Items Study Program.md` | Written study program: schedule, standards, memory anchors |
 | `GFS Session Plan.md` | Standalone prose version of the GND 1 simulator session |
+| `PC-24 Study Reference.pdf` | 35-page consolidated two-column study reference — every verified value, question left, answer right |
 | `PC24_FSI_Flashcards_Anki.txt` | Anki import (tab-separated, tagged `PC24::Section`) |
 | `flashcards_data.json` | Structured card data — the source for rebuilding `index.html` |
 | `sw.js` | Service worker: offline caching and update prompts |
