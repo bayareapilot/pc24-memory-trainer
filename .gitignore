@@ -9,8 +9,11 @@
 .idea/
 *.swp
 
-# Source material — copyrighted FSI PDF stays out of the repo
+# Source material — copyrighted FSI PDFs stay out of the repo
 *.pdf
+# ...but the study reference we generate is our own output and ships with the app.
+# Without this exception `*.pdf` silently swallows it and the commit looks clean.
+!PC-24 Study Reference.pdf
 
 # Scratch
 *.tmp

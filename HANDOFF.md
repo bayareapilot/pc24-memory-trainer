@@ -22,7 +22,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
 - App version **v2.7.0**, service worker **CACHE_VERSION v12**
-- **`PC-24 Study Reference.pdf`** — 35-page consolidated two-column study PDF, 198 cards + 117 verified gouge lines. Regenerate with `build/make_study_pdf.py` (needs reportlab).
+- **`PC-24 Study Reference.pdf`** — 35-page consolidated two-column study PDF, 198 cards + 117 verified gouge lines. Regenerate with `build/make_study_pdf.py` (needs reportlab). **`.gitignore` has `*.pdf` to keep the source manuals out, so the study PDF needs its `!` exception — without it the file is silently ignored and the commit looks clean while shipping nothing.**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
 - `gh` CLI is installed and authenticated as `bayareapilot`
