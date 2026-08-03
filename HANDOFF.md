@@ -1,6 +1,10 @@
 # Handoff — PC-24 Memory Trainer
 
-Written 2026-07-30, substantially extended 2026-08-02. Point a new session at this file plus the repo.
+Written 2026-07-30, substantially extended 2026-08-03. Point a new session at this file plus the repo.
+
+> **START HERE.** Read *Current state*, then *Open items*, then ask Derek where he is in the
+> course before advising anything schedule-dependent. Everything below was verified against
+> the deployed build, not just the local one.
 
 ## Who and what
 
@@ -21,7 +25,7 @@ The deliverable is a flashcard trainer plus a study schedule aligned to the FSI 
 - **16 GFS sessions** — 99 blocks, 397 checkable items, 1,445 min (see GFS sessions, below)
 - **13 completion standards** on every item, plus 19 item criteria and 10 block exit gates
 - **63 panel plates** from the FSI Pilot Training Manual, 5.6 MB (see Panel plates, below)
-- App version **v2.7.0**, service worker **CACHE_VERSION v12**
+- App version **v2.7.0**, service worker **CACHE_VERSION v13**
 - **`PC-24 Study Reference.pdf`** — 35-page consolidated two-column study PDF, 198 cards + 117 verified gouge lines. Regenerate with `build/make_study_pdf.py` (needs reportlab). **`.gitignore` has `*.pdf` to keep the source manuals out, so the study PDF needs its `!` exception — without it the file is silently ignored and the commit looks clean while shipping nothing.**
 - Live: **https://bayareapilot.github.io/pc24-memory-trainer/**
 - Repo: **https://github.com/bayareapilot/pc24-memory-trainer** (public, GitHub Pages from `main` at root)
@@ -396,12 +400,96 @@ Technique worth reusing: **AFM memory items are detectable programmatically** as
 - One source typo is deliberately corrected: FSI card E-21A prints "PDF" where it means "PFD".
 - Probe scripts have twice reported false negatives from casing/spacing (`Dual Chine` vs `DUAL CHINE`, `90 ° left` vs `90° LEFT`). Confirm against the card text before treating a failed probe as a missing value.
 
-## Possible next steps
+## Open items — read before starting work
 
-Nothing is outstanding or broken. Ideas, in rough order of likely value:
+### One thing may still be unpushed
+
+At the end of the 2026-08-03 session, commit **`66c6831`** ("Actually commit the study PDF")
+was committed but **not confirmed pushed**. Check first:
+
+```bash
+git log --oneline origin/main..HEAD     # empty means all pushed
+git ls-files "*.pdf"                    # must list PC-24 Study Reference.pdf
+curl -sI https://bayareapilot.github.io/pc24-memory-trainer/PC-24%20Study%20Reference.pdf
+```
+
+**Derek pushes; this session does not have push permission** — the classifier blocked it once
+and that was respected. Commit, then hand him the exact command and wait.
+
+### Real gaps in the deck, found by verifying the gouge
+
+These are genuine holes, deliberately left rather than silently filled because adding cards
+shifts the gate denominators mid-course. Ask Derek before adding:
+
+1. **No VFE card at all.** VFE 8°/15° = 200 KIAS, 33° = 175 KIAS. Confirmed (PTM p144,
+   App B p773). Commonly examined, and a classmate's gouge had it while our 198-card deck
+   did not.
+2. **No N1 / N2 / oil-pressure / oil-temperature limit cards.** PTM App B p776 tabulates all
+   of them, including QPM N2 = 45.4%.
+
+### Unfinished verification
+
+- **39 gouge items are `unverified`** — not found in the AFM limitations or PTM Appendix B in
+  the searches run. That is not "wrong". The most useful to chase: rudder travel limiter
+  angles (20°/26°/28°), nosewheel steering 17° L / 15.6° R, ice-mode latch timings, anti-skid
+  behaviour, brake system 3,000 psi, pressurization 9.07 psi relief and the CAB ALT CAS /
+  FIELD HI thresholds.
+- **The gouge's fuel-balancing numbers are the one place to actively distrust it** even though
+  they could not be disproved: "balancing ceases 440 lb" does not reconcile with a 330 lb
+  maximum imbalance, and "or 4.5 lb" looks like a transcription artifact. Derek was told to
+  ask his instructor.
+- **~140 further PTM diagram pages were never mined** for panel plates — per-control close-ups
+  and synoptic-page state variations (the IPS knob has a plate per position, the airbrake lever
+  one per detent). The 63 that exist cover the main panels.
+
+### Ideas, in rough order of likely value
 
 - Add a gate for the practical test if it gets scheduled as its own session.
-- Adjust GND blocks if Derek's actual class order differs from the guide (instructors reorder; the guide notes SIT timing can move).
-- Mine AFM Section 5 performance or Section 6 weight-and-balance if he wants those as cards — both were deliberately skipped as lookup material.
-- ACE page-by-page operation (flight-plan entry, charts, datalink, radios, SATCOM) was skipped for the same reason.
+- Adjust GND blocks if Derek's actual class order differs from the guide (instructors reorder;
+  the guide notes SIT timing can move).
+- Mine AFM Section 5 performance or Section 6 weight-and-balance as cards — both deliberately
+  skipped as lookup material.
+- ACE page-by-page operation (flight-plan entry, charts, datalink, radios, SATCOM), skipped
+  for the same reason.
 - The AFM placard pages (115–194) are images and were never OCR'd.
+
+## What the 2026-08-03 session actually did
+
+Nine commits, in order. Each was verified by executing the deployed build, not just the local
+one — the failure modes below are why.
+
+| Commit | What |
+|---|---|
+| `8ba2911` | 63 annotated flight-deck panel plates attached to GFS blocks |
+| `ac969e4` | 13 completion standards on all 397 GFS items, 19 criteria, 10 block exit gates |
+| `14ff4cf` | Split the issued 87-card FSI deck from the 111 supplementary cards |
+| `a46e806` | Global search over 844 entries, reachable from every tab |
+| `595985b` | Course-day pointer — the app asks instead of guessing |
+| `8469785` | Corrected the recorded course position (weekends run) |
+| `f0b052c` | Gouge tab — a classmate's gouge verified line by line |
+| `596ba75` | Consolidated 35-page study PDF; corrected three mis-flagged gouge items |
+| `66c6831` | Actually commit the PDF — `.gitignore` was swallowing it |
+
+### Five failure modes hit in one session — all caught by testing, none by reading
+
+Worth internalising, because four of the five produced **no console error and no failed build**:
+
+1. **Temporal dead zone killed the whole script.** Declaring `DIVISIONS` below `EXAM_SCOPES`,
+   which spreads it at module-evaluation time, threw before anything rendered. The page showed
+   the tab bar and nothing else, silently. Caught only because a layout assertion read
+   `clientWidth` wrong.
+2. **`//g` is a comment, not an empty regex.** A highlight helper emitted it — a syntax error
+   that would have killed the script the same way.
+3. **`.gitignore *.pdf` silently ate the generated PDF.** `git status` reported a clean tree
+   while shipping nothing. `git ls-files` is the check, not status.
+4. **Over-flagged a gouge as wrong, twice, when our own deck had the answer.** Card AFM-47
+   documents the 32 V battery ceiling; AFM §15.2 gives the WAI 15 °C inhibit. Grep the 198
+   cards for a value before calling a gouge line wrong — an over-flagged gouge teaches
+   distrust of correct numbers.
+5. **Advised from this file's own write date and was three days stale**, then off-by-one again
+   from assuming weekends were off. Ask Derek.
+
+Two smaller ones: the browser pane served a stale **v1.2.0** page from a waiting service
+worker (that is the update-banner design working, not a bug — clear caches before trusting a
+local test), and the pane's viewport silently drifted to 529 px mid-sweep, which is why every
+layout check asserts `clientWidth === 375` before measuring.
